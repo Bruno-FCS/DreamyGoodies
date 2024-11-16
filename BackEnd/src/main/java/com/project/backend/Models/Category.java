@@ -2,10 +2,10 @@ package com.project.backend.Models;
 
 import java.util.List;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Getter
@@ -17,7 +17,14 @@ import lombok.*;
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
     private String name;
+    @ManyToMany
+    @JsonIgnore
     private List<Product> products;
+
+    @JsonCreator
+    public Category(@JsonProperty("id") int id) {
+        this.id = id;
+    }
 }

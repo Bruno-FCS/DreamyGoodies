@@ -1,54 +1,54 @@
 package com.project.backend.Services;
 
-import com.project.backend.Models.Dish;
-import com.project.backend.Repositories.DishRepository;
+import com.project.backend.Models.Product;
+import com.project.backend.Repositories.ProductRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class ProductService {
-    private final ProductRepository dishRepository;
+    private final ProductRepository productRepository;
 
-    public ProductService(ProductRepository dishRepository) {
-        this.dishRepository = dishRepository;
+    public ProductService(ProductRepository productRepository) {
+        this.productRepository = productRepository;
     }
 
-    // get all dishes
-    public List<Product> getAllDishes() {
-        return dishRepository.findAll();
+    // get all products
+    public List<Product> getAllProducts() {
+        return productRepository.findAll();
     }
 
-    // get dish by id
-    public Product getDishById(int id) {
-        return dishRepository.findById(id).orElse(null);
+    // get product by id
+    public Product getProductById(int id) {
+        return productRepository.findById(id).orElse(null);
     }
 
-    // add dish
-    public void addDish(Product dish) {
-        Product existingDish = this.dishRepository.findByName(dish.getName());
-        if (existingDish != null) {
-            throw new IllegalStateException("Dish with " + dish.getName() + " already exists! Insert failed!");
+    // add product
+    public void addProduct(Product product) {
+        Product existingProduct = this.productRepository.findByName(product.getName());
+        if (existingProduct != null) {
+            throw new IllegalStateException("Product with name: '" + product.getName() + "' already exists! Insertion failed!");
         }
-        dishRepository.save(dish);
+        productRepository.save(product);
     }
 
-    // update dish
-    public void updateDish(int dishId, Product dish) {
-        boolean existsDish = this.dishRepository.existsById(dishId);
-        if (!existsDish) {
-            throw new IllegalStateException("Dish with " + dishId + " doesn't exist! Update failed!");
+    // update product
+    public void updateProduct(int productId, Product product) {
+        boolean existsProduct = this.productRepository.existsById(productId);
+        if (!existsProduct) {
+            throw new IllegalStateException("Product with Id: '" + productId + "' doesn't exist! Update failed!");
         }
-        dish.setId(dishId);
-        dishRepository.save(dish);
+        product.setId(productId);
+        productRepository.save(product);
     }
 
-    // delete dish
-    public void deleteDish(int dishId) {
-        boolean existsDish = this.dishRepository.existsById(dishId);
-        if (!existsDish) {
-            throw new IllegalStateException("Dish with " + dishId + " doesn't exist! Delete failed!");
+    // delete product
+    public void deleteProduct(int productId) {
+        boolean existsProduct = this.productRepository.existsById(productId);
+        if (!existsProduct) {
+            throw new IllegalStateException("Product with Id: '" + productId + "' doesn't exist! Delete failed!");
         }
-        dishRepository.deleteById(dishId);
+        productRepository.deleteById(productId);
     }
 }

@@ -1,93 +1,67 @@
 package com.project.backend.Controllers;
 
 import com.project.backend.Models.Category;
-import com.project.backend.Models.Dish;
-import com.project.backend.Services.CategoryServices;
-import com.project.backend.Services.DishService;
+import com.project.backend.Services.CategoryService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-//Rest APIs
+//Rest API
 @RestController
-@RequestMapping("/restaurant/api")
-public class DishController {
-    private final ProductService dishService;
-    private final CategoryService categoryServices;
+@RequestMapping("/api")
+public class CategoryController {
+    private final CategoryService categoryService;
 
-    public DishController(ProductService dishService, CategoryService categoryServices) {
-        this.dishService = dishService;
-        this.categoryServices = categoryServices;
+    public CategoryController(CategoryService categoryService) {
+        this.categoryService = categoryService;
     }
 
-    // get all dishes
-    @GetMapping("/dishes")
-    public ResponseEntity<List<Product>> getAllDishes() {
-        return ResponseEntity.ok(dishService.getAllDishes());
+    // get all categories
+    @GetMapping("/categories")
+    public ResponseEntity<List<Category>> getAllCategories() {
+        return ResponseEntity.ok(categoryService.getAllCategories());
     }
 
-    // get dish by id
-    @GetMapping("/dishes/{id}")
-    public ResponseEntity<Product> getDishById(@PathVariable Integer id) {
-        return ResponseEntity.ok(dishService.getDishById(id));
+    // get category by id
+    @GetMapping("/categories/{id}")
+    public ResponseEntity<Category> getCategoryById(@PathVariable Integer id) {
+        return ResponseEntity.ok(categoryService.getCategoryById(id));
     }
 
-    // save dish
-    @PostMapping("/dishes")
-    public ResponseEntity<String> addDish(@RequestBody Product dish) {
-        // check if the category exists
-        Category existingCategory = categoryServices.getCategoryByName(dish.getCategory().getName());
-
-        // if the category exists, set existing category (with the name) to the dish
-        // before adding
-        // so that a duplicate category is not created
-        if (existingCategory != null) {
-            dish.setCategory(existingCategory);
-        }
-
-        // proceed with adding the dish
+    // save category
+    @PostMapping("/categories")
+    public ResponseEntity<String> addCategory(@RequestBody Category category) {
         try {
-            dishService.addDish(dish);
+            categoryService.addCategory(category);
         } catch (IllegalStateException e) {
             return ResponseEntity.badRequest().body("Error: " + e.getMessage());
         }
 
-        return ResponseEntity.ok("Dish added successfully");
+        return ResponseEntity.ok("Category added successfully");
     }
 
-    // delete dish
-    @DeleteMapping("/dishes/{id}")
-    public ResponseEntity<String> deleteDish(@PathVariable Integer id) {
+    // delete category
+    @DeleteMapping("/categories/{id}")
+    public ResponseEntity<String> deleteCategory(@PathVariable Integer id) {
         try {
-            dishService.deleteDish(id);
+            categoryService.deleteCategory(id);
         } catch (IllegalStateException e) {
             return ResponseEntity.badRequest().body("Error: " + e.getMessage());
         }
 
-        return ResponseEntity.ok("Dish deleted successfully");
+        return ResponseEntity.ok("Category deleted successfully");
     }
 
-    // update dish
-    @PutMapping("/dishes/{id}")
-    public ResponseEntity<String> updateDish(@PathVariable Integer id, @RequestBody Product dish) {
-        Category existingCategory = categoryServices.getCategoryByName(dish.getCategory().getName());
-
-        // if the category exists, set existing category (with the name) to the dish
-        // before updating
-        // so that a duplicate category is not created (we don't want to update existing
-        // category, just the dish)
-        if (existingCategory != null) {
-            dish.setCategory(existingCategory);
-        }
-
-        // proceed with updating the dish
+    // update category
+    @PutMapping("/categories/{id}")
+    public ResponseEntity<String> updateCategory(@PathVariable Integer id, @RequestBody Category category) {
         try {
-            dishService.updateDish(id, dish);
+            categoryService.updateCategory(id, category);
         } catch (IllegalStateException e) {
             return ResponseEntity.badRequest().body("Error: " + e.getMessage());
         }
 
-        return ResponseEntity.ok("Dish updated successfully");
+        return ResponseEntity.ok("Category updated successfully");
     }
 }

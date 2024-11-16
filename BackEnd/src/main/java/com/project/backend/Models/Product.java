@@ -8,9 +8,6 @@ import lombok.Setter;
 
 import java.util.List;
 
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
-
 @Getter
 @Setter
 @NoArgsConstructor
@@ -19,10 +16,14 @@ import org.hibernate.annotations.CascadeType;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
     private String name;
     private double price;
     @ManyToMany
-
+    @JoinTable(
+            name = "PROD_CAT",
+            joinColumns = @JoinColumn(name = "PRODUCT_ID"),
+            inverseJoinColumns = @JoinColumn(name = "CATEGORY_ID")
+    )
     private List<Category> categories;
 }
