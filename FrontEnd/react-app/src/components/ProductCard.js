@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const ProductCard = ({ product }) => {
   return (
     <div
-      key={product._id}
+      key={product.id}
       className="product-card"
       style={{
         border: "1px solid #ccc",
@@ -14,27 +14,27 @@ const ProductCard = ({ product }) => {
         alignItems: "center",
         justifyContent: "center",
         display: "flex",
-        flexDirection: "column"
+        flexDirection: "column",
       }}
     >
-      <img src={product.image} width={100} alt="product_image" />
+      {/* <img src={product.image} width={100} alt="product_image" /> */}
       <div className="title-box">
         <label className="product-title">
           <Link
-            to={`/product/${product._id}`}
+            to={`/product/${product.id}`}
             style={{
               color: "#39b575",
               textDecoration: "none",
               fontWeight: "bold",
             }}
           >
-            {product.title}
+            {product.name}
           </Link>
         </label>
       </div>
       <div className="info-box">
         <p className="product-info">CAD$ {product.price.toFixed(2)}</p>
-        <p className="product-info">Rating: {product.rating} / 5</p>
+        {/* <p className="product-info">Rating: {product.rating} / 5</p> */}
       </div>
     </div>
   );
