@@ -1,0 +1,52 @@
+/* EditBook.css */
+
+/* Body styling */
+body {
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  /* Container styling */
+  .edit-book-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 600px;
+    margin: auto;
+    margin-top: 20px; /* Add margin to top to avoid overlapping with NavBar */
+    padding: 20px;
+    border: 2px solid #27ae60; /* Green border color */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    background-color: #ecf0f1; /* Light background color */
+  }
+  
+  /* Form styling */
+  .form-control {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    box-sizing: border-box;
+  }
+  
+  /* Checkbox styling */
+  .form-group-checkbox {
+    margin: 8px 0;
+  }
+  
+  /* Submit button styling */
+  .btn-primary {
+    background-color: #27ae60; /* Button color */
+    color: #ecf0f1; /* Button text color */
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .btn-primary:hover {
+    background-color: #219d54; /* Button color on hover */
+  }
+  
