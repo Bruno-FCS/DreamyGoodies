@@ -19,12 +19,12 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
-    @ManyToMany
+    @ManyToMany(mappedBy = "categories")
     @JsonIgnore
     private List<Product> products;
 
     @JsonCreator
-    public Category(@JsonProperty("id") int id) {
+    public Category(@JsonProperty("id") long id) {
         this.id = id;
     }
 }

@@ -1,5 +1,6 @@
 package com.project.backend.Controllers;
 
+import com.project.backend.Models.Category;
 import com.project.backend.Models.Product;
 import com.project.backend.Services.ProductService;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +27,11 @@ public class ProductController {
     // get product by id
     @GetMapping("/products/{id}")
     public ResponseEntity<Product> getProductById(@PathVariable Integer id) {
-        return ResponseEntity.ok(productService.getProductById(id));
+        Product product = this.productService.getProductById(id);
+        if(product == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(product);
     }
 
     // save product

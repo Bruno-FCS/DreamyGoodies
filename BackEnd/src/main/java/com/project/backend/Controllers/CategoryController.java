@@ -26,7 +26,11 @@ public class CategoryController {
     // get category by id
     @GetMapping("/categories/{id}")
     public ResponseEntity<Category> getCategoryById(@PathVariable Integer id) {
-        return ResponseEntity.ok(categoryService.getCategoryById(id));
+        Category category = this.categoryService.getCategoryById(id);
+        if(category == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(category);
     }
 
     // save category
@@ -48,6 +52,8 @@ public class CategoryController {
             categoryService.deleteCategory(id);
         } catch (IllegalStateException e) {
             return ResponseEntity.badRequest().body("Error: " + e.getMessage());
+        } catch (RuntimeException e){
+            return ResponseEntity.badRequest().body("Error: Unable to delete category that has products in it. Deletion invalid!");
         }
 
         return ResponseEntity.ok("Category deleted successfully");

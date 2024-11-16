@@ -37,7 +37,11 @@ public class ProductService {
     public void updateProduct(int productId, Product product) {
         boolean existsProduct = this.productRepository.existsById(productId);
         if (!existsProduct) {
-            throw new IllegalStateException("Product with Id: '" + productId + "' doesn't exist! Update failed!");
+            throw new IllegalStateException("Product with Id: '" + productId + "' doesn't exist! Modification failed!");
+        }
+        Product existingProduct = this.productRepository.findByName(product.getName());
+        if (existingProduct != null && existingProduct.getId() != productId) {
+            throw new IllegalStateException("Product with name: '" + product.getName() + "' already exists! Modification failed!");
         }
         product.setId(productId);
         productRepository.save(product);
@@ -47,7 +51,7 @@ public class ProductService {
     public void deleteProduct(int productId) {
         boolean existsProduct = this.productRepository.existsById(productId);
         if (!existsProduct) {
-            throw new IllegalStateException("Product with Id: '" + productId + "' doesn't exist! Delete failed!");
+            throw new IllegalStateException("Product with Id: '" + productId + "' doesn't exist! Deletion failed!");
         }
         productRepository.deleteById(productId);
     }

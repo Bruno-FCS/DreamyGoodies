@@ -37,7 +37,11 @@ public class CategoryService {
     public void updateCategory(int categoryId, Category category) {
         boolean existsCategory = this.categoryRepository.existsById(categoryId);
         if (!existsCategory) {
-            throw new IllegalStateException("Category with Id: '" + categoryId + "' doesn't exist! Update failed!");
+            throw new IllegalStateException("Category with Id: '" + categoryId + "' doesn't exist! Modification failed!");
+        }
+        Category existingCategory = this.categoryRepository.findByName(category.getName());
+        if (existingCategory != null && existingCategory.getId() != categoryId) {
+            throw new IllegalStateException("Category with name: '" + category.getName() + "' already exists! Modification failed!");
         }
         category.setId(categoryId);
         categoryRepository.save(category);
@@ -47,7 +51,7 @@ public class CategoryService {
     public void deleteCategory(int categoryId) {
         boolean existsCategory = this.categoryRepository.existsById(categoryId);
         if (!existsCategory) {
-            throw new IllegalStateException("Category with Id: '" + categoryId + "' doesn't exist! Delete failed!");
+            throw new IllegalStateException("Category with Id: '" + categoryId + "' doesn't exist! Deletion failed!");
         }
         categoryRepository.deleteById(categoryId);
     }
