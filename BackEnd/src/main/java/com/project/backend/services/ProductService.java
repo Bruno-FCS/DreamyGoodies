@@ -1,7 +1,7 @@
-package com.project.backend.Services;
+package com.project.backend.services;
 
-import com.project.backend.Models.Product;
-import com.project.backend.Repositories.ProductRepository;
+import com.project.backend.models.Product;
+import com.project.backend.repositories.ProductRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

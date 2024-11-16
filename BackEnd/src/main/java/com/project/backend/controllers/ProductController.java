@@ -1,8 +1,7 @@
-package com.project.backend.Controllers;
+package com.project.backend.controllers;
 
-import com.project.backend.Models.Category;
-import com.project.backend.Models.Product;
-import com.project.backend.Services.ProductService;
+import com.project.backend.models.Product;
+import com.project.backend.services.ProductService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
