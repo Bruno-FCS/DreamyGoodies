@@ -1,7 +1,7 @@
 // // Bootstrap CSS
-// import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 // // Bootstrap Bundle JS
-// import "bootstrap/dist/js/bootstrap.bundle.min";
+import "bootstrap/dist/js/bootstrap.bundle.min";
 
 import "./App.css";
 import React, { useState, useEffect } from "react";
@@ -13,6 +13,9 @@ import ProductPage from "./pages/ProductPage";
 import AddProduct from "./pages/AddProduct";
 import EditProduct from "./pages/EditProduct";
 import CartPage from "./pages/CartPage";
+import FAQPage from "./pages/FAQPage";
+import ContactUsPage from "./pages/ContactUsPage";
+import MessagesPage from "./pages/MessagesPage";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -33,6 +36,9 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/cart" element={<CartPage />} />
+        <Route path="/faq" element={<FAQPage />} />
+        <Route path="/contactus" element={<ContactUsPage />} />
+        <Route path="/messages" element={<MessagesPage />} />
       </Routes>
     </BrowserRouter>
   );

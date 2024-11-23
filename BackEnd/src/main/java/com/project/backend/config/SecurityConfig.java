@@ -40,6 +40,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests((authorize) -> authorize
                         .requestMatchers("/api/auth/login", "/api/auth/logout").permitAll()
                         .requestMatchers("/api/users/register").permitAll()
+                        .requestMatchers("/api/contactus/**").permitAll()
                         .requestMatchers("/api/products").permitAll()
                         .anyRequest().authenticated())
                 .csrf(csrf -> csrf.disable()) // need to change for real production
