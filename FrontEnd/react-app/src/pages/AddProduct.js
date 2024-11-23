@@ -31,7 +31,7 @@ const AddProduct = () => {
     e.preventDefault();
     console.log(newProduct);
 
-    fetch("https://mw-project-be.vercel.app/product/add", {
+    fetch(process.env.REACT_APP_API_BACKEND + "/product/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -17,10 +17,8 @@ import CartPage from "./pages/CartPage";
 function App() {
   const [products, setProducts] = useState([]);
 
-  const API_URL = "http://localhost:8080/api/products";
-
   useEffect(() => {
-    fetch(API_URL)
+    fetch(process.env.REACT_APP_API_BACKEND + "/products")
       .then((response) => response.json())
       .then((data) => setProducts(data))
       .catch((error) => console.error("Error fetching data:", error));

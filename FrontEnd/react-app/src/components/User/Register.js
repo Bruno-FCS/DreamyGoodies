@@ -41,13 +41,16 @@ const RegisterPage = () => {
 
     // Make a fetch request to the server endpoint for registration
     try {
-      const response = await fetch("http://localhost:8000/user/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        process.env.REACT_APP_API_BACKEND + "/user/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
       const data = await response.json();
       if (!response.ok) {
         // If there are errors, set them in the state
