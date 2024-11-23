@@ -12,16 +12,13 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(
-        "https://mw-project-be.vercel.app/user/login",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email, password }),
-        }
-      );
+      const response = await fetch("http://localhost:8080/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
       if (!response.ok) {
         const errorData = await response.json();
         if (errorData.errors) {
@@ -32,14 +29,14 @@ const Login = () => {
         return;
       }
       const data = await response.json();
-      const token = data.token;
+      const token = data.accessToken;
       localStorage.setItem("token", token);
       console.log("Login successful");
+      alert("Welcome to e-Shop! Happy shopping!");
       window.location.href = "/";
     } catch (error) {
       setError(error.message);
     }
-    alert("Welcome to e-Shop! Happy shopping!");
   };
   const handleRegister = () => {
     window.location.href = "/register";

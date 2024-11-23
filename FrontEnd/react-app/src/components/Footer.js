@@ -17,7 +17,7 @@ const Footer = (props) => {
         />
       </Link>
       <span style={{ marginLeft: 10 }}>
-        © 2024 - Bruno Santos, Katherine Dorensky, Zeldrix Don
+        © 2024 - Bruno Santos, Katherine Dorensky, Suellen Reis
       </span>
     </footer>
   );

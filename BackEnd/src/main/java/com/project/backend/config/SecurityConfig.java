@@ -36,6 +36,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+                .cors(Customizer.withDefaults()) // Enable CORS
                 .authorizeHttpRequests((authorize) -> authorize
                         .requestMatchers("/auth/login", "/auth/logout").permitAll()
                         .requestMatchers("/users/register").permitAll()
