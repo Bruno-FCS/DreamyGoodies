@@ -36,16 +36,13 @@ const Register = () => {
     }
 
     try {
-      const response = await fetch(
-        "https://mw-project-be.vercel.app/user/register",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        }
-      );
+      const response = await fetch("http://localhost:8080/users/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
       const data = await response.json();
       if (!response.ok) {
         setErrors(data.errors || []);
@@ -252,7 +249,7 @@ const Register = () => {
                 transition: "background-color 0.3s ease",
               }}
             >
-              Complete registeration
+              Complete registration
             </button>
           </form>
         </div>
