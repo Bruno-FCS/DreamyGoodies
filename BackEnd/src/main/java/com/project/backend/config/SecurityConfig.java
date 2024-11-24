@@ -38,8 +38,10 @@ public class SecurityConfig {
         http
                 .cors(Customizer.withDefaults()) // Enable CORS
                 .authorizeHttpRequests((authorize) -> authorize
-                        .requestMatchers("/auth/login", "/auth/logout").permitAll()
-                        .requestMatchers("/users/register").permitAll()
+                        .requestMatchers("/api/auth/login", "/api/auth/logout").permitAll()
+                        .requestMatchers("/api/users/register").permitAll()
+                        .requestMatchers("/api/contactus/**").permitAll()
+                        .requestMatchers("/api/products").permitAll()
                         .anyRequest().authenticated())
                 .csrf(csrf -> csrf.disable()) // need to change for real production
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))

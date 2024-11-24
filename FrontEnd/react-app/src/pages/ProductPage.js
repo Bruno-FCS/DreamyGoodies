@@ -27,7 +27,7 @@ const ProductPage = () => {
       }
     }
 
-    fetch(`https://mw-project-be.vercel.app/product/${id}`)
+    fetch(`${process.env.REACT_APP_API_BACKEND}/product/${id}`)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
@@ -45,7 +45,7 @@ const ProductPage = () => {
       const token = localStorage.getItem("token");
       if (token) {
         const response = await fetch(
-          `https://mw-project-be.vercel.app/product/${id}`,
+          `${process.env.REACT_APP_API_BACKEND}/product/${id}`,
           {
             method: "DELETE",
             headers: {
@@ -103,10 +103,10 @@ const ProductPage = () => {
   };
 
   return (
-    <div className="product-container"
+    <div
+      className="product-container"
       style={{
         overflow: "hidden",
-
       }}
     >
       <Navbar />

@@ -23,11 +23,14 @@ const EditBook = () => {
 
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:8000/book/edit/${id}`, {
-          headers: {
-            Authorization: token, // Include token in request headers
-          },
-        });
+        const response = await fetch(
+          `${process.env.REACT_APP_API_BACKEND}/book/edit/${id}`,
+          {
+            headers: {
+              Authorization: token, // Include token in request headers
+            },
+          }
+        );
         const data = await response.json();
 
         setBook(data.book);
@@ -86,7 +89,7 @@ const EditBook = () => {
       rating: updatedBook.rating,
     };
 
-    fetch(`http://demo-vercel-deploy-server.vercel.app/book/edit/${id}`, {
+    fetch(`${process.env.REACT_APP_API_BACKEND}/book/edit/${id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

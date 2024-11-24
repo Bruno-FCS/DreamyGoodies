@@ -5,8 +5,8 @@ const Navbar = () => {
   const isLoggedIn = localStorage.getItem("token") !== null;
   const token = isLoggedIn ? localStorage.getItem("token") : null;
   const decodedToken = token ? jwtDecode(token) : null;
-  const userName = decodedToken ? decodedToken.name : "";
-  const isAuthorized = isLoggedIn && userName === "admin";
+  const scope = decodedToken ? decodedToken.scope : "";
+  const isAuthorized = isLoggedIn && scope === "ADMIN";
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -31,20 +31,37 @@ const Navbar = () => {
           gap: "1rem",
         }}
       >
+        <Link to="/faq" style={{ color: "white", textDecoration: "none" }}>
+          FAQ
+        </Link>
+        <Link
+          to="/contactus"
+          style={{ color: "white", textDecoration: "none" }}
+        >
+          Contact US
+        </Link>
         {isLoggedIn && (
           <>
-          {isAuthorized && (
-              <Link
-                to="/product/add"
-                style={{ color: "white", textDecoration: "none" }}
-              >
-                Add Product
-              </Link>
+            {isAuthorized && (
+              <>
+                <Link
+                  to="/product/add"
+                  style={{ color: "white", textDecoration: "none" }}
+                >
+                  Add Product
+                </Link>
+                <Link
+                  to="/messages"
+                  style={{ color: "white", textDecoration: "none" }}
+                >
+                  Messages
+                </Link>
+              </>
             )}
             <Link to="/cart" style={{ color: "white", textDecoration: "none" }}>
               Cart
             </Link>
-            
+
             <button
               onClick={handleLogout}
               style={{

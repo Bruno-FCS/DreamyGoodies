@@ -6,25 +6,26 @@ import Footer from "../components/Footer";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState([]);
   const [error, setError] = useState("");
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:8080/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
+      const response = await fetch(
+        process.env.REACT_APP_API_BACKEND + "/auth/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, password }),
+        }
+      );
       if (!response.ok) {
-        const errorData = await response.json();
-        if (errorData.errors) {
-          setErrors(errorData.errors.map((err) => err.msg));
+        if (response.status === 401 || response.status === 403) {
+          setError("Invalid credentials");
         } else {
-          throw new Error(errorData.msg || "An error occurred");
+          throw new Error(response.statusText || "An error occurred");
         }
         return;
       }
@@ -54,13 +55,12 @@ const Login = () => {
         <div className="login-form">
           <h1 style={{ fontSize: "2.5rem", marginBottom: "1.5rem" }}>Login</h1>
 
-          {error && <p className="error">{error}</p>}
-          {errors.length > 0 && (
-            <ul className="error">
-              {errors.map((err, index) => (
-                <li key={index}>{err}</li>
-              ))}
-            </ul>
+          {error && (
+            <p>
+              <div class="alert alert-danger" role="alert">
+                {error}
+              </div>
+            </p>
           )}
           <form onSubmit={handleLogin}>
             <div
@@ -106,7 +106,7 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            <div className="btn-group">
+            <div>
               <button type="submit" className="btn-log-in">
                 Login
               </button>
@@ -120,7 +120,7 @@ const Login = () => {
           </form>
         </div>
       </div>
-      <Footer pos={"absolute"} />
+      <Footer pos={"relative"} />
     </div>
   );
 };

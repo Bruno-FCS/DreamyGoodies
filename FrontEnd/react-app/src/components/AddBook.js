@@ -21,7 +21,7 @@ const AddBook = () => {
       setIsAuthorized(true);
 
       // Fetch genres when the component mounts
-      fetch("http://localhost:8000/book/add", {
+      fetch(process.env.REACT_APP_API_BACKEND + "/book/add", {
         headers: {
           Authorization: token,
         },
@@ -52,7 +52,7 @@ const AddBook = () => {
     const dataToSend = { ...formData, id: userId };
 
     // Make a POST request to submit the form data
-    fetch("http://localhost:8000/book/add", {
+    fetch(process.env.REACT_APP_API_BACKEND + "/book/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

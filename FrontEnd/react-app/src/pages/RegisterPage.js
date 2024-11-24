@@ -29,6 +29,9 @@ const Register = () => {
     if (!formData.confirm_password) {
       fieldErrors.push("Confirm password is required");
     }
+    if (formData.password !== formData.confirm_password) {
+      fieldErrors.push("Password and Confirm password must be the same");
+    }
 
     if (fieldErrors.length > 0) {
       setErrors(fieldErrors.map((msg, index) => ({ id: index, msg })));
@@ -36,16 +39,19 @@ const Register = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:8080/users/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-      const data = await response.json();
+      const response = await fetch(
+        process.env.REACT_APP_API_BACKEND + "/users/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+      const data = await response.text(); // return String from Backend
       if (!response.ok) {
-        setErrors(data.errors || []);
+        setErrors([{ id: 0, msg: data }]);
       } else {
         console.log("User registered successfully");
         alert("Registration successful!");
@@ -53,6 +59,7 @@ const Register = () => {
       }
     } catch (error) {
       console.error("Error registering user:", error);
+      setErrors([{ id: 0, msg: "Something went wrong." }]);
     }
   };
 
@@ -102,14 +109,10 @@ const Register = () => {
               }}
             >
               {errors.map((error) => (
-                <p
-                  key={error.id}
-                  style={{
-                    color: "red",
-                    marginBottom: "0.5rem",
-                  }}
-                >
-                  {error.msg}
+                <p>
+                  <div key={error.id} class="alert alert-danger" role="alert">
+                    {error.msg}
+                  </div>
                 </p>
               ))}
             </div>

@@ -16,7 +16,7 @@ const Book = () => {
     }
 
     // Fetch individual book data when the component mounts
-    fetch(`http://localhost:8000/book/${id}`)
+    fetch(`${process.env.REACT_APP_API_BACKEND}/book/${id}`)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
@@ -34,12 +34,15 @@ const Book = () => {
 
   const handleDelete = async () => {
     try {
-      const response = await fetch(`http://localhost:8000/book/${id}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: token,
-        },
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_API_BACKEND}/book/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
       if (response.ok) {
         const data = await response.json();
         console.log(data.message); // Handle success message

@@ -23,7 +23,7 @@ import java.time.Instant;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/api/auth")
 public class AuthController implements ErrorController {
 
     UserRepository userRepository;
@@ -54,6 +54,7 @@ public class AuthController implements ErrorController {
                 .issuedAt(now)
                 .expiresAt(now.plusSeconds(expireIn))
                 .claim("scope", userApp.get().getRole())
+                .claim("name", userApp.get().getName())
                 .build();
         String tokenValue = jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
 
