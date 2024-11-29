@@ -17,7 +17,7 @@ const Navbar = () => {
     <nav className="navbar">
       <Link to="/" style={{ display: "flex", alignItems: "center" }}>
         <img
-          src={require("../assets/e-Shop-s.png")}
+          src={require("../assets/logo.png")}
           width={100}
           alt="logo"
           style={{ marginRight: "1rem" }}
