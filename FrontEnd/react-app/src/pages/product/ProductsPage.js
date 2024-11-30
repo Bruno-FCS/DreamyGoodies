@@ -22,7 +22,9 @@ const ProductsPage = ({ products, categories }) => {
 
   const handleSearchProduct = () => {
     setDisplayedProducts(
-      [...products].filter((product) => product.name.includes(productName))
+      [...products].filter((product) =>
+        product.name.toLowerCase().includes(productName.toLowerCase())
+      )
     );
   };
 
