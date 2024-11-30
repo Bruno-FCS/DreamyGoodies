@@ -6,17 +6,19 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 import "./App.css";
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import RegisterPage from "./pages/RegisterPage";
-import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/user/RegisterPage";
+import LoginPage from "./pages/user/LoginPage";
 import HomePage from "./pages/HomePage";
-import ProductPage from "./pages/ProductPage";
-import AddProduct from "./pages/AddProduct";
-import EditProduct from "./pages/EditProduct";
+import ProductPage from "./pages/product/ProductPage";
+import AddProduct from "./pages/product/AddProduct";
+import EditProduct from "./pages/product/EditProduct";
 import CartPage from "./pages/CartPage";
 import FAQPage from "./pages/FAQPage";
-import ContactUsPage from "./pages/ContactUsPage";
+import ContactUsPage from "./pages/ContactUs";
 import MessagesPage from "./pages/MessagesPage";
-import ProductsPage from "./pages/ProductsPage";
+import ProductsPage from "./pages/product/ProductsPage";
+import AboutUs from "./pages/AboutUs";
+import WishList from "./pages/WishList";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -51,6 +53,8 @@ function App() {
         <Route path="/faq" element={<FAQPage />} />
         <Route path="/contactus" element={<ContactUsPage />} />
         <Route path="/messages" element={<MessagesPage />} />
+        <Route path="/about-us" element={<AboutUs/>}/>
+        <Route path="/wishlist" element={<WishList/>}/>
       </Routes>
     </BrowserRouter>
   );

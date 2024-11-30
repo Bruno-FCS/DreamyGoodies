@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
-import Navbar from "../components/Navbar";
-import ProductCard from "../components/ProductCard";
-import Footer from "../components/Footer";
+import Navbar from "../../components/Navbar";
+import ProductCard from "../../components/ProductCard";
+import Footer from "../../components/Footer";
 
 const ProductsPage = ({ products, categories }) => {
   const [userName, setUserName] = useState("");

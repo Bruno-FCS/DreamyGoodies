@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { jwtDecode } from "jwt-decode";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
 
 const AddProduct = () => {
   const [newProduct, setNewProduct] = useState({
