@@ -42,6 +42,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/users/register").permitAll()
                         .requestMatchers("/api/contactus/**").permitAll()
                         .requestMatchers("/api/products").permitAll()
+                        .requestMatchers("/api/categories").permitAll()
                         .anyRequest().authenticated())
                 .csrf(csrf -> csrf.disable()) // need to change for real production
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))

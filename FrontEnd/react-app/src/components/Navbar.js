@@ -31,6 +31,9 @@ const Navbar = () => {
           gap: "1rem",
         }}
       >
+        <Link to="/products" style={{ color: "white", textDecoration: "none" }}>
+          Products
+        </Link>
         <Link to="/faq" style={{ color: "white", textDecoration: "none" }}>
           FAQ
         </Link>

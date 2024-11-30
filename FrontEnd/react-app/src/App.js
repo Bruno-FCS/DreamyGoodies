@@ -16,20 +16,32 @@ import CartPage from "./pages/CartPage";
 import FAQPage from "./pages/FAQPage";
 import ContactUsPage from "./pages/ContactUsPage";
 import MessagesPage from "./pages/MessagesPage";
+import ProductsPage from "./pages/ProductsPage";
 
 function App() {
   const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     fetch(process.env.REACT_APP_API_BACKEND + "/products")
       .then((response) => response.json())
       .then((data) => setProducts(data))
       .catch((error) => console.error("Error fetching data:", error));
+
+    fetch(process.env.REACT_APP_API_BACKEND + "/categories")
+      .then((response) => response.json())
+      .then((data) => setCategories(data))
+      .catch((error) => console.error("Error fetching data:", error));
   }, []);
+
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage products={products} />} />
+        <Route
+          path="/products"
+          element={<ProductsPage products={products} categories={categories} />}
+        />
         <Route path="/product/:id" element={<ProductPage />} />
         <Route path="/product/add" element={<AddProduct />} />
         <Route path="/product/edit/:id" element={<EditProduct />} />
