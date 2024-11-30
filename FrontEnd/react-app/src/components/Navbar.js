@@ -18,7 +18,7 @@ const Navbar = () => {
       <Link to="/" style={{ display: "flex", alignItems: "center" }}>
         <img
           src={require("../assets/logo.png")}
-          width={100}
+          width={50}
           alt="logo"
           style={{ marginRight: "1rem" }}
         />
@@ -31,29 +31,40 @@ const Navbar = () => {
           gap: "1rem",
         }}
       >
-        <Link to="/products" style={{ color: "white", textDecoration: "none" }}>
+        <Link
+          id="links"
+          to="/products"
+          style={{ color: "white", textDecoration: "none" }}
+        >
           Products
         </Link>
-        <Link to="/faq" style={{ color: "white", textDecoration: "none" }}>
+        <Link
+          id="links"
+          to="/faq"
+          style={{ color: "white", textDecoration: "none" }}
+        >
           FAQ
         </Link>
         <Link
+          id="links"
           to="/contactus"
           style={{ color: "white", textDecoration: "none" }}
         >
-          Contact US
+          Contact Us
         </Link>
         {isLoggedIn && (
           <>
             {isAuthorized && (
               <>
                 <Link
+                  id="links"
                   to="/product/add"
                   style={{ color: "white", textDecoration: "none" }}
                 >
                   Add Product
                 </Link>
                 <Link
+                  id="links"
                   to="/messages"
                   style={{ color: "white", textDecoration: "none" }}
                 >
@@ -61,14 +72,18 @@ const Navbar = () => {
                 </Link>
               </>
             )}
-            <Link to="/cart" style={{ color: "white", textDecoration: "none" }}>
+            <Link
+              id="links"
+              to="/cart"
+              style={{ color: "white", textDecoration: "none" }}
+            >
               Cart
             </Link>
 
             <button
               onClick={handleLogout}
               style={{
-                backgroundColor: "#39b575",
+                backgroundColor: "F5E6A3",
                 color: "white",
                 borderColor: "#143a27",
                 padding: "0.5rem 1rem",
@@ -83,12 +98,14 @@ const Navbar = () => {
         {!isLoggedIn && (
           <>
             <Link
+              id="links"
               to="/register"
               style={{ color: "white", textDecoration: "none" }}
             >
               Register
             </Link>
             <Link
+              id="links"
               to="/login"
               style={{ color: "white", textDecoration: "none" }}
             >

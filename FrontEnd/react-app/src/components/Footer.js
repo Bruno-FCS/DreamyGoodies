@@ -11,7 +11,7 @@ const Footer = (props) => {
       <Link to="/" style={{ display: "flex", alignItems: "center" }}>
         <img
           src={require("../assets/logo.png")}
-          width={100}
+          width={50}
           alt="logo"
           style={{ marginRight: "1rem" }}
         />
