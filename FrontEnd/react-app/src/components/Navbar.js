@@ -18,7 +18,7 @@ const Navbar = () => {
       <Link to="/" style={{ display: "flex", alignItems: "center" }}>
         <img
           src={require("../assets/logo.png")}
-          width={100}
+          width={50}
           alt="logo"
           style={{ marginRight: "1rem" }}
         />
@@ -38,7 +38,7 @@ const Navbar = () => {
           to="/contactus"
           style={{ color: "white", textDecoration: "none" }}
         >
-          Contact US
+          Contact Us
         </Link>
         {isLoggedIn && (
           <>
@@ -65,7 +65,7 @@ const Navbar = () => {
             <button
               onClick={handleLogout}
               style={{
-                backgroundColor: "#39b575",
+                backgroundColor: "F5E6A3",
                 color: "white",
                 borderColor: "#143a27",
                 padding: "0.5rem 1rem",
