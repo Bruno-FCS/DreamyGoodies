@@ -31,10 +31,11 @@ const Navbar = () => {
           gap: "1rem",
         }}
       >
-        <Link to="/faq" style={{ color: "white", textDecoration: "none" }}>
+        <Link id="links" to="/faq" style={{ color: "white", textDecoration: "none" }}>
           FAQ
         </Link>
         <Link
+            id="links"
           to="/contactus"
           style={{ color: "white", textDecoration: "none" }}
         >
@@ -45,12 +46,14 @@ const Navbar = () => {
             {isAuthorized && (
               <>
                 <Link
+                    id="links"
                   to="/product/add"
                   style={{ color: "white", textDecoration: "none" }}
                 >
                   Add Product
                 </Link>
                 <Link
+                    id="links"
                   to="/messages"
                   style={{ color: "white", textDecoration: "none" }}
                 >
@@ -58,7 +61,7 @@ const Navbar = () => {
                 </Link>
               </>
             )}
-            <Link to="/cart" style={{ color: "white", textDecoration: "none" }}>
+            <Link id="links" to="/cart" style={{ color: "white", textDecoration: "none" }}>
               Cart
             </Link>
 
@@ -80,12 +83,14 @@ const Navbar = () => {
         {!isLoggedIn && (
           <>
             <Link
+                id="links"
               to="/register"
               style={{ color: "white", textDecoration: "none" }}
             >
               Register
             </Link>
             <Link
+                id="links"
               to="/login"
               style={{ color: "white", textDecoration: "none" }}
             >
