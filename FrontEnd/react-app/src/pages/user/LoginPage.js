@@ -33,7 +33,7 @@ const Login = () => {
       const token = data.accessToken;
       localStorage.setItem("token", token);
       console.log("Login successful");
-      alert("Welcome to e-Shop! Happy shopping!");
+      alert("Welcome to Dreamy Goodies! Happy shopping!");
       window.location.href = "/";
     } catch (error) {
       setError(error.message);
