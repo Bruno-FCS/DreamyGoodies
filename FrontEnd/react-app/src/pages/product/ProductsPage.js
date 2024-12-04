@@ -30,12 +30,24 @@ const ProductsPage = ({ products, setProducts, categories, setCategories }) => {
         .then((data) => setCategories(data))
         .catch((error) => console.error("Error fetching categories:", error));
     }
-  }, [products, categories, setProducts, setCategories]);
+
+    setDisplayedProducts(
+      [...products].filter((product) =>
+        selectedCategories.every((category) =>
+          product.categories
+            .map((c) => c.name.toLowerCase())
+            .includes(category.toLowerCase())
+        )
+      )
+    );
+
+    console.log(displayedProducts);
+  }, [products, categories, setProducts, setCategories, selectedCategories]);
 
   const handleSelectCategory = (value) => {
     selectedCategories.includes(value)
       ? setSelectedCategories(
-          [...selectedCategories].filter((category) => category != value)
+          [...selectedCategories].filter((category) => category !== value)
         )
       : setSelectedCategories([...selectedCategories, value]);
   };

@@ -11,6 +11,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootApplication
@@ -52,6 +53,9 @@ public class BackEndApplication implements CommandLineRunner {
 		categoryService.addCategory(cat2);
 		categoryService.addCategory(cat3);
 
+		List<Category> catList = new ArrayList<>();
+		catList.add(cat1);
+
 		Product prod1 = Product.builder()
 				.id(1L).name("Strawberry Cake").price(22.9).url("https://cdn.pixabay.com/photo/2017/03/14/05/49/small-cake-2142072_1280.jpg")
 				.categories(categoryService.getAllCategories()).build();
@@ -66,7 +70,7 @@ public class BackEndApplication implements CommandLineRunner {
 				.categories(categoryService.getAllCategories()).build();
 		Product prod5 = Product.builder()
 				.id(5L).name("Red velvet Cake").price(17.4).url("https://cdn.pixabay.com/photo/2019/01/28/10/00/strawberry-cake-3959998_1280.jpg")
-				.categories(categoryService.getAllCategories()).build();
+				.categories(catList).build();
 		productService.addProduct(prod1);
 		productService.addProduct(prod2);
 		productService.addProduct(prod3);
