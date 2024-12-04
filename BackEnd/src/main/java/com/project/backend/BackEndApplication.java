@@ -57,19 +57,41 @@ public class BackEndApplication implements CommandLineRunner {
 		catList.add(cat1);
 
 		Product prod1 = Product.builder()
-				.id(1L).name("Strawberry Cake").price(22.9).url("https://cdn.pixabay.com/photo/2017/03/14/05/49/small-cake-2142072_1280.jpg")
-				.categories(categoryService.getAllCategories()).build();
+				.id(1L)
+				.name("Strawberry Cake")
+				.price(22.9)
+				.url("https://cdn.pixabay.com/photo/2017/03/14/05/49/small-cake-2142072_1280.jpg")
+				.description("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.")
+				.categories(categoryService.getAllCategories())
+				.build();
 		Product prod2 = Product.builder()
-				.id(2L).name("Vanilla Cake").price(15.5).url("https://cdn.pixabay.com/photo/2019/04/29/21/52/cake-4167209_1280.jpg")
-				.categories(categoryService.getAllCategories()).build();
+				.id(2L)
+				.name("Vanilla Cake")
+				.price(15.5)
+				.url("https://cdn.pixabay.com/photo/2019/04/29/21/52/cake-4167209_1280.jpg")
+				.description("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.")
+				.categories(categoryService.getAllCategories())
+				.build();
 		Product prod3 = Product.builder()
-				.id(3L).name("Coconut Cake").price(18.2).url("https://cdn.pixabay.com/photo/2015/04/17/19/20/cake-727854_1280.jpg")
+				.id(3L)
+				.name("Coconut Cake")
+				.price(18.2)
+				.url("https://cdn.pixabay.com/photo/2015/04/17/19/20/cake-727854_1280.jpg")
+				.description("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.")
 				.categories(categoryService.getAllCategories()).build();
 		Product prod4 = Product.builder()
-				.id(4L).name("Carrot Cake").price(14.3).url("https://cdn.pixabay.com/photo/2020/02/29/15/20/cake-4890393_1280.jpg")
+				.id(4L)
+				.name("Carrot Cake")
+				.price(14.3)
+				.url("https://cdn.pixabay.com/photo/2020/02/29/15/20/cake-4890393_1280.jpg")
+				.description("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.")
 				.categories(categoryService.getAllCategories()).build();
 		Product prod5 = Product.builder()
-				.id(5L).name("Red velvet Cake").price(17.4).url("https://cdn.pixabay.com/photo/2019/01/28/10/00/strawberry-cake-3959998_1280.jpg")
+				.id(5L)
+				.name("Red velvet Cake")
+				.price(17.4)
+				.url("https://cdn.pixabay.com/photo/2019/01/28/10/00/strawberry-cake-3959998_1280.jpg")
+				.description("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.")
 				.categories(catList).build();
 		productService.addProduct(prod1);
 		productService.addProduct(prod2);

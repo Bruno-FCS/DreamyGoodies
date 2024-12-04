@@ -40,8 +40,6 @@ const ProductsPage = ({ products, setProducts, categories, setCategories }) => {
         )
       )
     );
-
-    console.log(displayedProducts);
   }, [products, categories, setProducts, setCategories, selectedCategories]);
 
   const handleSelectCategory = (value) => {

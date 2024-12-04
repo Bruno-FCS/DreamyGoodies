@@ -12,7 +12,6 @@ const HomePage = ({ products }) => {
     if (token) {
       const decoded = jwtDecode(token);
       setUserName(decoded.name);
-      console.log(decoded);
     }
   }, []);
 

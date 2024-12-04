@@ -18,6 +18,8 @@ public class Product {
     private String name;
     private double price;
     private String url;
+    @Column(length = 765)
+    private String description;
     @ManyToMany
     @JoinTable(
             name = "PROD_CAT",

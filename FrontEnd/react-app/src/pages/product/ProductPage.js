@@ -27,11 +27,10 @@ const ProductPage = () => {
       }
     }
 
-    fetch(`${process.env.REACT_APP_API_BACKEND}/product/${id}`)
+    fetch(`${process.env.REACT_APP_API_BACKEND}/products/${id}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
-        setProduct(data.product);
+        setProduct(data);
       })
       .catch((error) => console.error("Error fetching product data:", error));
   }, [id]);
@@ -45,7 +44,7 @@ const ProductPage = () => {
       const token = localStorage.getItem("token");
       if (token) {
         const response = await fetch(
-          `${process.env.REACT_APP_API_BACKEND}/product/${id}`,
+          `${process.env.REACT_APP_API_BACKEND}/products/${id}`,
           {
             method: "DELETE",
             headers: {
@@ -73,7 +72,7 @@ const ProductPage = () => {
     let savedCart = localStorage.getItem("cart");
     if (savedCart) {
       let parsedCart = JSON.parse(savedCart);
-      let existingProduct = parsedCart.find((product) => product._id === id);
+      let existingProduct = parsedCart.find((product) => product.id === id);
       if (existingProduct) {
         existingProduct.quantity += quantity;
       } else {
@@ -124,14 +123,20 @@ const ProductPage = () => {
           width: "80%",
         }}
       >
-        <img src={product.image} width={250} alt="product_image" />
+        <img src={product.url} width={250} alt="product_image" />
         <div>
-          <h1 className="product-title">{product.title}</h1>
-          <h3 className="product-price">CAD$ {product.price.toFixed(2)}</h3>
+          <h1 className="product-title">{product.name}</h1>
+          <h3 className="product-price">CAD$ {product.price}</h3>
           <div className="product-details">
-            <p>Category: {product.category}</p>
-            <p>Rating: {product.rating}/5</p>
-            <p>Quantity: {product.quantity}</p>
+            <p>
+              {product.categories.length > 1 ? "Categories" : "Category"}:{" "}
+              {product.categories.map((category, index) => (
+                <span key={index}>
+                  {category.name}
+                  {index < product.categories.length - 1 && ", "}
+                </span>
+              ))}
+            </p>
             <p>Description: {product.description}</p>
           </div>
           <div className="product-actions">
