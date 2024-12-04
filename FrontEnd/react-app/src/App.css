@@ -1,10 +1,10 @@
 /* Navbar */
 .navbar {
-  border: #F9D639 solid 5px;
+  border: #f9d639 solid 5px;
   border-left: none;
   border-right: none;
-  background-color: #F3E191;
-  color: white;
+  background-color: #f3e191;
+  color: black;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -14,15 +14,16 @@
 }
 
 #links {
-  border: #F9D639 solid 2px;
-  background-color: #F3DE84;
-  color: white;
+  border: #f9d639 solid 2px;
+  background-color: #f3de84;
+  color: black;
+  text-decoration: none;
 }
 
+.index-container {
+  background-color: white;
+}
 
-/*.index-container {*/
-/*  background-color: #FFC2C2;*/
-/*}*/
 /* Login page: */
 .error {
   color: red;
@@ -41,17 +42,16 @@
   flex-direction: column;
   align-items: center;
   padding: 2rem;
-  background-color: #FFC2C2;
+  background-color: white;
 }
 
 .login-form {
-  background-color: #FFEBEB;
+  background-color: #ffebeb;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 2rem;
   width: 100%;
   max-width: 400px;
-  border: #FF3B3B solid 2px;
 }
 
 .btn-group {
@@ -59,9 +59,9 @@
 }
 
 .btn-log-in {
-  background-color: #F3E191;
-  color: white;
-  border:  #F9D639 solid 2px;
+  background-color: #f3e191;
+  color: black;
+  border: #f9d639 solid 2px;
   padding: 0.5rem 1rem;
   border-radius: 4px;
   cursor: pointer;
@@ -69,9 +69,9 @@
   transition: background-color 0.3s ease;
 }
 #btn-register {
-  background-color: #143a27;
-  color: white;
-  border: none;
+  background-color: #ff9f9f;
+  color: black;
+  border: #f9d639 solid 2px;
   padding: 0.5rem 1rem;
   border-radius: 4px;
   cursor: pointer;
@@ -86,11 +86,11 @@
   flex-direction: column;
   align-items: center;
   padding: 2rem;
-  background-color: #f5f5f5;
+  background-color: white;
 }
 
 .contact-form {
-  background-color: white;
+  background-color: #ffebeb;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 2rem;
@@ -99,9 +99,9 @@
 }
 
 .btn-contact {
-  background-color: #39b575;
-  color: white;
-  border: none;
+  background-color: #f3e191;
+  color: black;
+  border: #f9d639 solid 2px;
   padding: 0.5rem 1rem;
   border-radius: 4px;
   cursor: pointer;
@@ -112,7 +112,7 @@
 /* FAQ Page */
 .faq-container {
   padding: 3rem 2rem;
-  background-color: #f9f9f9;
+  background-color: white;
 }
 
 .faq-section {
@@ -134,7 +134,7 @@
 
 /* Change the active Accordion button color */
 .accordion-button:not(.collapsed) {
-  background-color: #d1e7dd; /* Active background color */
+  background-color: #f3e191; /* Active background color */
   color: black; /* Active text color */
   font-weight: bold; /* Optional: Make text bold */
 }
@@ -148,13 +148,13 @@
 
 footer {
   display: flex;
-  color: white;
+  color: black;
   justify-content: center;
   align-items: center;
   bottom: 0px;
   margin-top: 20px;
-  background-color: #F5E6A3;
-  border: #F9D639 solid 5px;
+  background-color: #f5e6a3;
+  border: #f9d639 solid 5px;
   width: 100%;
   padding: 1rem 2rem;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);

@@ -85,13 +85,13 @@ const Register = () => {
           flexDirection: "column",
           alignItems: "center",
           padding: "2rem",
-          backgroundColor: "#f5f5f5",
+          backgroundColor: "white",
         }}
       >
         <div
           className="register-form"
           style={{
-            backgroundColor: "white",
+            backgroundColor: "#ffebeb",
             borderRadius: "8px",
             boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
             padding: "2rem",
@@ -100,7 +100,7 @@ const Register = () => {
           }}
         >
           <h1 style={{ fontSize: "2.5rem", marginBottom: "1.5rem" }}>
-            Register
+            Registration Form
           </h1>
           {errors.length > 0 && (
             <div
@@ -242,8 +242,8 @@ const Register = () => {
               id=""
               type="submit"
               style={{
-                backgroundColor: "#39b575",
-                color: "white",
+                backgroundColor: "#ff9f9f",
+                color: "black",
                 border: "none",
                 padding: "0.5rem 1rem",
                 borderRadius: "4px",
@@ -252,7 +252,7 @@ const Register = () => {
                 transition: "background-color 0.3s ease",
               }}
             >
-              Complete registration
+              Register
             </button>
           </form>
         </div>

@@ -40,6 +40,7 @@ public class BackEndApplication implements CommandLineRunner {
 				.email("admin@admin.com")
 				.role(RoleEnum.ADMIN.name())
 				.password("1234")
+				.provider("local")
 				.build();
 		userAppService.saveUserApp(admin);
 
