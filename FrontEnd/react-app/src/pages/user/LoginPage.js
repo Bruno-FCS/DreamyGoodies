@@ -43,6 +43,11 @@ const Login = () => {
     window.location.href = "/register";
   };
 
+  const githubLogin = () => {
+    window.location.href =
+      process.env.REACT_APP_API_BACKEND + "/oauth2/authorization/github";
+  };
+
   return (
     <div
       className="index-container"
@@ -118,6 +123,10 @@ const Login = () => {
               </button>
             </div>
           </form>
+
+          <button onClick={githubLogin} id="btn-register">
+            Login with GitHub
+          </button>
         </div>
       </div>
       <Footer pos={"relative"} />

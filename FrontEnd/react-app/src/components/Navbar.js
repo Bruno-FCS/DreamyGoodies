@@ -31,61 +31,37 @@ const Navbar = () => {
           gap: "1rem",
         }}
       >
-        <Link
-          id="links"
-          to="/products"
-          style={{ color: "white", textDecoration: "none" }}
-        >
+        <Link id="links" to="/products">
           Products
         </Link>
-        <Link
-          id="links"
-          to="/faq"
-          style={{ color: "white", textDecoration: "none" }}
-        >
+        <Link id="links" to="/faq">
           FAQ
         </Link>
-        <Link
-          id="links"
-          to="/contactus"
-          style={{ color: "white", textDecoration: "none" }}
-        >
+        <Link id="links" to="/contactus">
           Contact Us
         </Link>
         {isLoggedIn && (
           <>
             {isAuthorized && (
               <>
-                <Link
-                  id="links"
-                  to="/product/add"
-                  style={{ color: "white", textDecoration: "none" }}
-                >
+                <Link id="links" to="/product/add">
                   Add Product
                 </Link>
-                <Link
-                  id="links"
-                  to="/messages"
-                  style={{ color: "white", textDecoration: "none" }}
-                >
+                <Link id="links" to="/messages">
                   Messages
                 </Link>
               </>
             )}
-            <Link
-              id="links"
-              to="/cart"
-              style={{ color: "white", textDecoration: "none" }}
-            >
+            <Link id="links" to="/cart">
               Cart
             </Link>
 
             <button
               onClick={handleLogout}
               style={{
-                backgroundColor: "F5E6A3",
-                color: "white",
-                borderColor: "#143a27",
+                backgroundColor: "#ff9f9f",
+                color: "black",
+                borderColor: "#f9d639",
                 padding: "0.5rem 1rem",
                 borderRadius: "5px",
                 cursor: "pointer",
@@ -97,18 +73,10 @@ const Navbar = () => {
         )}
         {!isLoggedIn && (
           <>
-            <Link
-              id="links"
-              to="/register"
-              style={{ color: "white", textDecoration: "none" }}
-            >
+            <Link id="links" to="/register">
               Register
             </Link>
-            <Link
-              id="links"
-              to="/login"
-              style={{ color: "white", textDecoration: "none" }}
-            >
+            <Link id="links" to="/login">
               Login
             </Link>
           </>
@@ -116,7 +84,7 @@ const Navbar = () => {
         {/* {isAuthorized && (
           <Link
             to="/product/add"
-            style={{ color: "white", textDecoration: "none" }}
+            
           >
             Add Product
           </Link>

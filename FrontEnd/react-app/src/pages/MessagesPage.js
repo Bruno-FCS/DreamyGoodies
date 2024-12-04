@@ -38,7 +38,7 @@ const MessagesPage = () => {
             </h1>
             <div className="table-responsive">
               <table className="table table-bordered table-hover">
-                <thead className="table-success">
+                <thead className="table-warning">
                   <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Name</th>
