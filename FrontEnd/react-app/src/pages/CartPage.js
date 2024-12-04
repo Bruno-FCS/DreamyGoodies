@@ -76,7 +76,7 @@ const CartPage = () => {
           }}
         >
           Your order has been processed successfully, thank you for shopping
-          with e-Shop!
+          with Dreamy Goodies!
         </div>
         <div
           style={{

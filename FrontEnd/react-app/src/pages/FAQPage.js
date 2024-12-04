@@ -7,20 +7,20 @@ import { Accordion, Card } from "react-bootstrap";
 const FAQ = () => {
   const faqData = [
     {
-      question: "What is DreamyGoodies?",
+      question: "What is Dreamy Goodies?",
       answer:
-        "DreamyGoodies is an e-commerce bakery platform that allows you to easily order fresh, high-quality baked goods online. We offer a variety of bakery items, including cakes, pastries, bread, and more, with the convenience of delivery straight to your door.",
+        "Dreamy Goodies is an e-commerce bakery platform that allows you to easily order fresh, high-quality baked goods online. We offer a variety of bakery items, including cakes, pastries, bread, and more, with the convenience of delivery straight to your door.",
     },
     {
       question:
-        "How does DreamyGoodies solve the problem of limited access to fresh bakery products?",
+        "How does Dreamy Goodies solve the problem of limited access to fresh bakery products?",
       answer:
         "We provide a convenient online platform that allows customers to order freshly baked goods without having to visit a physical store. This is especially beneficial for those with busy schedules or limited mobility who want to enjoy high-quality baked treats without leaving their homes.",
     },
     {
       question: "Can I customize my order?",
       answer:
-        "Yes, DreamyGoodies offers customization options for your bakery items. You can choose from a range of options, including gluten-free, vegan, and other dietary preferences, to suit your specific needs.",
+        "Yes, Dreamy Goodies offers customization options for your bakery items. You can choose from a range of options, including gluten-free, vegan, and other dietary preferences, to suit your specific needs.",
     },
     {
       question: "How can I place an order?",
@@ -33,9 +33,9 @@ const FAQ = () => {
         "We accept a variety of payment methods, including credit/debit cards, PayPal, and bank transfers. All payments are processed securely to ensure your information is protected.",
     },
     {
-      question: "Is DreamyGoodies available for delivery in my area?",
+      question: "Is Dreamy Goodies available for delivery in my area?",
       answer:
-        "DreamyGoodies currently offers delivery within select regions. You can check the availability for your location during the checkout process by entering your delivery address.",
+        "Dreamy Goodies currently offers delivery within select regions. You can check the availability for your location during the checkout process by entering your delivery address.",
     },
     {
       question: "How do I know if my order has been shipped?",
