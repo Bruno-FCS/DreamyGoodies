@@ -42,7 +42,14 @@ function App() {
         <Route path="/" element={<HomePage products={products} />} />
         <Route
           path="/products"
-          element={<ProductsPage products={products} categories={categories} />}
+          element={
+            <ProductsPage
+              products={products}
+              setProducts={setProducts}
+              categories={categories}
+              setCategories={setCategories}
+            />
+          }
         />
         <Route path="/product/:id" element={<ProductPage />} />
         <Route path="/product/add" element={<AddProduct />} />
@@ -53,8 +60,8 @@ function App() {
         <Route path="/faq" element={<FAQPage />} />
         <Route path="/contactus" element={<ContactUsPage />} />
         <Route path="/messages" element={<MessagesPage />} />
-        <Route path="/about-us" element={<AboutUs/>}/>
-        <Route path="/wishlist" element={<WishList/>}/>
+        <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/wishlist" element={<WishList />} />
       </Routes>
     </BrowserRouter>
   );

@@ -53,16 +53,24 @@ public class BackEndApplication implements CommandLineRunner {
 		categoryService.addCategory(cat3);
 
 		Product prod1 = Product.builder()
-				.id(1L).name("Strawberry Cake").price(22.9)
+				.id(1L).name("Strawberry Cake").price(22.9).url("https://cdn.pixabay.com/photo/2017/03/14/05/49/small-cake-2142072_1280.jpg")
 				.categories(categoryService.getAllCategories()).build();
 		Product prod2 = Product.builder()
-				.id(2L).name("Vanilla Cake").price(15.5)
+				.id(2L).name("Vanilla Cake").price(15.5).url("https://cdn.pixabay.com/photo/2019/04/29/21/52/cake-4167209_1280.jpg")
 				.categories(categoryService.getAllCategories()).build();
 		Product prod3 = Product.builder()
-				.id(3L).name("Coconut Cake").price(18.2)
+				.id(3L).name("Coconut Cake").price(18.2).url("https://cdn.pixabay.com/photo/2015/04/17/19/20/cake-727854_1280.jpg")
+				.categories(categoryService.getAllCategories()).build();
+		Product prod4 = Product.builder()
+				.id(4L).name("Carrot Cake").price(14.3).url("https://cdn.pixabay.com/photo/2020/02/29/15/20/cake-4890393_1280.jpg")
+				.categories(categoryService.getAllCategories()).build();
+		Product prod5 = Product.builder()
+				.id(5L).name("Red velvet Cake").price(17.4).url("https://cdn.pixabay.com/photo/2019/01/28/10/00/strawberry-cake-3959998_1280.jpg")
 				.categories(categoryService.getAllCategories()).build();
 		productService.addProduct(prod1);
 		productService.addProduct(prod2);
 		productService.addProduct(prod3);
+		productService.addProduct(prod4);
+		productService.addProduct(prod5);
 	}
 }

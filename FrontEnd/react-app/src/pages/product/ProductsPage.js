@@ -4,11 +4,33 @@ import Navbar from "../../components/Navbar";
 import ProductCard from "../../components/ProductCard";
 import Footer from "../../components/Footer";
 
-const ProductsPage = ({ products, categories }) => {
+const ProductsPage = ({ products, setProducts, categories, setCategories }) => {
   const [userName, setUserName] = useState("");
   const [productName, setProductName] = useState("");
   const [displayedProducts, setDisplayedProducts] = useState([...products]);
   const [selectedCategories, setSelectedCategories] = useState([]);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      const decoded = jwtDecode(token);
+      setUserName(decoded.name);
+    }
+
+    if (products.length === 0) {
+      fetch(process.env.REACT_APP_API_BACKEND + "/products")
+        .then((response) => response.json())
+        .then((data) => setDisplayedProducts(data))
+        .catch((error) => console.error("Error fetching products:", error));
+    }
+
+    if (categories.length === 0) {
+      fetch(process.env.REACT_APP_API_BACKEND + "/categories")
+        .then((response) => response.json())
+        .then((data) => setCategories(data))
+        .catch((error) => console.error("Error fetching categories:", error));
+    }
+  }, [products, categories, setProducts, setCategories]);
 
   const handleSelectCategory = (value) => {
     selectedCategories.includes(value)
@@ -16,8 +38,6 @@ const ProductsPage = ({ products, categories }) => {
           [...selectedCategories].filter((category) => category != value)
         )
       : setSelectedCategories([...selectedCategories, value]);
-
-    console.log(selectedCategories);
   };
 
   const handleSearchProduct = () => {
@@ -27,15 +47,6 @@ const ProductsPage = ({ products, categories }) => {
       )
     );
   };
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      const decoded = jwtDecode(token);
-      setUserName(decoded.name);
-      console.log(decoded);
-    }
-  }, []);
 
   return (
     <div
@@ -81,9 +92,9 @@ const ProductsPage = ({ products, categories }) => {
           gap: "20px",
         }}
       >
-        {displayedProducts.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+        {displayedProducts.map((product) => {
+          return <ProductCard key={"key" + product.id} product={product} />;
+        })}
       </div>
       <br />
       <br />

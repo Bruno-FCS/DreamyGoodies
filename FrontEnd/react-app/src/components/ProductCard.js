@@ -17,7 +17,7 @@ const ProductCard = ({ product }) => {
         flexDirection: "column",
       }}
     >
-      {/* <img src={product.image} width={100} alt="product_image" /> */}
+      <img src={product.url} width={100} alt="product_image" />
       <div className="title-box">
         <label className="product-title">
           <Link
