@@ -26,6 +26,7 @@ public class UserController {
         //save the user to database
         try {
             userApp.setRole(RoleEnum.CUSTOMER.name());
+            userApp.setProvider("local");
             userAppService.saveUserApp(userApp);
         } catch (IllegalStateException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
