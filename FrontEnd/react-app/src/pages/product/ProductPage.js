@@ -88,16 +88,16 @@ const ProductPage = () => {
         JSON.stringify([{ ...product, quantity: quantity }])
       );
     }
-    let pr_title =
-      product.title.length > 20
-        ? product.title.slice(0, 25) + "..."
-        : product.title;
+    let pr_name =
+      product.name.length > 20
+        ? product.name.slice(0, 25) + "..."
+        : product.name;
 
     if (!isLoggedIn) {
       window.location.href = "/login";
       alert("Please login to access your added items!");
     } else {
-      alert(`${pr_title} was added to the cart!`);
+      alert(`${pr_name} was added to the cart!`);
     }
   };
 

@@ -20,7 +20,7 @@ const CartPage = () => {
 
   const handleDecreaseQuantity = (id) => {
     const updatedCart = cart.map((product) => {
-      if (product._id === id && product.quantity > 1) {
+      if (product.id === id && product.quantity > 1) {
         return { ...product, quantity: product.quantity - 1 };
       }
       return product;
@@ -30,7 +30,7 @@ const CartPage = () => {
 
   const handleIncreaseQuantity = (id) => {
     const updatedCart = cart.map((product) => {
-      if (product._id === id) {
+      if (product.id === id) {
         return { ...product, quantity: product.quantity + 1 };
       }
       return product;
@@ -39,7 +39,7 @@ const CartPage = () => {
   };
 
   const handleRemoveFromCart = (id) => {
-    const updatedCart = cart.filter((product) => product._id !== id);
+    const updatedCart = cart.filter((product) => product.id !== id);
     updateCart(updatedCart);
   };
 
@@ -89,7 +89,7 @@ const CartPage = () => {
         >
           {cart.map((product) => (
             <div
-              key={product._id}
+              key={"key" + product.id}
               className="product-container"
               style={{
                 border: "1px solid #ccc",
@@ -104,11 +104,11 @@ const CartPage = () => {
                 backgroundColor: "white",
               }}
             >
-              <img src={product.image} width={75} alt={product.title} />
+              <img src={product.url} width={75} alt={product.name} />
               <div className="title-box">
                 <label className="product-title">
-                  <a href={`/product/${product._id}`} className="title-link">
-                    {product.title}
+                  <a href={`/product/${product.id}`} className="title-link">
+                    {product.name}
                   </a>
                 </label>
               </div>
@@ -128,7 +128,7 @@ const CartPage = () => {
                       marginRight: 2,
                       cursor: "pointer",
                     }}
-                    onClick={() => handleDecreaseQuantity(product._id)}
+                    onClick={() => handleDecreaseQuantity(product.id)}
                   >
                     -
                   </button>
@@ -143,7 +143,7 @@ const CartPage = () => {
                       marginLeft: 2,
                       cursor: "pointer",
                     }}
-                    onClick={() => handleIncreaseQuantity(product._id)}
+                    onClick={() => handleIncreaseQuantity(product.id)}
                   >
                     +
                   </button>
@@ -162,7 +162,7 @@ const CartPage = () => {
                   fontWeight: "bold",
                   cursor: "pointer",
                 }}
-                onClick={() => handleRemoveFromCart(product._id)}
+                onClick={() => handleRemoveFromCart(product.id)}
               >
                 Remove from Cart
               </button>
