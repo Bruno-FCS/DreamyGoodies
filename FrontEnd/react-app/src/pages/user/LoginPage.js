@@ -9,7 +9,7 @@ const Login = () => {
   const [error, setError] = useState("");
 
   const handleLogin = async (e, type) => {
-    // e.preventDefault();
+    e.preventDefault();
     if (type === "form") {
       // Handle form-based login
       try {
@@ -77,10 +77,9 @@ const Login = () => {
             </p>
           )}
           <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                handleLogin("form");
-              }}
+            onSubmit={(e) => {
+              handleLogin(e, "form");
+            }}
           >
             <div className="form-group">
               <label>
@@ -116,9 +115,9 @@ const Login = () => {
 
           <hr/>
           <button
-              onClick={() => handleLogin("github")}
-              className="btn-log-in"
-              style={{ marginTop: "1rem" }}
+            onClick={(e) => handleLogin(e, "github")}
+            className="btn-log-in"
+            style={{ marginTop: "1rem" }}
           >
             Login with GitHub
           </button>

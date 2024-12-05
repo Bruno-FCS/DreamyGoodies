@@ -11,8 +11,10 @@ import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.oauth2.jwt.JwtClaimsSet;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
@@ -29,6 +31,7 @@ public class AuthController implements ErrorController {
     UserRepository userRepository;
     BCryptPasswordEncoder bCryptPasswordEncoder;
     JwtEncoder jwtEncoder;
+    long EXPIRE_IN = 1800L;
 
     //Constructor Injection
     public AuthController(UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder, JwtEncoder jwtEncoder) {
@@ -46,19 +49,23 @@ public class AuthController implements ErrorController {
         }
 
         Instant now = Instant.now();
-        long expireIn = 1800L;
 
+        String tokenValue = getTokenValue(userApp.get(), now);
+
+        return ResponseEntity.ok(new LoginResponse(tokenValue, EXPIRE_IN));
+    }
+
+    private String getTokenValue(UserApp userApp, Instant now) {
         JwtClaimsSet claims = JwtClaimsSet.builder()
                 .issuer("backend")
-                .subject(userApp.get().getEmail())
+                .subject(userApp.getEmail())
                 .issuedAt(now)
-                .expiresAt(now.plusSeconds(expireIn))
-                .claim("scope", userApp.get().getRole())
-                .claim("name", userApp.get().getName())
+                .expiresAt(now.plusSeconds(EXPIRE_IN))
+                .claim("scope", userApp.getRole())
+                .claim("name", userApp.getName())
                 .build();
         String tokenValue = jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
-
-        return ResponseEntity.ok(new LoginResponse(tokenValue, expireIn));
+        return tokenValue;
     }
 
     @PostMapping("/logout")
@@ -69,4 +76,10 @@ public class AuthController implements ErrorController {
         }
         return ResponseEntity.ok("Logout successful");
     }
+
+    @GetMapping("/attr")
+    public String getUserAttributes(@AuthenticationPrincipal OAuth2User oAuth2User) {
+        return oAuth2User.getAttributes().toString();
+    }
+
 }
