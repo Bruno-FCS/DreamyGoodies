@@ -78,37 +78,24 @@ const Register = () => {
       }}
     >
       <Navbar />
-      <div
-        className="register-container"
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          padding: "2rem",
-          backgroundColor: "white",
-        }}
-      >
-        <div
-          className="register-form"
-          style={{
-            backgroundColor: "#ffebeb",
-            borderRadius: "8px",
-            boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-            padding: "2rem",
-            width: "100%",
-            maxWidth: "400px",
-          }}
-        >
-          <h1 style={{ fontSize: "2.5rem", marginBottom: "1.5rem" }}>
-            Registration Form
-          </h1>
-          {errors.length > 0 && (
-            <div
-              style={{
-                marginBottom: "1rem",
-              }}
-            >
-              {errors.map((error) => (
+      <div className="form-container">
+        <div className="form">
+            <div className="form-header">
+                <h1>Register</h1>
+                <img
+                    src={require("../../assets/logo.png")}
+                    width={100}
+                    alt="logo"
+                    style={{marginLeft: "1rem"}}
+                />
+            </div>
+            {errors.length > 0 && (
+                <div
+                    style={{
+                        marginBottom: "1rem",
+                    }}
+                >
+                    {errors.map((error) => (
                 <p>
                   <div key={error.id} class="alert alert-danger" role="alert">
                     {error.msg}
@@ -118,20 +105,8 @@ const Register = () => {
             </div>
           )}
           <form onSubmit={handleSubmit}>
-            <div
-              className="form-group"
-              style={{
-                marginBottom: "1.5rem",
-              }}
-            >
-              <label
-                style={{
-                  display: "block",
-                  marginBottom: "0.5rem",
-                }}
-              >
-                Name:
-              </label>
+            <div className="form-group">
+              <label> Name: </label>
               <input
                 className="form-control"
                 type="text"
@@ -139,29 +114,11 @@ const Register = () => {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                style={{
-                  width: "100%",
-                  padding: "0.5rem",
-                  border: "1px solid #ccc",
-                  borderRadius: "4px",
-                }}
               />
             </div>
 
-            <div
-              className="form-group"
-              style={{
-                marginBottom: "1.5rem",
-              }}
-            >
-              <label
-                style={{
-                  display: "block",
-                  marginBottom: "0.5rem",
-                }}
-              >
-                Email:
-              </label>
+            <div className="form-group">
+              <label> Email: </label>
               <input
                 className="form-control"
                 type="text"
@@ -169,29 +126,11 @@ const Register = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                style={{
-                  width: "100%",
-                  padding: "0.5rem",
-                  border: "1px solid #ccc",
-                  borderRadius: "4px",
-                }}
               />
             </div>
 
-            <div
-              className="form-group"
-              style={{
-                marginBottom: "1.5rem",
-              }}
-            >
-              <label
-                style={{
-                  display: "block",
-                  marginBottom: "0.5rem",
-                }}
-              >
-                Password:
-              </label>
+            <div className="form-group">
+              <label> Password: </label>
               <input
                 className="form-control"
                 type="password"
@@ -199,29 +138,11 @@ const Register = () => {
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
-                style={{
-                  width: "100%",
-                  padding: "0.5rem",
-                  border: "1px solid #ccc",
-                  borderRadius: "4px",
-                }}
               />
             </div>
 
-            <div
-              className="form-group"
-              style={{
-                marginBottom: "1.5rem",
-              }}
-            >
-              <label
-                style={{
-                  display: "block",
-                  marginBottom: "0.5rem",
-                }}
-              >
-                Confirm Password:
-              </label>
+            <div className="form-group">
+              <label> Confirm Password: </label>
               <input
                 className="form-control"
                 type="password"
@@ -229,12 +150,6 @@ const Register = () => {
                 name="confirm_password"
                 value={formData.confirm_password}
                 onChange={handleChange}
-                style={{
-                  width: "100%",
-                  padding: "0.5rem",
-                  border: "1px solid #ccc",
-                  borderRadius: "4px",
-                }}
               />
             </div>
 
@@ -242,8 +157,8 @@ const Register = () => {
               id=""
               type="submit"
               style={{
-                backgroundColor: "#ff9f9f",
-                color: "black",
+                backgroundColor: "#39b575",
+                color: "white",
                 border: "none",
                 padding: "0.5rem 1rem",
                 borderRadius: "4px",
@@ -252,7 +167,7 @@ const Register = () => {
                 transition: "background-color 0.3s ease",
               }}
             >
-              Register
+              Complete registration
             </button>
           </form>
         </div>

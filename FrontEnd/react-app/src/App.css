@@ -1,4 +1,5 @@
 /* Navbar */
+/*-----------------------------------------*/
 .navbar {
   border: #f9d639 solid 5px;
   border-left: none;
@@ -23,35 +24,12 @@
 .index-container {
   background-color: white;
 }
-
+/*-----------------------------------------*/
 /* Login page: */
+/*-----------------------------------------*/
 .error {
   color: red;
   margin-bottom: 1rem;
-}
-
-.form-control {
-  width: 100%;
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.login-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2rem;
-  background-color: white;
-}
-
-.login-form {
-  background-color: #ffebeb;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 2rem;
-  width: 100%;
-  max-width: 400px;
 }
 
 .btn-group {
@@ -79,8 +57,56 @@
   transition: background-color 0.3s ease;
 }
 
-/* ContactUs Page */
+/*-----------------------------------------*/
+/*Form Format (Register, Login, ContactUs)*/
+/*-----------------------------------------*/
+.form-header {
+  display: flex;
+  flex-direction: row;
+}
+.form-header h1 {
+  padding-top: 25px;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+}
 
+.form-control {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  background-color: white;
+}
+.form {
+  background-color: #ffebeb;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  width: 100%;
+  max-width: 600px;
+}
+
+/*-----------------------------------------*/
+/*Register Page*/
+/*-----------------------------------------*/
+
+/*-----------------------------------------*/
+/* ContactUs Page */
+/*-----------------------------------------*/
 .contact-container {
   display: flex;
   flex-direction: column;
@@ -108,8 +134,9 @@
   font-size: 1rem;
   transition: background-color 0.3s ease;
 }
-
+/*-----------------------------------------*/
 /* FAQ Page */
+/*-----------------------------------------*/
 .faq-container {
   padding: 3rem 2rem;
   background-color: white;
@@ -126,10 +153,15 @@
   margin-bottom: 2rem;
 }
 
+/*-----------------------------------------*/
+/*Accordion*/
+/*-----------------------------------------*/
+
 /* Change the default Accordion button color */
 .accordion-button {
   background-color: #f8f9fa; /* Default background color */
   color: #333; /* Default text color */
+  border: solid 2px #fca9a9;
 }
 
 /* Change the active Accordion button color */
@@ -144,8 +176,9 @@
   border-color: white; /* Adjust icon color for active */
 }
 
+/*-----------------------------------------*/
 /* Footer */
-
+/*-----------------------------------------*/
 footer {
   display: flex;
   color: black;

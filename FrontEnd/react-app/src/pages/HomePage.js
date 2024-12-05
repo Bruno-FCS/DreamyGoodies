@@ -49,7 +49,7 @@ const HomePage = ({ products }) => {
       </div>
       <br />
       <br />
-      <Footer pos={"sticky"} />
+      <Footer  />
     </div>
   );
 };

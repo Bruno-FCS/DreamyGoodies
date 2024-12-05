@@ -45,12 +45,17 @@ const ContactUs = () => {
   return (
     <div className="index-container" style={{ overflow: "hidden" }}>
       <Navbar />
-      <div className="contact-container">
-        <div className="contact-form">
-          <h1 style={{ fontSize: "2.5rem", marginBottom: "1.5rem" }}>
-            Contact Us
-          </h1>
-
+      <div className="form-container">
+        <div className="form">
+          <div className="form-header">
+            <h1> Contact Us </h1>
+            <img
+                src={require("../assets/logo.png")}
+                width={100}
+                alt="logo"
+                style={{ marginLeft: "1rem" }}
+            />
+          </div>
           {error && (
             <p>
               <div class="alert alert-danger" role="alert">
@@ -67,10 +72,8 @@ const ContactUs = () => {
           )}
 
           <form onSubmit={handleSubmit}>
-            <div className="form-group" style={{ marginBottom: "1.5rem" }}>
-              <label style={{ display: "block", marginBottom: "0.5rem" }}>
-                Name:
-              </label>
+            <div className="form-group">
+              <label> Name: </label>
               <input
                 className="form-control"
                 type="text"
@@ -79,10 +82,8 @@ const ContactUs = () => {
               />
             </div>
 
-            <div className="form-group" style={{ marginBottom: "1.5rem" }}>
-              <label style={{ display: "block", marginBottom: "0.5rem" }}>
-                Email:
-              </label>
+            <div className="form-group">
+              <label> Email: </label>
               <input
                 className="form-control"
                 type="email"
@@ -91,10 +92,8 @@ const ContactUs = () => {
               />
             </div>
 
-            <div className="form-group" style={{ marginBottom: "1.5rem" }}>
-              <label style={{ display: "block", marginBottom: "0.5rem" }}>
-                Message:
-              </label>
+            <div className="form-group" >
+              <label> Message: </label>
               <textarea
                 className="form-control"
                 rows="4"

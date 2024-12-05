@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Navbar from "../../components/Navbar";
 import "../../App.css";
 import Footer from "../../components/Footer";
@@ -56,68 +56,51 @@ const Login = () => {
       }}
     >
       <Navbar />
-      <div className="login-container">
-        <div className="login-form">
-          <h1 style={{ fontSize: "2.5rem", marginBottom: "1.5rem" }}>Login</h1>
-
+      <div className="form-container">
+        <div className="form">
+          <div className="form-header">
+            <h1>Login</h1>
+            <img
+                src={require("../../assets/logo.png")}
+                width={100}
+                alt="logo"
+                style={{marginLeft: "1rem"}}
+            />
+          </div>
           {error && (
-            <p>
-              <div class="alert alert-danger" role="alert">
-                {error}
-              </div>
-            </p>
+              <p>
+                <div class="alert alert-danger" role="alert">
+                  {error}
+                </div>
+              </p>
           )}
           <form onSubmit={handleLogin}>
-            <div
-              className="form-group"
-              style={{
-                marginBottom: "1.5rem",
-              }}
-            >
-              <label
-                style={{
-                  display: "block",
-                  marginBottom: "0.5rem",
-                }}
-              >
+            <div className="form-group">
+              <label>
                 Email:
               </label>
               <input
-                className="form-control"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                  className="form-control"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
               />
             </div>
 
-            <div
-              className="form-group"
-              style={{
-                marginBottom: "1.5rem",
-              }}
-            >
-              <label
-                style={{
-                  display: "block",
-                  marginBottom: "0.5rem",
-                }}
-              >
-                Password:
-              </label>
+            <div className="form-group">
+              <label> Password: </label>
               <input
-                className="form-control"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                  className="form-control"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
               />
             </div>
             <div>
               <button type="submit" className="btn-log-in">
                 Login
               </button>
-              <p style={{ color: "#143a27" }}>
-                Haven't registered? Register here!
-              </p>
+              <p> Haven't registered? Register here! </p>
               <button onClick={handleRegister} id="btn-register">
                 Create an account
               </button>
@@ -129,7 +112,7 @@ const Login = () => {
           </button>
         </div>
       </div>
-      <Footer pos={"relative"} />
+      <Footer pos={"relative"}/>
     </div>
   );
 };
