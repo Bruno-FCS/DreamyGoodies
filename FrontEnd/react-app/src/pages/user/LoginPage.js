@@ -8,53 +8,55 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await fetch(
-        process.env.REACT_APP_API_BACKEND + "/auth/login",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email, password }),
+  const handleLogin = async (e, type) => {
+    // e.preventDefault();
+    if (type === "form") {
+      // Handle form-based login
+      try {
+        const response = await fetch(
+          `${process.env.REACT_APP_API_BACKEND}/auth/login`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ email, password }),
+          }
+        );
+
+        if (!response.ok) {
+          if (response.status === 401 || response.status === 403) {
+            setError("Invalid credentials");
+          } else {
+            throw new Error(response.statusText || "An error occurred");
+          }
+          return;
         }
-      );
-      if (!response.ok) {
-        if (response.status === 401 || response.status === 403) {
-          setError("Invalid credentials");
-        } else {
-          throw new Error(response.statusText || "An error occurred");
-        }
-        return;
+
+        const data = await response.json();
+        const token = data.accessToken;
+        localStorage.setItem("token", token);
+        console.log("Login successful");
+        alert("Welcome to Dreamy Goodies! Happy shopping!");
+        window.location.href = "/"; // Redirect to homepage
+      } catch (error) {
+        setError(error.message);
       }
-      const data = await response.json();
-      const token = data.accessToken;
-      localStorage.setItem("token", token);
-      console.log("Login successful");
-      alert("Welcome to Dreamy Goodies! Happy shopping!");
-      window.location.href = "/";
-    } catch (error) {
-      setError(error.message);
+    } else if (type === "github") {
+      // Handle GitHub OAuth login
+      let port = window.location.port ? `:${window.location.port}` : "";
+      if (port === ":3000") {
+        port = ":8080"; // Adjust port for backend API
+      }
+      window.location.href = `//${window.location.hostname}${port}/oauth2/authorization/github`;
     }
   };
   const handleRegister = () => {
     window.location.href = "/register";
   };
 
-  const githubLogin = () => {
-    window.location.href =
-      process.env.REACT_APP_API_BACKEND + "/oauth2/authorization/github";
-  };
-
   return (
-    <div
-      className="index-container"
-      style={{
-        overflow: "hidden",
-      }}
-    >
+    <div className="index-container" style={{ overflow: "hidden" }}>
       <Navbar />
       <div className="form-container">
         <div className="form">
@@ -68,13 +70,18 @@ const Login = () => {
             />
           </div>
           {error && (
-              <p>
-                <div class="alert alert-danger" role="alert">
-                  {error}
-                </div>
-              </p>
+            <p>
+              <div className="alert alert-danger" role="alert">
+                {error}
+              </div>
+            </p>
           )}
-          <form onSubmit={handleLogin}>
+          <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleLogin("form");
+              }}
+          >
             <div className="form-group">
               <label>
                 Email:
@@ -107,7 +114,12 @@ const Login = () => {
             </div>
           </form>
 
-          <button onClick={githubLogin} id="btn-register">
+          <hr/>
+          <button
+              onClick={() => handleLogin("github")}
+              className="btn-log-in"
+              style={{ marginTop: "1rem" }}
+          >
             Login with GitHub
           </button>
         </div>
