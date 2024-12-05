@@ -8,6 +8,11 @@ const HomePage = ({ products }) => {
   const [userName, setUserName] = useState("");
 
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const tokenFromUrl = params.get("token");
+    if (tokenFromUrl) {
+      localStorage.setItem("token", tokenFromUrl);
+    }
     const token = localStorage.getItem("token");
     if (token) {
       const decoded = jwtDecode(token);
