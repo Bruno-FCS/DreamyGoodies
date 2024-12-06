@@ -11,11 +11,10 @@
   align-items: center;
   padding: 1rem 2rem;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 1rem;
 }
 
 #links {
-  border: #f9d639 solid 4px;  /*darkest yellow*/
+  border: #f9d639 solid 4px; /*darkest yellow*/
   background-color: #fceba0; /*lightest yellow*/
   color: black;
   text-decoration: none;
@@ -215,7 +214,6 @@ footer {
   justify-content: center;
   align-items: center;
   bottom: 0px;
-  margin-top: 20px;
   background-color: #f5e6a3;
   border: #f9d639 solid 5px;
   border-right: none;

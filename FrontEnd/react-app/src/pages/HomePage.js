@@ -3,6 +3,7 @@ import { jwtDecode } from "jwt-decode";
 import Navbar from "../components/Navbar";
 import ProductCard from "../components/ProductCard";
 import Footer from "../components/Footer";
+import Carousel from "../components/Carousel";
 
 const HomePage = ({ products }) => {
   const [userName, setUserName] = useState("");
@@ -21,40 +22,39 @@ const HomePage = ({ products }) => {
   }, []);
 
   return (
-    <div
-      className="index-container"
-      style={{
-        overflow: "hidden",
-      }}
-    >
+    <div>
       <Navbar />
-      {userName && (
-        <p
+      <Carousel />
+      <div className="container table-section">
+        {userName && (
+          <p
+            style={{
+              fontSize: "1.2rem",
+              fontWeight: "bold",
+              color: "#ff9f9f",
+              marginBottom: "1.5rem",
+              marginTop: "1.5rem",
+            }}
+          >
+            Hello, {userName}!
+          </p>
+        )}
+        <div
+          className="product-grid"
           style={{
-            fontSize: "1.2rem",
-            fontWeight: "bold",
-            color: "#ff9f9f",
-            marginBottom: "1.5rem",
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+            gap: "20px",
           }}
         >
-          Hello, {userName}!
-        </p>
-      )}
-      <div
-        className="product-grid"
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-          gap: "20px",
-        }}
-      >
-        {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+          {products.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
+        <br />
+        <br />
       </div>
-      <br />
-      <br />
-      <Footer  />
+      <Footer />
     </div>
   );
 };

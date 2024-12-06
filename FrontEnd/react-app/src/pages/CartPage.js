@@ -63,7 +63,12 @@ const CartPage = () => {
       }}
     >
       <Navbar />
-      <div>
+      <div
+        style={{
+          justifyContent: "center",
+          display: "flex",
+        }}
+      >
         <div
           style={{
             backgroundColor: "#3495EB",
@@ -188,7 +193,6 @@ const CartPage = () => {
                 padding: "5px",
                 borderRadius: "5px",
                 boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-                // justifyContent: "center",
                 width: "50%",
                 backgroundColor: "white",
                 marginTop: 10,
@@ -236,9 +240,9 @@ const CartPage = () => {
                 marginTop: 50,
                 marginBottom: 50,
                 display: "flex",
+                flexDirection: "column",
                 justifyContent: "center",
-                alignSelf: "center",
-                // alignItems: "center",
+                alignItems: "center",
                 fontWeight: "bold",
                 gap: "20px",
                 padding: "20px",
@@ -247,6 +251,11 @@ const CartPage = () => {
                 width: "80%",
               }}
             >
+              <img
+                src={require("../assets/empty-cart.png")}
+                width={350}
+                alt="empty cart image"
+              />
               Your cart is empty...
             </div>
             <Footer pos={"absolute"} />

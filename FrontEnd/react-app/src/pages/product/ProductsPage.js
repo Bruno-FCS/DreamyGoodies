@@ -1,22 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { jwtDecode } from "jwt-decode";
 import Navbar from "../../components/Navbar";
 import ProductCard from "../../components/ProductCard";
 import Footer from "../../components/Footer";
 
 const ProductsPage = ({ products, setProducts, categories, setCategories }) => {
-  const [userName, setUserName] = useState("");
   const [productName, setProductName] = useState("");
   const [displayedProducts, setDisplayedProducts] = useState([...products]);
   const [selectedCategories, setSelectedCategories] = useState([]);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      const decoded = jwtDecode(token);
-      setUserName(decoded.name);
-    }
-
     if (products.length === 0) {
       fetch(process.env.REACT_APP_API_BACKEND + "/products")
         .then((response) => response.json())
@@ -59,56 +51,42 @@ const ProductsPage = ({ products, setProducts, categories, setCategories }) => {
   };
 
   return (
-    <div
-      className="index-container"
-      style={{
-        overflow: "hidden",
-      }}
-    >
+    <div>
       <Navbar />
-      {userName && (
-        <p
+
+      <div className="container table-section">
+        <input
+          type="text"
+          value={productName}
+          onChange={(e) => setProductName(e.target.value)}
+        />
+        <button onClick={handleSearchProduct}>Search</button>
+        {categories.map((category) => (
+          <div>
+            <input
+              type="checkbox"
+              value={category.name}
+              onChange={(e) => handleSelectCategory(e.target.value)}
+            />
+            <p>{category.name}</p>
+          </div>
+        ))}
+        <div
+          className="product-grid"
           style={{
-            fontSize: "1.2rem",
-            fontWeight: "bold",
-            color: "#ff9f9f",
-            marginBottom: "1.5rem",
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+            gap: "20px",
           }}
         >
-          Hello, {userName}!
-        </p>
-      )}
-      <input
-        type="text"
-        value={productName}
-        onChange={(e) => setProductName(e.target.value)}
-      />
-      <button onClick={handleSearchProduct}>Search</button>
-      {categories.map((category) => (
-        <div>
-          <input
-            type="checkbox"
-            value={category.name}
-            onChange={(e) => handleSelectCategory(e.target.value)}
-          />
-          <p>{category.name}</p>
+          {displayedProducts.map((product, index) => {
+            return <ProductCard key={"key" + index} product={product} />;
+          })}
         </div>
-      ))}
-      <div
-        className="product-grid"
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-          gap: "20px",
-        }}
-      >
-        {displayedProducts.map((product, index) => {
-          return <ProductCard key={"key" + index} product={product} />;
-        })}
+        <br />
+        <br />
       </div>
-      <br />
-      <br />
-      <Footer pos={"sticky"} />
+      <Footer pos={"relative"} />
     </div>
   );
 };

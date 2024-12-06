@@ -63,7 +63,6 @@ const AddProduct = () => {
           flexDirection: "column",
           alignItems: "center",
           padding: "2rem",
-          backgroundColor: "#f5f5f5",
         }}
       >
         {isAuthorized ? (

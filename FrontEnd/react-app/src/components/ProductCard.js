@@ -15,6 +15,7 @@ const ProductCard = ({ product }) => {
         justifyContent: "center",
         display: "flex",
         flexDirection: "column",
+        maxWidth: 240,
       }}
     >
       <img

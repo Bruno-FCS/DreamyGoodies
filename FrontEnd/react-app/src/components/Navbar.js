@@ -14,7 +14,6 @@ const Navbar = () => {
   };
 
   return (
-
     <nav className="navbar">
       <Link to="/" style={{ display: "flex", alignItems: "center" }}>
         <img
@@ -38,31 +37,30 @@ const Navbar = () => {
         <Link id="links" to="/contactus">
           Contact Us
         </Link>
-          <Link id="links" to="/faq">
-              FAQ
-          </Link>
+        <Link id="links" to="/faq">
+          FAQ
+        </Link>
         {isLoggedIn && (
           <>
             {isAuthorized && (
               <>
-                  <Link id="links" to="/product/add">
-                    Add Product
-                  </Link>
-                  <Link id="links" to="/messages">
-                    Messages
-                  </Link>
+                <Link id="links" to="/product/add">
+                  Add Product
+                </Link>
+                <Link id="links" to="/messages">
+                  Messages
+                </Link>
               </>
-
             )}
-              <Link id="links" to="/wishlist">
-                  Wishlist
-              </Link>
+            <Link id="links" to="/wishlist">
+              Wishlist
+            </Link>
             <Link id="links" to="/cart">
               Cart
             </Link>
-              <Link id="links" to="/user-profile">
-                  User Profile
-              </Link>
+            <Link id="links" to="/user-profile">
+              User Profile
+            </Link>
             <button className="log_out_btn" onClick={handleLogout}>
               Logout
             </button>
@@ -79,14 +77,6 @@ const Navbar = () => {
             </Link>
           </>
         )}
-        {/* {isAuthorized && (
-          <Link
-            to="/product/add"
-            
-          >
-            Add Product
-          </Link>
-        )} */}
       </div>
     </nav>
   );
