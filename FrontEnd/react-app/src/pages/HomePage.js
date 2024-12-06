@@ -32,7 +32,6 @@ const HomePage = ({ products }) => {
               fontSize: "1.2rem",
               fontWeight: "bold",
               color: "#ff9f9f",
-              marginBottom: "1.5rem",
               marginTop: "1.5rem",
             }}
           >
@@ -42,12 +41,13 @@ const HomePage = ({ products }) => {
         <div
           className="product-grid"
           style={{
+            marginTop: "1.5rem",
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
             gap: "20px",
           }}
         >
-          {products.map((product) => (
+          {products.slice(0, 5).map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>

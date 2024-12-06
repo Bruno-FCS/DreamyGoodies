@@ -108,100 +108,114 @@ const ProductPage = () => {
   };
 
   return (
-    <div
-      className="product-container"
-      style={{
-        overflow: "hidden",
-      }}
-    >
+    <div>
       <Navbar />
-      <div
-        className="product-details"
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: "20px",
-          padding: "20px",
-          backgroundColor: "white",
-          boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-          borderRadius: "5px",
-          width: "80%",
-        }}
-      >
-        <img src={product.url} width={250} alt="product_image" />
-        <div>
-          <h1 className="product-title">{product.name}</h1>
-          <h3 className="product-price">CAD$ {product.price}</h3>
-          <div className="product-details">
-            <p>
-              {product.categories.length > 1 ? "Categories" : "Category"}:{" "}
-              {product.categories.map((category, index) => (
-                <span key={"key" + index}>
-                  {category.name}
-                  {index < product.categories.length - 1 && ", "}
-                </span>
-              ))}
-            </p>
-            <p>Description: {product.description}</p>
-          </div>
-          <div className="product-actions">
-            {isAuthorized && (
-              <div>
-                <Link
-                  className="product-btn edit-product-btn"
-                  to={`/product/edit/${product.id}`}
-                  style={{
-                    backgroundColor: "#fca9a9",
-                    color: "white",
-                    textDecoration: "none",
-                    padding: "5px 10px",
-                    borderRadius: "5px",
-                    fontSize: "13px",
-                    margin: 2,
-                  }}
-                >
-                  Edit Product
-                </Link>
-                <button
-                  className="product-btn delete-product-btn"
-                  data-id={product.id}
-                  onClick={handleDelete}
-                  style={{
-                    backgroundColor: "#fca9a9",
-                    color: "white",
-                    border: "none",
-                    padding: "6px 7px",
-                    borderRadius: "5px",
-                    fontSize: "13px",
-                    margin: 2,
-                    alignSelf: "center",
-                    cursor: "pointer",
-                  }}
-                >
-                  Delete Product
-                </button>
-              </div>
-            )}
-            <div
-              style={{
-                display: "flex",
-                width: 150,
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
-              {" "}
+      <div className="container table-section">
+        <div
+          className="product-details"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "20px",
+            padding: "20px",
+            backgroundColor: "white",
+            boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+            borderRadius: "5px",
+            marginTop: 100,
+            marginBottom: 100,
+          }}
+        >
+          <img src={product.url} width={250} alt="product_image" />
+          <div>
+            <h1 className="product-title">{product.name}</h1>
+            <h3 className="product-price">CAD$ {product.price}</h3>
+            <div className="product-details">
+              <p>
+                {product.categories.length > 1 ? "Categories" : "Category"}:{" "}
+                {product.categories.map((category, index) => (
+                  <span key={"key" + index}>
+                    {category.name}
+                    {index < product.categories.length - 1 && ", "}
+                  </span>
+                ))}
+              </p>
+              <p>Description: {product.description}</p>
+            </div>
+            <div className="product-actions">
+              {isAuthorized && (
+                <div>
+                  <Link
+                    className="product-btn edit-product-btn"
+                    to={`/product/edit/${product.id}`}
+                    style={{
+                      backgroundColor: "#fca9a9",
+                      color: "white",
+                      textDecoration: "none",
+                      padding: "5px 10px",
+                      borderRadius: "5px",
+                      fontSize: "13px",
+                      margin: 2,
+                    }}
+                  >
+                    Edit Product
+                  </Link>
+                  <button
+                    className="product-btn delete-product-btn"
+                    data-id={product.id}
+                    onClick={handleDelete}
+                    style={{
+                      backgroundColor: "#fca9a9",
+                      color: "white",
+                      border: "none",
+                      padding: "6px 7px",
+                      borderRadius: "5px",
+                      fontSize: "13px",
+                      margin: 2,
+                      alignSelf: "center",
+                      cursor: "pointer",
+                    }}
+                  >
+                    Delete Product
+                  </button>
+                </div>
+              )}
               <div
                 style={{
                   display: "flex",
-                  flexDirection: "row",
-                  // marginRight: 5,
+                  width: 150,
+                  justifyContent: "space-between",
+                  alignItems: "center",
                 }}
               >
+                {" "}
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    // marginRight: 5,
+                  }}
+                >
+                  <button
+                    onClick={() => {
+                      if (quantity > 1) setQuantity(quantity - 1);
+                    }}
+                    style={{
+                      backgroundColor: "#fca9a9",
+                      color: "white",
+                      border: "none",
+                      padding: "2px 10px",
+                      borderRadius: "5px",
+                      cursor: "pointer",
+                    }}
+                  >
+                    -
+                  </button>
+                </div>
+                <div>{quantity}</div>
                 <button
                   onClick={() => {
-                    if (quantity > 1) setQuantity(quantity - 1);
+                    setQuantity(quantity + 1);
                   }}
                   style={{
                     backgroundColor: "#fca9a9",
@@ -212,44 +226,28 @@ const ProductPage = () => {
                     cursor: "pointer",
                   }}
                 >
-                  -
+                  +
+                </button>
+                <button
+                  onClick={handleAddToCart}
+                  style={{
+                    backgroundColor: "#fca9a9",
+                    color: "white",
+                    border: "none",
+                    padding: "5px 7px",
+                    borderRadius: "5px",
+                    marginTop: 2,
+                    cursor: "pointer",
+                  }}
+                >
+                  Add to Cart
                 </button>
               </div>
-              <div>{quantity}</div>
-              <button
-                onClick={() => {
-                  setQuantity(quantity + 1);
-                }}
-                style={{
-                  backgroundColor: "#fca9a9",
-                  color: "white",
-                  border: "none",
-                  padding: "2px 10px",
-                  borderRadius: "5px",
-                  cursor: "pointer",
-                }}
-              >
-                +
-              </button>
-              <button
-                onClick={handleAddToCart}
-                style={{
-                  backgroundColor: "#fca9a9",
-                  color: "white",
-                  border: "none",
-                  padding: "5px 7px",
-                  borderRadius: "5px",
-                  marginTop: 2,
-                  cursor: "pointer",
-                }}
-              >
-                Add to Cart
-              </button>
             </div>
           </div>
         </div>
       </div>
-      <Footer pos={"sticky"} />
+      <Footer />
     </div>
   );
 };

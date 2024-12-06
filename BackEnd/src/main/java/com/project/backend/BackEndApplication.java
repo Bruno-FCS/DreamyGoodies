@@ -94,10 +94,26 @@ public class BackEndApplication implements CommandLineRunner {
 				.url("https://cdn.pixabay.com/photo/2019/01/28/10/00/strawberry-cake-3959998_1280.jpg")
 				.description("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.")
 				.categories(catList).build();
+        Product prod6 = Product.builder()
+                .id(6L)
+                .name("Red velvet Cake2")
+                .price(17.4)
+                .url("https://cdn.pixabay.com/photo/2019/01/28/10/00/strawberry-cake-3959998_1280.jpg")
+                .description("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.")
+                .categories(catList).build();
+        Product prod7 = Product.builder()
+                .id(7L)
+                .name("Red velvet Cake3")
+                .price(17.4)
+                .url("https://cdn.pixabay.com/photo/2019/01/28/10/00/strawberry-cake-3959998_1280.jpg")
+                .description("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.")
+                .categories(catList).build();
 		productService.addProduct(prod1);
 		productService.addProduct(prod2);
 		productService.addProduct(prod3);
 		productService.addProduct(prod4);
 		productService.addProduct(prod5);
+        productService.addProduct(prod6);
+        productService.addProduct(prod7);
 	}
 }
