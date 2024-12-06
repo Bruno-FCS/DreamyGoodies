@@ -7,6 +7,7 @@ const Navbar = () => {
   const decodedToken = token ? jwtDecode(token) : null;
   const scope = decodedToken ? decodedToken.scope : "";
   const isAuthorized = isLoggedIn && scope === "ADMIN";
+  const isCustomer = isLoggedIn && scope === "CUSTOMER";
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -43,6 +44,12 @@ const Navbar = () => {
         <Link id="links" to="/faq">
           FAQ
         </Link>
+        {!isCustomer && (
+          <Link id="links" to="/register">
+            Register
+          </Link>
+        )}
+
         {isLoggedIn && (
           <>
             {isAuthorized && (

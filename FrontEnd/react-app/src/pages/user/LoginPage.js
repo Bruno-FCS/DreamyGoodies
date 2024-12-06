@@ -37,7 +37,6 @@ const Login = () => {
         const token = data.accessToken;
         localStorage.setItem("token", token);
         console.log("Login successful");
-        // alert("Welcome to Dreamy Goodies! Happy shopping!");
         window.location.href = "/"; // Redirect to homepage
       } catch (error) {
         setError(error.message);
@@ -82,24 +81,22 @@ const Login = () => {
             }}
           >
             <div className="form-group">
-              <label>
-                Email:
-              </label>
+              <label>Email:</label>
               <input
-                  className="form-control"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                className="form-control"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
 
             <div className="form-group">
               <label> Password: </label>
               <input
-                  className="form-control"
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                className="form-control"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
             <div>
@@ -113,7 +110,7 @@ const Login = () => {
             </div>
           </form>
 
-          <hr/>
+          <hr />
           <button
             onClick={(e) => handleLogin(e, "github")}
             className="btn-log-in"
@@ -123,7 +120,7 @@ const Login = () => {
           </button>
         </div>
       </div>
-      <Footer pos={"relative"}/>
+      <Footer pos={"relative"} />
     </div>
   );
 };
