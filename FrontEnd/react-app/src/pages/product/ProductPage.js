@@ -146,7 +146,7 @@ const ProductPage = () => {
                   className="product-btn edit-product-btn"
                   to={`/product/edit/${product.id}`}
                   style={{
-                    backgroundColor: "#39b575",
+                    backgroundColor: "#fca9a9",
                     color: "white",
                     textDecoration: "none",
                     padding: "5px 10px",
@@ -162,7 +162,7 @@ const ProductPage = () => {
                   data-id={product.id}
                   onClick={handleDelete}
                   style={{
-                    backgroundColor: "#39b575",
+                    backgroundColor: "#fca9a9",
                     color: "white",
                     border: "none",
                     padding: "6px 7px",
@@ -198,7 +198,7 @@ const ProductPage = () => {
                     if (quantity > 1) setQuantity(quantity - 1);
                   }}
                   style={{
-                    backgroundColor: "#39b575",
+                    backgroundColor: "#fca9a9",
                     color: "white",
                     border: "none",
                     padding: "2px 10px",
@@ -215,7 +215,7 @@ const ProductPage = () => {
                   setQuantity(quantity + 1);
                 }}
                 style={{
-                  backgroundColor: "#39b575",
+                  backgroundColor: "#fca9a9",
                   color: "white",
                   border: "none",
                   padding: "2px 10px",
@@ -228,7 +228,7 @@ const ProductPage = () => {
               <button
                 onClick={handleAddToCart}
                 style={{
-                  backgroundColor: "#39b575",
+                  backgroundColor: "#fca9a9",
                   color: "white",
                   border: "none",
                   padding: "5px 7px",

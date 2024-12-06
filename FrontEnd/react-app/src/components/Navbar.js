@@ -48,9 +48,6 @@ const Navbar = () => {
                   <Link id="links" to="/product/add">
                     Add Product
                   </Link>
-                  <Link id="links" to="/product/edit">
-                      Edit Product
-                  </Link>
                   <Link id="links" to="/messages">
                     Messages
                   </Link>
