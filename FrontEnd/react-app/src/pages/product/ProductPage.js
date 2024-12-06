@@ -48,7 +48,7 @@ const ProductPage = () => {
           {
             method: "DELETE",
             headers: {
-              Authorization: token,
+              Authorization: `Bearer ${token}`,
             },
           }
         );
