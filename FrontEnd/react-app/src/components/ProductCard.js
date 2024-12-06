@@ -17,13 +17,13 @@ const ProductCard = ({ product }) => {
         flexDirection: "column",
       }}
     >
-      <img src={product.url} width={100} alt="product_image" />
+      <img src={product.url} width={100} alt="product_image" style={{borderRadius: "10px"}}/>
       <div className="title-box">
         <label className="product-title">
           <Link
             to={`/product/${product.id}`}
             style={{
-              color: "#39b575",
+              color: "#ff9f9f",
               textDecoration: "none",
               fontWeight: "bold",
             }}

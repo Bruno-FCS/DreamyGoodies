@@ -7,7 +7,8 @@ const UserProfile = () => {
     return(
 
         <div>
-
+            <Navbar/>
+            <Footer/>
         </div>
     )
 }

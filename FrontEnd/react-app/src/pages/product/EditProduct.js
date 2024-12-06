@@ -305,7 +305,7 @@ const EditProduct = () => {
               <button
                 type="submit"
                 style={{
-                  backgroundColor: "#39b575",
+                  backgroundColor: "#ff9f9f",
                   color: "white",
                   border: "none",
                   padding: "0.5rem 1rem",
@@ -324,7 +324,7 @@ const EditProduct = () => {
             style={{
               fontSize: "1.2rem",
               fontWeight: "bold",
-              color: "#39b575",
+              color: "#ff9f9f",
             }}
           >
             You are not authorized to view this page.

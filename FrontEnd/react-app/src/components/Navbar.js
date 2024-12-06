@@ -14,11 +14,12 @@ const Navbar = () => {
   };
 
   return (
+
     <nav className="navbar">
       <Link to="/" style={{ display: "flex", alignItems: "center" }}>
         <img
           src={require("../assets/logo.png")}
-          width={50}
+          width={60}
           alt="logo"
           style={{ marginRight: "1rem" }}
         />
@@ -34,43 +35,43 @@ const Navbar = () => {
         <Link id="links" to="/products">
           Products
         </Link>
-        <Link id="links" to="/faq">
-          FAQ
-        </Link>
         <Link id="links" to="/contactus">
           Contact Us
         </Link>
+          <Link id="links" to="/faq">
+              FAQ
+          </Link>
         {isLoggedIn && (
           <>
             {isAuthorized && (
               <>
-                <Link id="links" to="/product/add">
-                  Add Product
-                </Link>
-                <Link id="links" to="/messages">
-                  Messages
-                </Link>
+                  <Link id="links" to="/product/add">
+                    Add Product
+                  </Link>
+                  <Link id="links" to="/product/edit">
+                      Edit Product
+                  </Link>
+                  <Link id="links" to="/messages">
+                    Messages
+                  </Link>
               </>
+
             )}
+              <Link id="links" to="/wishlist">
+                  Wishlist
+              </Link>
             <Link id="links" to="/cart">
               Cart
             </Link>
-
-            <button
-              onClick={handleLogout}
-              style={{
-                backgroundColor: "#ff9f9f",
-                color: "black",
-                borderColor: "#f9d639",
-                padding: "0.5rem 1rem",
-                borderRadius: "5px",
-                cursor: "pointer",
-              }}
-            >
+              <Link id="links" to="/user-profile">
+                  User Profile
+              </Link>
+            <button className="log_out_btn" onClick={handleLogout}>
               Logout
             </button>
           </>
         )}
+
         {!isLoggedIn && (
           <>
             <Link id="links" to="/register">

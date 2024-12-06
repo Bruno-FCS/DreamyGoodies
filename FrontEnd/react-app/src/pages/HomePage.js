@@ -33,7 +33,7 @@ const HomePage = ({ products }) => {
           style={{
             fontSize: "1.2rem",
             fontWeight: "bold",
-            color: "#39b575",
+            color: "#ff9f9f",
             marginBottom: "1.5rem",
           }}
         >

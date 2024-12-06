@@ -35,7 +35,7 @@ public class ProductController {
     }
 
     // save product
-    @PostMapping("/products")
+    @PostMapping("/products/add")
     public ResponseEntity<String> addProduct(@RequestBody Product product) {
         // proceed with adding the product
         try {

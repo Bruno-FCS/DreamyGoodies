@@ -19,6 +19,7 @@ import MessagesPage from "./pages/MessagesPage";
 import ProductsPage from "./pages/product/ProductsPage";
 import AboutUs from "./pages/AboutUs";
 import WishList from "./pages/WishList";
+import UserProfile from "./pages/user/UserProfile";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -62,6 +63,7 @@ function App() {
         <Route path="/messages" element={<MessagesPage />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/wishlist" element={<WishList />} />
+        <Route path="/user-profile" element={<UserProfile />} />
       </Routes>
     </BrowserRouter>
   );

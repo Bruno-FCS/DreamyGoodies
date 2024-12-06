@@ -14,10 +14,11 @@ const AddProduct = () => {
     quantity: 0,
   });
 
-  const token = localStorage.getItem("token");
-  const decodedToken = jwtDecode(token);
-  const userName = decodedToken.name;
-  const isAuthorized = userName === "admin";
+  const isLoggedIn = localStorage.getItem("token") !== null;
+  const token = isLoggedIn ? localStorage.getItem("token") : null;
+  const decodedToken = token ? jwtDecode(token) : null;
+  const scope = decodedToken ? decodedToken.scope : "";
+  const isAuthorized = isLoggedIn && scope === "ADMIN";
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -254,7 +255,7 @@ const AddProduct = () => {
               <button
                 type="submit"
                 style={{
-                  backgroundColor: "#39b575",
+                  backgroundColor: "#ff9f9f",
                   color: "white",
                   border: "none",
                   padding: "0.5rem 1rem",
@@ -273,7 +274,7 @@ const AddProduct = () => {
             style={{
               fontSize: "1.2rem",
               fontWeight: "bold",
-              color: "#39b575",
+              color: "#ff9f9f",
             }}
           >
             You are not authorized to view this page.
