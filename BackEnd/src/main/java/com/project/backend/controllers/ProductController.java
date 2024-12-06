@@ -28,14 +28,14 @@ public class ProductController {
     @GetMapping("/products/{id}")
     public ResponseEntity<Product> getProductById(@PathVariable Integer id) {
         Product product = this.productService.getProductById(id);
-        if(product == null) {
+        if (product == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(product);
     }
 
     // save product
-    @PostMapping("/products/add")
+    @PostMapping("/products")
     public ResponseEntity<String> addProduct(@RequestBody Product product) {
         // proceed with adding the product
         try {

@@ -46,8 +46,9 @@ public class SecurityConfig {
                         .requestMatchers("/api/users/register").permitAll()
                         .requestMatchers("/api/contactus/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/products/**").permitAll()
-                        .requestMatchers("/api/products/add/**").hasRole("ADMIN")
-                        .requestMatchers("/api/products/edit/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/products/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/products/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/products/**").hasRole("ADMIN")
                         .requestMatchers("/api/products").permitAll()
                         .requestMatchers("/api/categories").permitAll()
                         .anyRequest().authenticated())
@@ -71,7 +72,7 @@ public class SecurityConfig {
         return new CustomOAuth2UserService();
     }
 
-    //Ignore rules for resources such as H2
+    // Ignore rules for resources such as H2
     @Bean
     public WebSecurityCustomizer ignoreResources() {
         return (webSecurity) -> webSecurity
@@ -92,7 +93,7 @@ public class SecurityConfig {
 
     }
 
-    //password encoder
+    // password encoder
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();

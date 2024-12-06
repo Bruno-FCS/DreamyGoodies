@@ -17,10 +17,11 @@ const EditProduct = () => {
   });
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const token = localStorage.getItem("token");
-  const decodedToken = jwtDecode(token);
-  const userName = decodedToken.name;
-  const isAuthorized = isLoggedIn && userName === "admin";
+  //const isLoggedIn = localStorage.getItem("token") !== null;
+  const token = isLoggedIn ? localStorage.getItem("token") : null;
+  const decodedToken = token ? jwtDecode(token) : null;
+  const scope = decodedToken ? decodedToken.scope : "";
+  const isAuthorized = isLoggedIn && scope === "ADMIN";
 
   const { id } = useParams();
 
@@ -32,7 +33,7 @@ const EditProduct = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_API_BACKEND}/product/edit/${id}`,
+          `${process.env.REACT_APP_API_BACKEND}/products/${id}`,
           {
             headers: {
               Authorization: token,
@@ -41,16 +42,14 @@ const EditProduct = () => {
         );
         const data = await response.json();
 
-        setProduct(data.product);
+        setProduct(data);
 
         setUpdatedProduct({
-          title: data.product.title,
-          price: data.product.price,
-          description: data.product.description,
-          category: data.product.category,
-          image: data.product.image,
-          rating: data.product.rating,
-          quantity: data.product.quantity,
+          title: data.title,
+          price: data.price,
+          description: data.description,
+          category: data.category,
+          url: data.image,
         });
       } catch (error) {
         console.error("Error fetching product data:", error);
@@ -82,7 +81,7 @@ const EditProduct = () => {
       quantity: updatedProduct.quantity,
     };
 
-    fetch(`${process.env.REACT_APP_API_BACKEND}/product/edit/${id}`, {
+    fetch(`${process.env.REACT_APP_API_BACKEND}/products/${id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

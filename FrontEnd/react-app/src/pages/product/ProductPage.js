@@ -144,7 +144,7 @@ const ProductPage = () => {
               <div>
                 <Link
                   className="product-btn edit-product-btn"
-                  to={`/product/edit/${product._id}`}
+                  to={`/product/edit/${product.id}`}
                   style={{
                     backgroundColor: "#39b575",
                     color: "white",
@@ -159,7 +159,7 @@ const ProductPage = () => {
                 </Link>
                 <button
                   className="product-btn delete-product-btn"
-                  data-id={product._id}
+                  data-id={product.id}
                   onClick={handleDelete}
                   style={{
                     backgroundColor: "#39b575",
