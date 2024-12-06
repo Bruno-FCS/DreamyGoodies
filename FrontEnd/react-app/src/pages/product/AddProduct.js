@@ -32,11 +32,11 @@ const AddProduct = () => {
     e.preventDefault();
     console.log(newProduct);
 
-    fetch(process.env.REACT_APP_API_BACKEND + "/product/add", {
+    fetch(process.env.REACT_APP_API_BACKEND + "/products", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: token,
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(newProduct),
     })
