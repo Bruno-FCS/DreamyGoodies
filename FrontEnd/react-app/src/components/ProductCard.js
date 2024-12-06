@@ -17,7 +17,12 @@ const ProductCard = ({ product }) => {
         flexDirection: "column",
       }}
     >
-      <img src={product.url} width={100} alt="product_image" style={{borderRadius: "10px"}}/>
+      <img
+        src={product.url}
+        width={100}
+        alt="product_image"
+        style={{ borderRadius: "10px" }}
+      />
       <div className="title-box">
         <label className="product-title">
           <Link
@@ -34,7 +39,6 @@ const ProductCard = ({ product }) => {
       </div>
       <div className="info-box">
         <p className="product-info">CAD$ {product.price.toFixed(2)}</p>
-        {/* <p className="product-info">Rating: {product.rating} / 5</p> */}
       </div>
     </div>
   );

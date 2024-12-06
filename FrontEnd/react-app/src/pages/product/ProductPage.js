@@ -18,8 +18,8 @@ const ProductPage = () => {
       setIsLoggedIn(true);
       try {
         const decodedToken = jwtDecode(token);
-        const userName = decodedToken.name;
-        setIsAuthorized(userName === "admin");
+        const scope = decodedToken.scope;
+        setIsAuthorized(scope === "ADMIN");
       } catch (error) {
         console.error("Error decoding token:", error);
         setIsLoggedIn(false);
@@ -53,8 +53,14 @@ const ProductPage = () => {
           }
         );
         if (response.ok) {
-          const data = await response.json();
-          console.log(data.message);
+          var data;
+          const contentType = response.headers.get("Content-Type");
+          if (contentType && contentType.includes("application/json")) {
+            data = await response.json();
+          } else {
+            data = await response.text();
+          }
+          console.log(data);
           alert("Successfully deleted");
           window.location.href = "/";
         } else {
@@ -131,7 +137,7 @@ const ProductPage = () => {
             <p>
               {product.categories.length > 1 ? "Categories" : "Category"}:{" "}
               {product.categories.map((category, index) => (
-                <span key={index}>
+                <span key={"key" + index}>
                   {category.name}
                   {index < product.categories.length - 1 && ", "}
                 </span>

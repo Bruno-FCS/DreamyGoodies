@@ -6,18 +6,16 @@ import Footer from "../../components/Footer";
 
 const EditProduct = () => {
   const [product, setProduct] = useState({});
+  const [fetchedCategories, setFetchedCategories] = useState([]);
   const [updatedProduct, setUpdatedProduct] = useState({
-    title: "",
+    name: "",
     price: 0,
+    url: "",
     description: "",
-    category: "",
-    image: "",
-    rating: 0,
-    quantity: 0,
+    categories: [],
   });
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  //const isLoggedIn = localStorage.getItem("token") !== null;
+  const isLoggedIn = localStorage.getItem("token") !== null;
   const token = isLoggedIn ? localStorage.getItem("token") : null;
   const decodedToken = token ? jwtDecode(token) : null;
   const scope = decodedToken ? decodedToken.scope : "";
@@ -26,17 +24,18 @@ const EditProduct = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    if (token) {
-      setIsLoggedIn(true);
-    }
-
     const fetchData = async () => {
       try {
+        fetch(process.env.REACT_APP_API_BACKEND + "/categories")
+          .then((response) => response.json())
+          .then((data) => setFetchedCategories(data))
+          .catch((error) => console.error("Error fetching categories:", error));
+
         const response = await fetch(
           `${process.env.REACT_APP_API_BACKEND}/products/${id}`,
           {
             headers: {
-              Authorization: token,
+              Authorization: `Bearer ${token}`,
             },
           }
         );
@@ -45,11 +44,11 @@ const EditProduct = () => {
         setProduct(data);
 
         setUpdatedProduct({
-          title: data.title,
+          name: data.name,
           price: data.price,
+          url: data.url,
           description: data.description,
-          category: data.category,
-          url: data.image,
+          categories: data.categories,
         });
       } catch (error) {
         console.error("Error fetching product data:", error);
@@ -67,30 +66,57 @@ const EditProduct = () => {
     }));
   };
 
+  const handleCheckCategory = (e) => {
+    const { id, name } = e.target;
+    const parsedId = parseInt(id);
+
+    setUpdatedProduct((prevProduct) => {
+      const isAlreadyIncluded = prevProduct.categories.some(
+        (category) => category.id === parsedId && category.name === name
+      );
+
+      return {
+        ...prevProduct,
+        categories: isAlreadyIncluded
+          ? prevProduct.categories.filter(
+              (category) => category.id !== parsedId
+            )
+          : [...prevProduct.categories, { id: parsedId, name }],
+      };
+    });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(updatedProduct);
+
+    var decodedToken = jwtDecode(token);
+    console.log(decodedToken);
 
     const sendData = {
-      title: updatedProduct.title,
+      name: updatedProduct.name,
       price: updatedProduct.price,
+      url: updatedProduct.url,
       description: updatedProduct.description,
-      category: updatedProduct.category,
-      image: updatedProduct.image,
-      rating: updatedProduct.rating,
-      quantity: updatedProduct.quantity,
+      categories: updatedProduct.categories,
     };
 
     fetch(`${process.env.REACT_APP_API_BACKEND}/products/${id}`, {
-      method: "POST",
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
         Authorization: token,
       },
       body: JSON.stringify(sendData),
     })
-      .then((response) => response.json())
-      .then((data) => {
+      .then((response) => {
+        const contentType = response.headers.get("Content-Type");
+        if (contentType && contentType.includes("application/json")) {
+          return response.json();
+        } else {
+          return response.text();
+        }
+      })
+      .then(() => {
         alert("Product successfully updated");
         window.location.href = "/";
       })
@@ -138,13 +164,13 @@ const EditProduct = () => {
                 }}
               >
                 <label style={{ display: "block", marginBottom: "0.5rem" }}>
-                  Title:
+                  Name:
                 </label>
                 <input
                   className="form-control"
-                  name="title"
+                  name="name"
                   type="text"
-                  value={updatedProduct.title}
+                  value={updatedProduct.name}
                   onChange={handleInputChange}
                   style={{
                     width: "100%",
@@ -186,9 +212,33 @@ const EditProduct = () => {
                 }}
               >
                 <label style={{ display: "block", marginBottom: "0.5rem" }}>
-                  Description:
+                  Image URL:
                 </label>
                 <input
+                  className="form-control"
+                  name="url"
+                  type="text"
+                  value={updatedProduct.url}
+                  onChange={handleInputChange}
+                  style={{
+                    width: "100%",
+                    padding: "0.5rem",
+                    border: "1px solid #ccc",
+                    borderRadius: "4px",
+                  }}
+                />
+              </div>
+
+              <div
+                className="form-group"
+                style={{
+                  marginBottom: "1.5rem",
+                }}
+              >
+                <label style={{ display: "block", marginBottom: "0.5rem" }}>
+                  Description:
+                </label>
+                <textarea
                   className="form-control"
                   name="description"
                   type="text"
@@ -210,95 +260,24 @@ const EditProduct = () => {
                 }}
               >
                 <label style={{ display: "block", marginBottom: "0.5rem" }}>
-                  Category:
+                  Categories:
                 </label>
-                <input
-                  className="form-control"
-                  name="category"
-                  type="text"
-                  value={updatedProduct.category}
-                  onChange={handleInputChange}
-                  style={{
-                    width: "100%",
-                    padding: "0.5rem",
-                    border: "1px solid #ccc",
-                    borderRadius: "4px",
-                  }}
-                />
-              </div>
 
-              <div
-                className="form-group"
-                style={{
-                  marginBottom: "1.5rem",
-                }}
-              >
-                <label style={{ display: "block", marginBottom: "0.5rem" }}>
-                  Image URL:
-                </label>
-                <input
-                  className="form-control"
-                  name="image"
-                  type="text"
-                  value={updatedProduct.image}
-                  onChange={handleInputChange}
-                  style={{
-                    width: "100%",
-                    padding: "0.5rem",
-                    border: "1px solid #ccc",
-                    borderRadius: "4px",
-                  }}
-                />
-              </div>
-
-              <div
-                className="form-group"
-                style={{
-                  marginBottom: "1.5rem",
-                }}
-              >
-                <label style={{ display: "block", marginBottom: "0.5rem" }}>
-                  Rating:
-                </label>
-                <input
-                  className="form-control"
-                  name="rating"
-                  type="number"
-                  min={1}
-                  max={5}
-                  value={updatedProduct.rating}
-                  onChange={handleInputChange}
-                  style={{
-                    width: "100%",
-                    padding: "0.5rem",
-                    border: "1px solid #ccc",
-                    borderRadius: "4px",
-                  }}
-                />
-              </div>
-
-              <div
-                className="form-group"
-                style={{
-                  marginBottom: "1.5rem",
-                }}
-              >
-                <label style={{ display: "block", marginBottom: "0.5rem" }}>
-                  Quantity in stock:
-                </label>
-                <input
-                  className="form-control"
-                  name="quantity"
-                  type="number"
-                  value={updatedProduct.quantity}
-                  onChange={handleInputChange}
-                  style={{
-                    width: "100%",
-                    padding: "0.5rem",
-                    border: "1px solid #ccc",
-                    borderRadius: "4px",
-                  }}
-                />
+                {fetchedCategories.map((category, index) => (
+                  <div key={"key" + index}>
+                    <label>{category.name}</label>
+                    <input
+                      type="checkbox"
+                      name={category.name}
+                      id={category.id}
+                      onChange={handleCheckCategory}
+                      checked={updatedProduct.categories.some(
+                        (cat) =>
+                          cat.id === category.id && cat.name === category.name
+                      )}
+                    />
+                  </div>
+                ))}
               </div>
 
               <button

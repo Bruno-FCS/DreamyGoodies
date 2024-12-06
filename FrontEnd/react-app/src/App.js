@@ -54,7 +54,15 @@ function App() {
         />
         <Route path="/product/:id" element={<ProductPage />} />
         <Route path="/product/add" element={<AddProduct />} />
-        <Route path="/product/edit/:id" element={<EditProduct />} />
+        <Route
+          path="/product/edit/:id"
+          element={
+            <EditProduct
+              categories={categories}
+              setCategories={setCategories}
+            />
+          }
+        />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/cart" element={<CartPage />} />

@@ -102,8 +102,8 @@ const ProductsPage = ({ products, setProducts, categories, setCategories }) => {
           gap: "20px",
         }}
       >
-        {displayedProducts.map((product) => {
-          return <ProductCard key={"key" + product.id} product={product} />;
+        {displayedProducts.map((product, index) => {
+          return <ProductCard key={"key" + index} product={product} />;
         })}
       </div>
       <br />
