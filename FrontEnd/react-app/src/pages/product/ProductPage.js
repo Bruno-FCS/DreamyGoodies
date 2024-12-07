@@ -11,7 +11,8 @@ const ProductPage = () => {
   const [isAuthorized, setIsAuthorized] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const { id } = useParams();
-  const [setShowModal, ShowModal] = useState("false")
+  const [ShowModal, setShowModal] = useState(false);
+  const [modelMsg, setModalMsg] = useState("");
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -80,7 +81,6 @@ const ProductPage = () => {
     if (savedCart) {
       let parsedCart = JSON.parse(savedCart);
       let existingProduct = parsedCart.find((product) => product.id === id);
-      console.log(existingProduct);
       if (existingProduct) {
         existingProduct.quantity += quantity;
       } else {
@@ -105,32 +105,10 @@ const ProductPage = () => {
       window.location.href = "/login";
       alert("Please login to access your added items!");
     } else {
-      alert(`${pr_name} was added to the cart!`);
-    }
-  };
-
-  const handleAddToWishlist = (id) => {
-    let wishlist = localStorage.getItem("wishlist");
-    if (wishlist) {
-      let parsedWishlist = JSON.parse(wishlist);
-      let existingProduct = parsedWishlist.find((product) => product.id === id);
-      if (!existingProduct) {
-        parsedWishlist.push(product);
-      }
-      localStorage.setItem("wishlist", JSON.stringify(parsedWishlist));
-    } else {
-      localStorage.setItem("wishlist", JSON.stringify([product]));
-    }
-    let pr_name =
-      product.name.length > 20
-        ? product.name.slice(0, 25) + "..."
-        : product.name;
-
-    if (!isLoggedIn) {
-      window.location.href = "/login";
-      alert("Please login to access your added items!");
-    } else {
-      alert(`${pr_name} was added to the wishlist!`);
+      // alert(`${pr_name} was added to the cart!`);
+        console.log(pr_name)
+        setModalMsg(`${pr_name} was added to the cart!`)
+        setShowModal(true);
     }
   };
 
@@ -138,14 +116,20 @@ const ProductPage = () => {
       <div>
         <Navbar/>
         <div className="container table-section" style={{minHeight: "444px"}}>
-          {<div className="modal fade bd-example-modal-sm" tabIndex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+          <div className="modal fade bd-example-modal-sm" tabIndex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
                 aria-hidden={ShowModal}>
             <div className="modal-dialog modal-sm">
               <div className="modal-content">
-                ...
+                  {modelMsg}
+                  <button>
+                      Continue Shopping?
+                  </button>
+                  <button>
+                      Go to Cart
+                  </button>
               </div>
             </div>
-          </div>}
+          </div>
           <div
               className="product-details"
               style={{
@@ -173,115 +157,110 @@ const ProductPage = () => {
                     {category.name}
                         {index < product.categories.length - 1 && ", "}
                   </span>
-                ))}
-              </p>
-              <p>Description: {product.description}</p>
-            </div>
-            <div className="product-actions">
-              {isAuthorized && (
-                <div>
-                  <Link
-                    className="product-btn edit-product-btn"
-                    to={`/product/edit/${product.id}`}
+                  ))}
+                </p>
+                <p>Description: {product.description}</p>
+              </div>
+              <div className="product-actions">
+                {isAuthorized && (
+                    <div>
+                      <Link
+                          className="product-btn edit-product-btn"
+                          to={`/product/edit/${product.id}`}
+                          style={{
+                            backgroundColor: "#fca9a9",
+                            color: "white",
+                            textDecoration: "none",
+                            padding: "6px 7px",
+                            borderRadius: "5px",
+                            fontSize: "13px",
+                            margin: 2,
+                          }}
+                      >
+                        Edit Product
+                      </Link>
+                      <button
+                          className="product-btn delete-product-btn"
+                          data-id={product.id}
+                          onClick={handleDelete}
+                          style={{
+                            backgroundColor: "#fca9a9",
+                            color: "white",
+                            border: "none",
+                            padding: "6px 7px",
+                            borderRadius: "5px",
+                            fontSize: "13px",
+                            margin: 2,
+                            alignSelf: "center",
+                          }}
+                      >
+                        Delete Product
+                      </button>
+                    </div>
+                )}
+                <div
                     style={{
-                      backgroundColor: "#fca9a9",
-                      color: "white",
-                      textDecoration: "none",
-                      padding: "5px 10px",
-                      borderRadius: "5px",
-                      fontSize: "13px",
-                      margin: 2,
+                      display: "flex",
+                      width: 150,
+                      justifyContent: "space-between",
+                      alignItems: "center",
                     }}
+                >
+                  {" "}
+                  <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        // marginRight: 5,
+                      }}
                   >
-                    Edit Product
-                  </Link>
+                    <button
+                        onClick={() => {
+                          if (quantity > 1) setQuantity(quantity - 1);
+                        }}
+                        style={{
+                          backgroundColor: "#fca9a9",
+                          color: "white",
+                          border: "none",
+                          padding: "2px 10px",
+                          borderRadius: "5px",
+                          cursor: "pointer",
+                        }}
+                    >
+                      -
+                    </button>
+                  </div>
+                  <div>{quantity}</div>
                   <button
-                    className="product-btn delete-product-btn"
-                    data-id={product.id}
-                    onClick={handleDelete}
-                    style={{
-                      backgroundColor: "#fca9a9",
-                      color: "white",
-                      border: "none",
-                      padding: "6px 7px",
-                      borderRadius: "5px",
-                      fontSize: "13px",
-                      margin: 2,
-                      alignSelf: "center",
-                      cursor: "pointer",
-                    }}
+                      onClick={() => {
+                        setQuantity(quantity + 1);
+                      }}
+                      style={{
+                        backgroundColor: "#fca9a9",
+                        color: "white",
+                        border: "none",
+                        padding: "2px 10px",
+                        borderRadius: "5px",
+                        cursor: "pointer",
+                        marginRight: "2px",
+                      }}
                   >
-                    Delete Product
+                    +
+                  </button>
+                  <button
+                      onClick={handleAddToCart}
+                      style={{
+                        backgroundColor: "#fca9a9",
+                        color: "white",
+                        border: "none",
+                        padding: "5px 7px",
+                        borderRadius: "5px",
+                        marginTop: 2,
+                      }}
+                  >
+                    Add to Cart
                   </button>
                 </div>
-              )}
-              <div
-                style={{
-                  display: "flex",
-                  width: 300,
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                }}
-              >
-                <button
-                  onClick={() => {
-                    if (quantity > 1) setQuantity(quantity - 1);
-                  }}
-                  style={{
-                    backgroundColor: "#fca9a9",
-                    color: "white",
-                    border: "none",
-                    padding: "5px 10px",
-                    borderRadius: "5px",
-                    cursor: "pointer",
-                  }}
-                >
-                  -
-                </button>
-                <div>{quantity}</div>
-                <button
-                  onClick={() => {
-                    setQuantity(quantity + 1);
-                  }}
-                  style={{
-                    backgroundColor: "#fca9a9",
-                    color: "white",
-                    border: "none",
-                    padding: "5px 10px",
-                    borderRadius: "5px",
-                    cursor: "pointer",
-                  }}
-                >
-                  +
-                </button>
-                <button
-                  onClick={() => handleAddToCart(product.id)}
-                  style={{
-                    backgroundColor: "#fca9a9",
-                    color: "white",
-                    border: "none",
-                    padding: "5px 7px",
-                    borderRadius: "5px",
-                    marginTop: 2,
-                    cursor: "pointer",
-                  }}
-                >
-                  Add to Cart
-                </button>
-                <button
-                  onClick={() => handleAddToWishlist(product.id)}
-                  style={{
-                    backgroundColor: "#fca9a9",
-                    color: "white",
-                    border: "none",
-                    padding: "5px 7px",
-                    borderRadius: "5px",
-                    marginTop: 2,
-                    cursor: "pointer",
-                  }}
-                >
-                  Add to Wishlist
-                </button>
               </div>
             </div>
           </div>

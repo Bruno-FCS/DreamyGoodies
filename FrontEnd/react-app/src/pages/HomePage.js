@@ -35,7 +35,7 @@ const HomePage = ({ products }) => {
               marginTop: "1.5rem",
             }}
           >
-            Hello, {userName}!
+            Hello and welcome, {userName}!
           </p>
         )}
         <div
