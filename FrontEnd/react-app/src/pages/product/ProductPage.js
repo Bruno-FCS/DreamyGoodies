@@ -11,7 +11,7 @@ const ProductPage = () => {
   const [isAuthorized, setIsAuthorized] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const { id } = useParams();
-  const [setShowModal, ShowModal] = useState("false")
+  const [setShowModal, ShowModal] = useState("false");
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -135,43 +135,48 @@ const ProductPage = () => {
   };
 
   return (
-      <div>
-        <Navbar/>
-        <div className="container table-section" style={{minHeight: "444px"}}>
-          {<div className="modal fade bd-example-modal-sm" tabIndex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
-                aria-hidden={ShowModal}>
-            <div className="modal-dialog modal-sm">
-              <div className="modal-content">
-                ...
-              </div>
-            </div>
-          </div>}
+    <div>
+      <Navbar />
+      <div className="container table-section" style={{ minHeight: "444px" }}>
+        {
           <div
-              className="product-details"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: "20px",
-                padding: "20px",
-                backgroundColor: "white",
-                boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-                borderRadius: "5px",
-                marginTop: 100,
-                marginBottom: 100,
-              }}
+            className="modal fade bd-example-modal-sm"
+            tabIndex="-1"
+            role="dialog"
+            aria-labelledby="mySmallModalLabel"
+            aria-hidden={ShowModal}
           >
-            <img src={product.url} width={250} alt="product_image"/>
-            <div>
-              <h1 className="product-title">{product.name}</h1>
-              <h3 className="product-price">CAD$ {product.price}</h3>
-              <div className="product-details">
-                <p>
-                  {product.categories.length > 1 ? "Categories" : "Category"}:{" "}
-                  {product.categories.map((category, index) => (
-                      <span key={"key" + index}>
+            <div className="modal-dialog modal-sm">
+              <div className="modal-content">...</div>
+            </div>
+          </div>
+        }
+        <div
+          className="product-details"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "20px",
+            padding: "20px",
+            backgroundColor: "white",
+            boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+            borderRadius: "5px",
+            marginTop: 100,
+            marginBottom: 100,
+          }}
+        >
+          <img src={product.url} width={250} alt="product_image" />
+          <div>
+            <h1 className="product-title">{product.name}</h1>
+            <h3 className="product-price">CAD$ {product.price}</h3>
+            <div className="product-details">
+              <p>
+                {product.categories.length > 1 ? "Categories" : "Category"}:{" "}
+                {product.categories.map((category, index) => (
+                  <span key={"key" + index}>
                     {category.name}
-                        {index < product.categories.length - 1 && ", "}
+                    {index < product.categories.length - 1 && ", "}
                   </span>
                 ))}
               </p>
@@ -286,8 +291,9 @@ const ProductPage = () => {
             </div>
           </div>
         </div>
-        <Footer/>
       </div>
+      <Footer />
+    </div>
   );
 };
 
