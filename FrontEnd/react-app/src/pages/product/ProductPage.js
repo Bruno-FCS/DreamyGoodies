@@ -107,6 +107,31 @@ const ProductPage = () => {
     }
   };
 
+  const handleAddToWishlist = () => {
+    let wishlist = localStorage.getItem("wishlist");
+    if (wishlist) {
+      let parsedWishlist = JSON.parse(wishlist);
+      let existingProduct = parsedWishlist.find((product) => product.id === id);
+      if (!existingProduct) {
+        parsedWishlist.push(product);
+      }
+      localStorage.setItem("wishlist", JSON.stringify(parsedWishlist));
+    } else {
+      localStorage.setItem("wishlist", JSON.stringify([product]));
+    }
+    let pr_name =
+      product.name.length > 20
+        ? product.name.slice(0, 25) + "..."
+        : product.name;
+
+    if (!isLoggedIn) {
+      window.location.href = "/login";
+      alert("Please login to access your added items!");
+    } else {
+      alert(`${pr_name} was added to the wishlist!`);
+    }
+  };
+
   return (
     <div>
       <Navbar />
@@ -183,35 +208,26 @@ const ProductPage = () => {
               <div
                 style={{
                   display: "flex",
-                  width: 150,
+                  width: 300,
                   justifyContent: "space-between",
                   alignItems: "center",
                 }}
               >
-                {" "}
-                <div
+                <button
+                  onClick={() => {
+                    if (quantity > 1) setQuantity(quantity - 1);
+                  }}
                   style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    // marginRight: 5,
+                    backgroundColor: "#fca9a9",
+                    color: "white",
+                    border: "none",
+                    padding: "5px 10px",
+                    borderRadius: "5px",
+                    cursor: "pointer",
                   }}
                 >
-                  <button
-                    onClick={() => {
-                      if (quantity > 1) setQuantity(quantity - 1);
-                    }}
-                    style={{
-                      backgroundColor: "#fca9a9",
-                      color: "white",
-                      border: "none",
-                      padding: "2px 10px",
-                      borderRadius: "5px",
-                      cursor: "pointer",
-                    }}
-                  >
-                    -
-                  </button>
-                </div>
+                  -
+                </button>
                 <div>{quantity}</div>
                 <button
                   onClick={() => {
@@ -221,7 +237,7 @@ const ProductPage = () => {
                     backgroundColor: "#fca9a9",
                     color: "white",
                     border: "none",
-                    padding: "2px 10px",
+                    padding: "5px 10px",
                     borderRadius: "5px",
                     cursor: "pointer",
                   }}
@@ -241,6 +257,20 @@ const ProductPage = () => {
                   }}
                 >
                   Add to Cart
+                </button>
+                <button
+                  onClick={handleAddToWishlist}
+                  style={{
+                    backgroundColor: "#fca9a9",
+                    color: "white",
+                    border: "none",
+                    padding: "5px 7px",
+                    borderRadius: "5px",
+                    marginTop: 2,
+                    cursor: "pointer",
+                  }}
+                >
+                  Add to Wishlist
                 </button>
               </div>
             </div>

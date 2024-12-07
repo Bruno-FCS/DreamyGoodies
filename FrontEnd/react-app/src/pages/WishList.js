@@ -5,7 +5,8 @@ const WishList = () => {
   return (
     <div>
       <Navbar />
-      <Footer pos={"absolute"} />
+      <div style={{ minHeight: "544px" }}></div>
+      <Footer />
     </div>
   );
 };
