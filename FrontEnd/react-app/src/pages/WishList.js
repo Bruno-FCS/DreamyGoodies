@@ -42,10 +42,12 @@ const WishList = () => {
   };
 
   const handleDeleteItem = (selectedProduct) => {
-    setWishList(
-      wishList.filter((product) => product.id !== selectedProduct.id)
+    const updatedWishList = wishList.filter(
+      (product) => product.id !== selectedProduct.id
     );
-    localStorage.setItem("cart", JSON.stringify(wishList));
+
+    setWishList(updatedWishList);
+    localStorage.setItem("wishlist", JSON.stringify(updatedWishList));
   };
 
   return (
