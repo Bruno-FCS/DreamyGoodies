@@ -110,7 +110,7 @@ const ProductPage = () => {
   return (
     <div>
       <Navbar />
-      <div className="container table-section">
+      <div className="container table-section" style={{ minHeight: "444px" }}>
         <div
           className="product-details"
           style={{

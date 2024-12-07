@@ -4,13 +4,13 @@ import "../../App.css";
 import Footer from "../../components/Footer";
 
 const UserProfile = () => {
-    return(
+  return (
+    <div>
+      <Navbar />
+      <div style={{ minHeight: "544px" }}></div>
+      <Footer />
+    </div>
+  );
+};
 
-        <div>
-            <Navbar/>
-            <Footer/>
-        </div>
-    )
-}
-
-export default UserProfile
+export default UserProfile;

@@ -63,12 +63,7 @@ const CartPage = () => {
       }}
     >
       <Navbar />
-      <div
-        style={{
-          justifyContent: "center",
-          display: "flex",
-        }}
-      >
+      <div style={{ minHeight: "544px", paddingTop: "40px" }}>
         <div
           style={{
             backgroundColor: "#3495EB",
@@ -112,7 +107,15 @@ const CartPage = () => {
               <img src={product.url} width={75} alt={product.name} />
               <div className="title-box">
                 <label className="product-title">
-                  <a href={`/product/${product.id}`} className="title-link">
+                  <a
+                    href={`/product/${product.id}`}
+                    className="title-link"
+                    style={{
+                      textDecoration: "none",
+                      color: "#000000",
+                      fontWeight: "bold",
+                    }}
+                  >
                     {product.name}
                   </a>
                 </label>
@@ -153,7 +156,7 @@ const CartPage = () => {
                     +
                   </button>
                 </p>
-                <p className="product-info">
+                <p className="product-info" style={{ fontWeight: "bold" }}>
                   Subtotal: CAD$ {(product.quantity * product.price).toFixed(2)}
                 </p>
               </div>
@@ -166,6 +169,7 @@ const CartPage = () => {
                   borderRadius: "5px",
                   fontWeight: "bold",
                   cursor: "pointer",
+                  marginBottom: 8,
                 }}
                 onClick={() => handleRemoveFromCart(product.id)}
               >
@@ -230,10 +234,14 @@ const CartPage = () => {
                 Place Order
               </button>
             </div>
-            <Footer pos={"sticky"} />
           </div>
         ) : (
-          <>
+          <div
+            style={{
+              justifyContent: "center",
+              display: "flex",
+            }}
+          >
             <div
               style={{
                 color: "#143A27",
@@ -258,10 +266,10 @@ const CartPage = () => {
               />
               Your cart is empty...
             </div>
-            <Footer pos={"absolute"} />
-          </>
+          </div>
         )}
       </div>
+      <Footer />
     </div>
   );
 };

@@ -30,7 +30,7 @@ const MessagesPage = () => {
   return (
     <div>
       <Navbar />
-      <div className="container table-section">
+      <div className="container table-section" style={{ minHeight: "524px" }}>
         {isAuthorized ? (
           <>
             <h1 className="table-title" style={{ margin: "20px 0" }}>
@@ -76,7 +76,7 @@ const MessagesPage = () => {
           </p>
         )}
       </div>
-      <Footer pos="absolute" />
+      <Footer />
     </div>
   );
 };

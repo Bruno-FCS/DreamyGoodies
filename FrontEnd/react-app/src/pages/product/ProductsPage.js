@@ -54,28 +54,69 @@ const ProductsPage = ({ products, setProducts, categories, setCategories }) => {
     <div>
       <Navbar />
 
-      <div className="container table-section">
-        <input
-          type="text"
-          value={productName}
-          onChange={(e) => setProductName(e.target.value)}
-        />
-        <button onClick={handleSearchProduct}>Search</button>
-        {categories.map((category) => (
-          <div>
-            <input
-              type="checkbox"
-              value={category.name}
-              onChange={(e) => handleSelectCategory(e.target.value)}
-            />
-            <p>{category.name}</p>
-          </div>
-        ))}
+      <div className="container table-section" style={{ minHeight: "504px" }}>
+        <div style={{ marginTop: "40px", gap: "10%", display: "flex" }}>
+          <input
+            type="text"
+            placeholder="Product Name"
+            style={{ width: "80%" }}
+            value={productName}
+            onChange={(e) => setProductName(e.target.value)}
+          />
+          <button
+            style={{
+              width: "150px",
+              backgroundColor: "#ff9f9f",
+              color: "black",
+              borderColor: "#f9d639",
+              padding: "7px",
+              borderRadius: "5px",
+            }}
+            onClick={handleSearchProduct}
+          >
+            Search
+          </button>
+        </div>
+        <div
+          style={{
+            marginTop: "20px",
+            marginBottom: "20px",
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+            gap: "20px",
+          }}
+        >
+          {categories.map((category) => (
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+              }}
+            >
+              <input
+                type="checkbox"
+                style={{
+                  margin: 0,
+                }}
+                value={category.name}
+                onChange={(e) => handleSelectCategory(e.target.value)}
+              />
+              <p
+                style={{
+                  margin: 0,
+                }}
+              >
+                {category.name}
+              </p>
+            </div>
+          ))}
+        </div>
         <div
           className="product-grid"
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fit, minmax(200px, 243px))",
             gap: "20px",
           }}
         >

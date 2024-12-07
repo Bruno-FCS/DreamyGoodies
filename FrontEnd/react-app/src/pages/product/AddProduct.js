@@ -1,17 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 
 const AddProduct = () => {
+  const [fetchedCategories, setFetchedCategories] = useState([]);
   const [newProduct, setNewProduct] = useState({
-    title: "",
+    name: "",
     price: 0,
+    url: "",
     description: "",
-    category: "",
-    image: "",
-    rating: 0,
-    quantity: 0,
+    categories: [],
   });
 
   const isLoggedIn = localStorage.getItem("token") !== null;
@@ -20,12 +19,39 @@ const AddProduct = () => {
   const scope = decodedToken ? decodedToken.scope : "";
   const isAuthorized = isLoggedIn && scope === "ADMIN";
 
+  useEffect(() => {
+    fetch(process.env.REACT_APP_API_BACKEND + "/categories")
+      .then((response) => response.json())
+      .then((data) => setFetchedCategories(data))
+      .catch((error) => console.error("Error fetching categories:", error));
+  }, []);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setNewProduct((prevProduct) => ({
       ...prevProduct,
       [name]: value,
     }));
+  };
+
+  const handleCheckCategory = (e) => {
+    const { id, name } = e.target;
+    const parsedId = parseInt(id);
+
+    setNewProduct((prevProduct) => {
+      const isAlreadyIncluded = prevProduct.categories.some(
+        (category) => category.id === parsedId && category.name === name
+      );
+
+      return {
+        ...prevProduct,
+        categories: isAlreadyIncluded
+          ? prevProduct.categories.filter(
+              (category) => category.id !== parsedId
+            )
+          : [...prevProduct.categories, { id: parsedId, name }],
+      };
+    });
   };
 
   const handleSubmit = (e) => {
@@ -40,12 +66,19 @@ const AddProduct = () => {
       },
       body: JSON.stringify(newProduct),
     })
-      .then((response) => response.json())
-      .then((data) => {
+      .then((response) => {
+        const contentType = response.headers.get("Content-Type");
+        if (contentType && contentType.includes("application/json")) {
+          return response.json();
+        } else {
+          return response.text();
+        }
+      })
+      .then(() => {
         alert("Add Product successfully added");
         window.location.href = "/";
       })
-      .catch((error) => console.error("Error adding product:", error));
+      .catch((error) => console.error("Error updating product:", error));
   };
 
   return (
@@ -88,13 +121,13 @@ const AddProduct = () => {
                 }}
               >
                 <label style={{ display: "block", marginBottom: "0.5rem" }}>
-                  Title:
+                  Name:
                 </label>
                 <input
                   className="form-control"
-                  name="title"
+                  name="name"
                   type="text"
-                  value={newProduct.title}
+                  value={newProduct.name}
                   onChange={handleInputChange}
                   style={{
                     width: "100%",
@@ -136,9 +169,33 @@ const AddProduct = () => {
                 }}
               >
                 <label style={{ display: "block", marginBottom: "0.5rem" }}>
-                  Description:
+                  Image URL:
                 </label>
                 <input
+                  className="form-control"
+                  name="url"
+                  type="text"
+                  value={newProduct.url}
+                  onChange={handleInputChange}
+                  style={{
+                    width: "100%",
+                    padding: "0.5rem",
+                    border: "1px solid #ccc",
+                    borderRadius: "4px",
+                  }}
+                />
+              </div>
+
+              <div
+                className="form-group"
+                style={{
+                  marginBottom: "1.5rem",
+                }}
+              >
+                <label style={{ display: "block", marginBottom: "0.5rem" }}>
+                  Description:
+                </label>
+                <textarea
                   className="form-control"
                   name="description"
                   type="text"
@@ -160,95 +217,24 @@ const AddProduct = () => {
                 }}
               >
                 <label style={{ display: "block", marginBottom: "0.5rem" }}>
-                  Category:
+                  Categories:
                 </label>
-                <input
-                  className="form-control"
-                  name="category"
-                  type="text"
-                  value={newProduct.category}
-                  onChange={handleInputChange}
-                  style={{
-                    width: "100%",
-                    padding: "0.5rem",
-                    border: "1px solid #ccc",
-                    borderRadius: "4px",
-                  }}
-                />
-              </div>
 
-              <div
-                className="form-group"
-                style={{
-                  marginBottom: "1.5rem",
-                }}
-              >
-                <label style={{ display: "block", marginBottom: "0.5rem" }}>
-                  Image URL:
-                </label>
-                <input
-                  className="form-control"
-                  name="image"
-                  type="text"
-                  value={newProduct.image}
-                  onChange={handleInputChange}
-                  style={{
-                    width: "100%",
-                    padding: "0.5rem",
-                    border: "1px solid #ccc",
-                    borderRadius: "4px",
-                  }}
-                />
-              </div>
-
-              <div
-                className="form-group"
-                style={{
-                  marginBottom: "1.5rem",
-                }}
-              >
-                <label style={{ display: "block", marginBottom: "0.5rem" }}>
-                  Rating:
-                </label>
-                <input
-                  className="form-control"
-                  name="rating"
-                  type="number"
-                  value={newProduct.rating}
-                  min={0}
-                  max={5}
-                  onChange={handleInputChange}
-                  style={{
-                    width: "100%",
-                    padding: "0.5rem",
-                    border: "1px solid #ccc",
-                    borderRadius: "4px",
-                  }}
-                />
-              </div>
-
-              <div
-                className="form-group"
-                style={{
-                  marginBottom: "1.5rem",
-                }}
-              >
-                <label style={{ display: "block", marginBottom: "0.5rem" }}>
-                  Quantity in stock:
-                </label>
-                <input
-                  className="form-control"
-                  name="quantity"
-                  type="number"
-                  value={newProduct.quantity}
-                  onChange={handleInputChange}
-                  style={{
-                    width: "100%",
-                    padding: "0.5rem",
-                    border: "1px solid #ccc",
-                    borderRadius: "4px",
-                  }}
-                />
+                {fetchedCategories.map((category, index) => (
+                  <div key={"key" + index}>
+                    <label>{category.name}</label>
+                    <input
+                      type="checkbox"
+                      name={category.name}
+                      id={category.id}
+                      onChange={handleCheckCategory}
+                      checked={newProduct.categories.some(
+                        (cat) =>
+                          cat.id === category.id && cat.name === category.name
+                      )}
+                    />
+                  </div>
+                ))}
               </div>
 
               <button
