@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
+import modal from "bootstrap/js/src/modal";
 // import "../styles/ProductPage.css"
 
 const ProductPage = () => {
@@ -11,7 +12,8 @@ const ProductPage = () => {
   const [isAuthorized, setIsAuthorized] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const { id } = useParams();
-  const [setShowModal, ShowModal] = useState("false")
+  const [showModal, setShowModal] = useState(false);
+  const [modalMsg, setModalMsg] = useState("");
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -106,6 +108,8 @@ const ProductPage = () => {
       alert("Please login to access your added items!");
     } else {
       alert(`${pr_name} was added to the cart!`);
+      setModalMsg(`${pr_name} was added to the cart!`);
+      setShowModal(true);
     }
   };
 
@@ -139,10 +143,10 @@ const ProductPage = () => {
         <Navbar/>
         <div className="container table-section" style={{minHeight: "444px"}}>
           {<div className="modal fade bd-example-modal-sm" tabIndex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
-                aria-hidden={ShowModal}>
+                aria-hidden={showModal}>
             <div className="modal-dialog modal-sm">
               <div className="modal-content">
-                ...
+                  {modalMsg}
               </div>
             </div>
           </div>}
@@ -285,6 +289,7 @@ const ProductPage = () => {
               </div>
             </div>
           </div>
+        </div>
         </div>
         <Footer/>
       </div>
