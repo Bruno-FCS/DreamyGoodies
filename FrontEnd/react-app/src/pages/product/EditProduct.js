@@ -142,126 +142,55 @@ const EditProduct = () => {
         }}
       >
         {isAuthorized ? (
-          <div
-            className="edit-product-form"
-            style={{
-              backgroundColor: "white",
-              borderRadius: "8px",
-              boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-              padding: "2rem",
-              width: "100%",
-              maxWidth: "600px",
-            }}
-          >
-            <h1 style={{ fontSize: "2.5rem", marginBottom: "1.5rem" }}>
-              {product.title}
-            </h1>
+          <div className="form">
+            <h1>{product.title}</h1>
             <form onSubmit={handleSubmit}>
-              <div
-                className="form-group"
-                style={{
-                  marginBottom: "1.5rem",
-                }}
-              >
-                <label style={{ display: "block", marginBottom: "0.5rem" }}>
-                  Name:
-                </label>
+              <div className="form-group">
+                <label>Name: </label>
                 <input
                   className="form-control"
                   name="name"
                   type="text"
                   value={updatedProduct.name}
                   onChange={handleInputChange}
-                  style={{
-                    width: "100%",
-                    padding: "0.5rem",
-                    border: "1px solid #ccc",
-                    borderRadius: "4px",
-                  }}
                 />
               </div>
 
-              <div
-                className="form-group"
-                style={{
-                  marginBottom: "1.5rem",
-                }}
-              >
-                <label style={{ display: "block", marginBottom: "0.5rem" }}>
-                  Price:
-                </label>
+              <div className="form-group">
+                <label>Price: </label>
                 <input
                   className="form-control"
                   name="price"
                   type="number"
                   value={updatedProduct.price}
                   onChange={handleInputChange}
-                  style={{
-                    width: "100%",
-                    padding: "0.5rem",
-                    border: "1px solid #ccc",
-                    borderRadius: "4px",
-                  }}
                 />
               </div>
 
-              <div
-                className="form-group"
-                style={{
-                  marginBottom: "1.5rem",
-                }}
-              >
-                <label style={{ display: "block", marginBottom: "0.5rem" }}>
-                  Image URL:
-                </label>
+              <div className="form-group">
+                <label>Image URL: </label>
                 <input
                   className="form-control"
                   name="url"
                   type="text"
                   value={updatedProduct.url}
                   onChange={handleInputChange}
-                  style={{
-                    width: "100%",
-                    padding: "0.5rem",
-                    border: "1px solid #ccc",
-                    borderRadius: "4px",
-                  }}
                 />
               </div>
 
-              <div
-                className="form-group"
-                style={{
-                  marginBottom: "1.5rem",
-                }}
-              >
-                <label style={{ display: "block", marginBottom: "0.5rem" }}>
-                  Description:
-                </label>
+              <div className="form-group">
+                <label>Description: </label>
                 <textarea
                   className="form-control"
                   name="description"
                   type="text"
                   value={updatedProduct.description}
                   onChange={handleInputChange}
-                  style={{
-                    width: "100%",
-                    padding: "0.5rem",
-                    border: "1px solid #ccc",
-                    borderRadius: "4px",
-                  }}
                 />
               </div>
 
-              <div
-                className="form-group"
-                style={{
-                  marginBottom: "1.5rem",
-                }}
-              >
-                <label style={{ display: "block", marginBottom: "0.5rem" }}>
-                  Categories:
-                </label>
+              <div className="form-group">
+                <label>Categories: </label>
 
                 {fetchedCategories.map((category, index) => (
                   <div key={"key" + index}>
@@ -281,6 +210,7 @@ const EditProduct = () => {
               </div>
 
               <button
+
                 type="submit"
                 style={{
                   backgroundColor: "#ff9f9f",

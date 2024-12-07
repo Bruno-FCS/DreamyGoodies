@@ -89,38 +89,13 @@ const AddProduct = () => {
       }}
     >
       <Navbar />
-      <div
-        className="add-product-container"
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          padding: "2rem",
-        }}
-      >
+      <div className="form-container">
         {isAuthorized ? (
-          <div
-            className="add-product-form"
-            style={{
-              backgroundColor: "white",
-              borderRadius: "8px",
-              boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-              padding: "2rem",
-              width: "100%",
-              maxWidth: "600px",
-            }}
-          >
-            <h1 style={{ fontSize: "2.5rem", marginBottom: "1.5rem" }}>
-              Add New Product
-            </h1>
+          <div className="form" >
+            <h1>Add New Product </h1>
             <form onSubmit={handleSubmit}>
-              <div
-                className="form-group"
-                style={{
-                  marginBottom: "1.5rem",
-                }}
-              >
-                <label style={{ display: "block", marginBottom: "0.5rem" }}>
+              <div className="form-group">
+                <label>
                   Name:
                 </label>
                 <input
@@ -129,22 +104,11 @@ const AddProduct = () => {
                   type="text"
                   value={newProduct.name}
                   onChange={handleInputChange}
-                  style={{
-                    width: "100%",
-                    padding: "0.5rem",
-                    border: "1px solid #ccc",
-                    borderRadius: "4px",
-                  }}
                 />
               </div>
 
-              <div
-                className="form-group"
-                style={{
-                  marginBottom: "1.5rem",
-                }}
-              >
-                <label style={{ display: "block", marginBottom: "0.5rem" }}>
+              <div className="form-group">
+                <label>
                   Price:
                 </label>
                 <input
@@ -153,46 +117,22 @@ const AddProduct = () => {
                   type="number"
                   value={newProduct.price}
                   onChange={handleInputChange}
-                  style={{
-                    width: "100%",
-                    padding: "0.5rem",
-                    border: "1px solid #ccc",
-                    borderRadius: "4px",
-                  }}
                 />
               </div>
 
-              <div
-                className="form-group"
-                style={{
-                  marginBottom: "1.5rem",
-                }}
-              >
-                <label style={{ display: "block", marginBottom: "0.5rem" }}>
-                  Image URL:
-                </label>
+              <div className="form-group">
+                <label>Image URL: </label>
                 <input
                   className="form-control"
                   name="url"
                   type="text"
                   value={newProduct.url}
                   onChange={handleInputChange}
-                  style={{
-                    width: "100%",
-                    padding: "0.5rem",
-                    border: "1px solid #ccc",
-                    borderRadius: "4px",
-                  }}
                 />
               </div>
 
-              <div
-                className="form-group"
-                style={{
-                  marginBottom: "1.5rem",
-                }}
-              >
-                <label style={{ display: "block", marginBottom: "0.5rem" }}>
+              <div className="form-group">
+                <label >
                   Description:
                 </label>
                 <textarea
@@ -201,22 +141,11 @@ const AddProduct = () => {
                   type="text"
                   value={newProduct.description}
                   onChange={handleInputChange}
-                  style={{
-                    width: "100%",
-                    padding: "0.5rem",
-                    border: "1px solid #ccc",
-                    borderRadius: "4px",
-                  }}
                 />
               </div>
 
-              <div
-                className="form-group"
-                style={{
-                  marginBottom: "1.5rem",
-                }}
-              >
-                <label style={{ display: "block", marginBottom: "0.5rem" }}>
+              <div className="form-group">
+                <label>
                   Categories:
                 </label>
 
@@ -237,19 +166,7 @@ const AddProduct = () => {
                 ))}
               </div>
 
-              <button
-                type="submit"
-                style={{
-                  backgroundColor: "#ff9f9f",
-                  color: "white",
-                  border: "none",
-                  padding: "0.5rem 1rem",
-                  borderRadius: "4px",
-                  cursor: "pointer",
-                  fontSize: "1rem",
-                  transition: "background-color 0.3s ease",
-                }}
-              >
+              <button className="add-prd-btn" type="submit">
                 Submit
               </button>
             </form>

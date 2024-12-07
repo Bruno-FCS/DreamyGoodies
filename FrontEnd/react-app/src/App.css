@@ -20,6 +20,9 @@
   text-decoration: none;
   padding: 5px;
   border-radius: 10px;
+  width: 120px;
+  text-align: center;
+
 }
 #links:hover {
   border-color: #f7cc08;
@@ -87,7 +90,7 @@
 }
 
 /*-----------------------------------------*/
-/*Form Format (Register, Login, ContactUs)*/
+/*Form Format (Register, Login, ContactUs, Add/edit Product)*/
 /*-----------------------------------------*/
 .form-header {
   display: flex;
@@ -112,6 +115,7 @@
 .form-group label {
   display: block;
   margin-bottom: 0.5rem;
+  font-weight: bold;
 }
 .form-container {
   display: flex;
@@ -132,6 +136,22 @@
 /*-----------------------------------------*/
 /*Register Page*/
 /*-----------------------------------------*/
+
+/*-----------------------------------------*/
+/*Add-Product Page*/
+/*-----------------------------------------*/
+
+.add-prd-btn {
+  background-color: #ff9f9f;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
 
 /*-----------------------------------------*/
 /* ContactUs Page */

@@ -37,7 +37,7 @@ const Login = () => {
         const token = data.accessToken;
         localStorage.setItem("token", token);
         console.log("Login successful");
-        alert("Welcome to Dreamy Goodies! Happy shopping!");
+        // alert("Welcome to Dreamy Goodies! Happy shopping!");
         window.location.href = "/"; // Redirect to homepage
       } catch (error) {
         setError(error.message);
