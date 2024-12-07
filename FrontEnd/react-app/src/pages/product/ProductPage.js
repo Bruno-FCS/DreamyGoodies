@@ -74,11 +74,12 @@ const ProductPage = () => {
     }
   };
 
-  const handleAddToCart = () => {
+  const handleAddToCart = (id) => {
     let savedCart = localStorage.getItem("cart");
     if (savedCart) {
       let parsedCart = JSON.parse(savedCart);
       let existingProduct = parsedCart.find((product) => product.id === id);
+      console.log(existingProduct);
       if (existingProduct) {
         existingProduct.quantity += quantity;
       } else {
@@ -107,7 +108,7 @@ const ProductPage = () => {
     }
   };
 
-  const handleAddToWishlist = () => {
+  const handleAddToWishlist = (id) => {
     let wishlist = localStorage.getItem("wishlist");
     if (wishlist) {
       let parsedWishlist = JSON.parse(wishlist);
@@ -245,7 +246,7 @@ const ProductPage = () => {
                   +
                 </button>
                 <button
-                  onClick={handleAddToCart}
+                  onClick={() => handleAddToCart(product.id)}
                   style={{
                     backgroundColor: "#fca9a9",
                     color: "white",
@@ -259,7 +260,7 @@ const ProductPage = () => {
                   Add to Cart
                 </button>
                 <button
-                  onClick={handleAddToWishlist}
+                  onClick={() => handleAddToWishlist(product.id)}
                   style={{
                     backgroundColor: "#fca9a9",
                     color: "white",
