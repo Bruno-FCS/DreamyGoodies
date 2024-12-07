@@ -28,5 +28,5 @@ public class UserApp {
     private String role;
     @Column(nullable = false)
     private String provider;
-
+    private Integer points;
 }
