@@ -1,16 +1,26 @@
 import React, { useState } from "react";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
+import { Link } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
 const Register = () => {
+  const isLoggedIn = localStorage.getItem("token") !== null;
+  const token = isLoggedIn ? localStorage.getItem("token") : null;
+  const decodedToken = token ? jwtDecode(token) : null;
+  const scope = decodedToken ? decodedToken.scope : "";
+  const isAuthorized = isLoggedIn && scope === "ADMIN";
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
     confirm_password: "",
+    role: "",
   });
 
   const [errors, setErrors] = useState([]);
+  const [message, setMessage] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,6 +42,9 @@ const Register = () => {
     if (formData.password !== formData.confirm_password) {
       fieldErrors.push("Password and Confirm password must be the same");
     }
+    if (isAuthorized && !formData.role) {
+      fieldErrors.push("Role is required");
+    }
 
     if (fieldErrors.length > 0) {
       setErrors(fieldErrors.map((msg, index) => ({ id: index, msg })));
@@ -39,12 +52,18 @@ const Register = () => {
     }
 
     try {
+      const endpoint = isAuthorized
+        ? "/users/admin/register"
+        : "/users/register";
       const response = await fetch(
-        process.env.REACT_APP_API_BACKEND + "/users/register",
+        process.env.REACT_APP_API_BACKEND + endpoint,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            ...(isAuthorized && token
+              ? { Authorization: `Bearer ${token}` }
+              : {}),
           },
           body: JSON.stringify(formData),
         }
@@ -54,8 +73,15 @@ const Register = () => {
         setErrors([{ id: 0, msg: data }]);
       } else {
         console.log("User registered successfully");
-        alert("Registration successful!");
-        window.location.href = "/login";
+        setMessage("Registration successful!");
+        setErrors([]);
+        setFormData({
+          name: "",
+          email: "",
+          password: "",
+          confirm_password: "",
+          role: "",
+        });
       }
     } catch (error) {
       console.error("Error registering user:", error);
@@ -80,28 +106,41 @@ const Register = () => {
       <Navbar />
       <div className="form-container">
         <div className="form">
-            <div className="form-header">
-                <h1>Register</h1>
-                <img
-                    src={require("../../assets/logo.png")}
-                    width={100}
-                    alt="logo"
-                    style={{marginLeft: "1rem"}}
-                />
-            </div>
-            {errors.length > 0 && (
-                <div
-                    style={{
-                        marginBottom: "1rem",
-                    }}
-                >
-                    {errors.map((error) => (
+          <div className="form-header">
+            <h1>Register</h1>
+            <img
+              src={require("../../assets/logo.png")}
+              width={100}
+              alt="logo"
+              style={{ marginLeft: "1rem" }}
+            />
+          </div>
+          {errors.length > 0 && (
+            <div
+              style={{
+                marginBottom: "1rem",
+              }}
+            >
+              {errors.map((error) => (
                 <p>
                   <div key={error.id} class="alert alert-danger" role="alert">
                     {error.msg}
                   </div>
                 </p>
               ))}
+            </div>
+          )}
+          {message && (
+            <div
+              style={{
+                marginBottom: "1rem",
+              }}
+            >
+              <p>
+                <div class="alert alert-success" role="alert">
+                  {message}
+                </div>
+              </p>
             </div>
           )}
           <form onSubmit={handleSubmit}>
@@ -128,6 +167,24 @@ const Register = () => {
                 onChange={handleChange}
               />
             </div>
+            {isAuthorized && (
+              <div class="form-group">
+                <label for="inputState">Role</label>
+                <select
+                  id="inputState"
+                  name="role"
+                  class="form-control"
+                  value={formData.role}
+                  onChange={handleChange}
+                >
+                  <option value="" selected>
+                    Choose...
+                  </option>
+                  <option value="ADMIN">ADMIN</option>
+                  <option value="CUSTOMER">CUSTOMER</option>
+                </select>
+              </div>
+            )}
 
             <div className="form-group">
               <label> Password: </label>
@@ -169,6 +226,9 @@ const Register = () => {
             >
               Complete registration
             </button>
+            <Link className="m-3 btn-log-in" to="/login">
+              Login
+            </Link>
           </form>
         </div>
       </div>
