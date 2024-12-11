@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import {map} from "react-bootstrap/ElementChildren";
 
 const TAX = 0.13;
 
@@ -53,6 +54,15 @@ const CartPage = () => {
       .map((product) => product.price * product.quantity)
       .reduce((accumulator, currentValue) => accumulator + currentValue, 0)
       .toFixed(2);
+  };
+  const shippingFee = () => {
+  //applying fee if the total price is under a certain price point, encouraging the user to buy more
+    if(totalPrice() <= 15.00){
+      return 5.00;
+    }
+    else {
+      return 0.00;
+    }
   };
 
   return (
@@ -213,8 +223,9 @@ const CartPage = () => {
               </div>
               <div>Total: CAD$ {totalPrice()}</div>
               <div>Tax (13%): CAD$ {(totalPrice() * TAX).toFixed(2)}</div>
+              <div>Shipping Fee: ${(shippingFee() ).toFixed(2)}</div>
               <div style={{ fontWeight: "bold" }}>
-                Final Price: CAD$ {(totalPrice() * (1 + TAX)).toFixed(2)}
+                Final Price: CAD$ {(totalPrice() * (1 + TAX) + (shippingFee() * (1 + TAX))).toFixed(2)}
               </div>
 
               <button

@@ -34,6 +34,9 @@ const Navbar = () => {
         <Link id="links" to="/products">
           Products
         </Link>
+          <Link id="links" to="/about-us">
+              About Us
+          </Link>
         <Link id="links" to="/contactus">
           Contact Us
         </Link>
@@ -69,9 +72,6 @@ const Navbar = () => {
 
         {!isLoggedIn && (
           <>
-            <Link id="links" to="/register">
-              Register
-            </Link>
             <Link id="links" to="/login">
               Login
             </Link>

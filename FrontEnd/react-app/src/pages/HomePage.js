@@ -53,8 +53,49 @@ const HomePage = ({ products }) => {
         </div>
         <br />
         <br />
+
+          <div className="reviews-container">
+              <h2>Reviews</h2>
+              <div className="reviews-content">
+                  <p className="review-item">
+                      Review one
+                      a
+                      a
+                      a
+                      a
+                  </p>
+                  <p className="review-item">
+                      Review two
+                      a
+                      a
+                      a
+                      A
+                  </p>
+                  <p className="review-item">
+                      Review three
+                      a <br/>
+                      a <br/>
+                      a <br/>
+                      a <br/>
+                  </p>
+                  <p className="review-item">
+                      Review four
+                      a <br/>
+                      a <br/>
+                      a<br/>
+                      a<br/>
+                  </p>
+                  <p className="review-item">
+                      Review five
+                      a <br/>
+                      a <br/>
+                      a <br/>
+                      a <br/>
+                  </p>
+              </div>
+          </div>
       </div>
-      <Footer />
+        <Footer/>
     </div>
   );
 };

@@ -117,7 +117,7 @@ const Login = () => {
           <button
             onClick={(e) => handleLogin(e, "github")}
             className="btn-log-in"
-            style={{ marginTop: "1rem" }}
+
           >
             Login with GitHub
           </button>
