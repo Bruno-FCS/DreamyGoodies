@@ -44,7 +44,8 @@ const Navbar = () => {
         <Link id="links" to="/faq">
           FAQ
         </Link>
-        {!isCustomer && (
+          {/*if the user is registered customer or admin, they won't see the register button*/}
+        {(!isCustomer && !isAuthorized) && (
           <Link id="links" to="/register">
             Register
           </Link>
@@ -57,9 +58,9 @@ const Navbar = () => {
                 <Link id="links" to="/product/add">
                   Add Product
                 </Link>
-                <Link id="links" to="/messages">
-                  Messages
-                </Link>
+                {/*<Link id="links" to="/messages">*/}
+                {/*  Messages*/}
+                {/*</Link>*/}
               </>
             )}
             <Link id="links" to="/wishlist">

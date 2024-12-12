@@ -211,23 +211,14 @@ const Register = () => {
             </div>
 
             <button
-              id=""
+              id="reg-btn"
               type="submit"
-              style={{
-                backgroundColor: "#39b575",
-                color: "white",
-                border: "none",
-                padding: "0.5rem 1rem",
-                borderRadius: "4px",
-                cursor: "pointer",
-                fontSize: "1rem",
-                transition: "background-color 0.3s ease",
-              }}
+
             >
               Complete registration
             </button>
-            <Link className="m-3 btn-log-in" to="/login">
-              Login
+            <Link className="m-3 btn-log-in" to="/login" style={{textDecoration: "none"}}>
+              Have an account? Login!
             </Link>
           </form>
         </div>

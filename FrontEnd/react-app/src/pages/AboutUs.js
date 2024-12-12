@@ -15,44 +15,37 @@ const AboutUs = () => {
                             <h2>Our History</h2>
                             <p>
                                 Dreamy Goodies was founded in 2024 by a group of passionate Humber Polytechnic Computer
-                                Programming (& Analysis)
-                                students who shared a love for baking and technology. The founders realized the
-                                potential in
-                                combining their skills to create a seamless online platform for ordering baked goods.
-                                Since
-                                its inception, SweetTooth has achieved several milestones, including rapid growth in
-                                customer
-                                base, expansion of product offerings, and partnerships with local businesses.
+                                Programming (& Analysis) students who shared a love for baking and technology.
+                                The founders realized the potential in combining their skills to create a seamless
+                                online platform for ordering baked goods. Since its inception, Dreamy Goodies has
+                                achieved several milestones, including rapid growth in customer base, expansion of
+                                product offerings, and partnerships with local businesses.
                             </p>
                         </section>
                         <section>
                             <h2>Our Mission</h2>
                             <p>
-                                SweetTooth's mission is to deliver happiness and satisfaction through our delectable
-                                baked
-                                goods, catering to individuals and businesses alike, while fostering a sustainable,
-                                innovative,
-                                and customer-centric culture.SweetTooth's purpose is to revolutionize the way people
-                                enjoy
-                                baked goods by providing a convenient, user-friendly online platform that caters to a
-                                wide
-                                range of tastes and preferences. We aim to become a leading online bakery, known for our
+                                Our team at Dreamy Goodies is on a mission to deliver happiness and satisfaction through our delicious
+                                baked goods, focusing on individuals and businesses alike, while fostering a sustainable,
+                                innovative, and customer-focused culture. Our purpose is to help people enjoy
+                                baked goods conveniently by providing an user-friendly online platform that caters to the
+                                preferences of our diverse audience. We aim to become a leading online bakery, known for our
                                 exceptional products, unrivaled customer service, and commitment to sustainability.
                             </p>
                         </section>
                         <section>
                             <h2>Our Values</h2>
-                            <p><span className="bold_text">Customer Centricity</span>: We prioritize our customers'
-                                needs and strive to exceed their expectations.<br/>
+                            <p><span className="bold_text">Customer Needs</span>: We place our customers and their
+                                needs first, and seek to create products to satisfy and impress their taste buds.<br/>
                                 <span className="bold_text">Quality</span>: We are committed to providing high-quality,
                                 delicious baked goods made from the finest ingredients.<br/>
-                                <span className="bold_text">Innovation</span>: We continually seek to improve our
-                                processes and offerings through the integration of technology and creative
+                                <span className="bold_text">Innovation</span>: We continually seek to through the integration of technology and creative
                                 problem-solving.<br/>
-                                <span className="bold_text">Sustainability</span>: We are dedicated to minimizing our
-                                environmental impact and promoting eco-friendly practices.<br/>
+                                <span className="bold_text">Sustainability</span>: We are committed to minimizing our
+                                impact on our planet by promoting eco-friendly business practices.<br/>
                                 <span className="bold_text">Teamwork</span>: We foster a collaborative and supportive
-                                work environment that empowers our team members to grow and excel.</p>
+                                work environment, supporting the growth of our team team.
+                            </p>
                         </section>
                         <h2 style={{marginBottom: "25px"}}>Our Team</h2>
                         <section className="team_block">
@@ -86,7 +79,7 @@ const AboutUs = () => {
                                 {/*         alt="Photo of Sullen Reis"/>*/}
                                 {/*</div>*/}
                                 <p className="member_about">Suellen's keen financial acumen and marketing prowess have
-                                    been instrumental in shaping SweetTooth's brand and ensuring its financial
+                                    been instrumental in shaping Dreamy Goodies's brand and ensuring its financial
                                     stability.</p>
                             </div>
                         </section>
