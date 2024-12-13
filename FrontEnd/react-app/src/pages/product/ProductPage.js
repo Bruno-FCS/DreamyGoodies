@@ -3,8 +3,13 @@ import { useParams, Link } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
-import modal from "bootstrap/js/src/modal";
-// import "../styles/ProductPage.css"
+
+import EditIcon from "../../assets/edit.png";
+import DeleteIcon from "../../assets/trash.png";
+import AddIcon from "../../assets/add.png";
+import MinusIcon from "../../assets/minus.png"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ProductPage = () => {
   const [product, setProduct] = useState({});
@@ -12,8 +17,8 @@ const ProductPage = () => {
   const [isAuthorized, setIsAuthorized] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const { id } = useParams();
-  const [showModal, setShowModal] = useState(false);
-  const [modalMsg, setModalMsg] = useState("");
+
+  const [points, setPoints] = useState(0);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -64,6 +69,7 @@ const ProductPage = () => {
             data = await response.text();
           }
           console.log(data);
+            toast.success("Successfully deleted!");
           alert("Successfully deleted");
           window.location.href = "/";
         } else {
@@ -104,12 +110,17 @@ const ProductPage = () => {
         : product.name;
 
     if (!isLoggedIn) {
+        // setAlertMsg("Please login to access your added items!");
+        // warning();
+        toast.error("Please login to access your added items")
       window.location.href = "/login";
       alert("Please login to access your added items!");
     } else {
+        // setAlertMsg(`${pr_name} was added to the cart!`);
+        // notify();
+        toast.success(`${pr_name} was added to the cart!`)
       alert(`${pr_name} was added to the cart!`);
-      setModalMsg(`${pr_name} was added to the cart!`);
-      setShowModal(true);
+
     }
   };
 
@@ -131,10 +142,12 @@ const ProductPage = () => {
         : product.name;
 
     if (!isLoggedIn) {
+        toast.error("Please login to access your added items!");
       window.location.href = "/login";
-      alert("Please login to access your added items!");
+      // alert("Please login to access your added items!");
     } else {
-      alert(`${pr_name} was added to the wishlist!`);
+        toast.success(`${pr_name} was added to the wishlist!`);
+      // alert(`${pr_name} was added to the wishlist!`);
     }
   };
 
@@ -142,14 +155,7 @@ const ProductPage = () => {
       <div>
         <Navbar/>
         <div className="container table-section" style={{minHeight: "444px"}}>
-          {<div className="modal fade bd-example-modal-sm" tabIndex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
-                aria-hidden={showModal}>
-            <div className="modal-dialog modal-sm">
-              <div className="modal-content">
-                  {modalMsg}
-              </div>
-            </div>
-          </div>}
+            <ToastContainer/>
           <div
               className="product-details"
               style={{
@@ -165,10 +171,10 @@ const ProductPage = () => {
                 marginBottom: 100,
               }}
           >
-            <img src={product.url} width={250} alt="product_image"/>
+            <img src={product.url} width={250} alt="product_image" style={{borderRadius: "50px"}}/>
             <div>
               <h1 className="product-title">{product.name}</h1>
-              <h3 className="product-price">CAD$ {product.price}</h3>
+              <h3 className="product-price">CAD$ {product.price.toFixed(2)}</h3>
               <div className="product-details">
                 <p>
                   {product.categories.length > 1 ? "Categories" : "Category"}:{" "}
@@ -179,6 +185,7 @@ const ProductPage = () => {
                   </span>
                 ))}
               </p>
+                  <p>Weight: {product.weight}g</p>
               <p>Description: {product.description}</p>
             </div>
             <div className="product-actions">
@@ -189,15 +196,18 @@ const ProductPage = () => {
                     to={`/product/edit/${product.id}`}
                     style={{
                       backgroundColor: "#fca9a9",
-                      color: "white",
-                      textDecoration: "none",
-                      padding: "5px 10px",
+                      // color: "white",
+                      // textDecoration: "none",
+                      padding: "5px",
                       borderRadius: "5px",
-                      fontSize: "13px",
-                      margin: 2,
+                      // fontSize: "13px",
+                      margin: 5,
                     }}
                   >
-                    Edit Product
+                    <img
+                        src={EditIcon}
+                        alt="edit icon"
+                    />
                   </Link>
                   <button
                     className="product-btn delete-product-btn"
@@ -207,15 +217,17 @@ const ProductPage = () => {
                       backgroundColor: "#fca9a9",
                       color: "white",
                       border: "none",
-                      padding: "6px 7px",
+                      padding: "5px",
                       borderRadius: "5px",
                       fontSize: "13px",
-                      margin: 2,
+                      margin: 5,
                       alignSelf: "center",
                       cursor: "pointer",
                     }}
                   >
-                    Delete Product
+                    <img
+                        src={DeleteIcon}
+                    />
                   </button>
                 </div>
               )}
@@ -233,14 +245,14 @@ const ProductPage = () => {
                   }}
                   style={{
                     backgroundColor: "#fca9a9",
-                    color: "white",
+                    // color: "white",
                     border: "none",
-                    padding: "5px 10px",
+                    padding: "5px 5px",
                     borderRadius: "5px",
-                    cursor: "pointer",
+                    // cursor: "pointer",
                   }}
                 >
-                  -
+                  <img src={MinusIcon} />
                 </button>
                 <div>{quantity}</div>
                 <button
@@ -249,18 +261,19 @@ const ProductPage = () => {
                   }}
                   style={{
                     backgroundColor: "#fca9a9",
-                    color: "white",
+                    // color: "white",
                     border: "none",
-                    padding: "5px 10px",
-                    borderRadius: "5px",
-                    cursor: "pointer",
+                    padding: "5px 5px",
+                    borderRadius: "7px",
+                    margin: "2px",
                   }}
                 >
-                  +
+                  <img src={AddIcon}/>
                 </button>
                 <button
                   onClick={() => handleAddToCart(product.id)}
                   style={{
+
                     backgroundColor: "#fca9a9",
                     color: "white",
                     border: "none",

@@ -53,8 +53,34 @@ const HomePage = ({ products }) => {
         </div>
         <br />
         <br />
+
+          <div className="reviews-container">
+              <h2>Reviews</h2>
+              <div className="reviews-content">
+                  <p className="review-item">
+                      Dreamy Goodies is such a wonderful business! I loved that they have so many options for their cakes!
+                  </p>
+                  <p className="review-item">
+                      I've never bought any baked goods online before and Dreamy Goodies made it so easy!
+                  </p>
+                  <p className="review-item">
+                      Review three
+                      a <br/>
+                      a <br/>
+                      a <br/>
+                      a <br/>
+                  </p>
+                  <p className="review-item">
+                      Review four
+                      a <br/>
+                      a <br/>
+                      a<br/>
+                      a<br/>
+                  </p>
+              </div>
+          </div>
       </div>
-      <Footer />
+        <Footer/>
     </div>
   );
 };

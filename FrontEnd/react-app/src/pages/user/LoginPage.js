@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Navbar from "../../components/Navbar";
 import "../../App.css";
 import Footer from "../../components/Footer";
+import {ToastContainer} from "react-toastify";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -37,7 +38,6 @@ const Login = () => {
         const token = data.accessToken;
         localStorage.setItem("token", token);
         console.log("Login successful");
-        // alert("Welcome to Dreamy Goodies! Happy shopping!");
         window.location.href = "/"; // Redirect to homepage
       } catch (error) {
         setError(error.message);
@@ -58,7 +58,8 @@ const Login = () => {
   return (
     <div className="index-container" style={{ overflow: "hidden" }}>
       <Navbar />
-      <div className="form-container">
+      <div className="form-container" style={{minHeight: "444px"}}>
+        <ToastContainer/>
         <div className="form">
           <div className="form-header">
             <h1>Login</h1>
@@ -82,24 +83,22 @@ const Login = () => {
             }}
           >
             <div className="form-group">
-              <label>
-                Email:
-              </label>
+              <label>Email:</label>
               <input
-                  className="form-control"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                className="form-control"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
 
             <div className="form-group">
               <label> Password: </label>
               <input
-                  className="form-control"
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                className="form-control"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
             <div>
@@ -113,17 +112,16 @@ const Login = () => {
             </div>
           </form>
 
-          <hr/>
+          <hr />
           <button
             onClick={(e) => handleLogin(e, "github")}
             className="btn-log-in"
-            style={{ marginTop: "1rem" }}
           >
             Login with GitHub
           </button>
         </div>
       </div>
-      <Footer pos={"relative"}/>
+      <Footer pos={"relative"} />
     </div>
   );
 };

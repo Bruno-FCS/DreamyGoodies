@@ -23,9 +23,19 @@ public class UserController {
     //register post endpoint(posting registration)
     @PostMapping("/register")
     public ResponseEntity<String> register(@RequestBody UserApp userApp) {
+        userApp.setRole(RoleEnum.CUSTOMER.name());
+        return saveUserApp(userApp);
+    }
+
+    @PostMapping("/admin/register")
+    @PreAuthorize("hasAuthority('SCOPE_ADMIN')")
+    public ResponseEntity<String> adminRegister(@RequestBody UserApp userApp) {
+        return saveUserApp(userApp);
+    }
+
+    private ResponseEntity<String> saveUserApp(UserApp userApp) {
         //save the user to database
         try {
-            userApp.setRole(RoleEnum.CUSTOMER.name());
             userApp.setProvider("local");
             userAppService.saveUserApp(userApp);
         } catch (IllegalStateException e) {
@@ -37,7 +47,6 @@ public class UserController {
         }
 
         return ResponseEntity.ok("User saved successfully");
-
     }
 
 

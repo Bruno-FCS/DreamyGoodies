@@ -17,6 +17,7 @@ public class Product {
     private long id;
     private String name;
     private double price;
+    private double weight; //in grams
     private String url;
     @Column(length = 765)
     private String description;

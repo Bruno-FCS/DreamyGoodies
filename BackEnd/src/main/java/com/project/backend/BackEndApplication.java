@@ -62,6 +62,7 @@ public class BackEndApplication implements CommandLineRunner {
 				.id(1L)
 				.name("Strawberry Cake")
 				.price(22.9)
+				.weight(700)
 				.url("https://cdn.pixabay.com/photo/2017/03/14/05/49/small-cake-2142072_1280.jpg")
 				.description(
 						"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.")
@@ -71,6 +72,7 @@ public class BackEndApplication implements CommandLineRunner {
 				.id(2L)
 				.name("Vanilla Cake")
 				.price(15.5)
+				.weight(550)
 				.url("https://cdn.pixabay.com/photo/2019/04/29/21/52/cake-4167209_1280.jpg")
 				.description(
 						"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.")
@@ -80,6 +82,7 @@ public class BackEndApplication implements CommandLineRunner {
 				.id(3L)
 				.name("Coconut Cake")
 				.price(18.2)
+				.weight(600)
 				.url("https://cdn.pixabay.com/photo/2015/04/17/19/20/cake-727854_1280.jpg")
 				.description(
 						"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.")
@@ -88,6 +91,7 @@ public class BackEndApplication implements CommandLineRunner {
 				.id(4L)
 				.name("Carrot Cake")
 				.price(14.3)
+				.weight(500)
 				.url("https://cdn.pixabay.com/photo/2020/02/29/15/20/cake-4890393_1280.jpg")
 				.description(
 						"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.")
@@ -96,6 +100,7 @@ public class BackEndApplication implements CommandLineRunner {
 				.id(5L)
 				.name("Red velvet Cake")
 				.price(17.4)
+				.weight(500)
 				.url("https://cdn.pixabay.com/photo/2019/01/28/10/00/strawberry-cake-3959998_1280.jpg")
 				.description(
 						"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.")
@@ -104,6 +109,7 @@ public class BackEndApplication implements CommandLineRunner {
 				.id(6L)
 				.name("12x Assorted macarons")
 				.price(20.0)
+				.weight(500)
 				.url("https://cdn.pixabay.com/photo/2023/01/13/17/30/macarons-7716584_1280.jpg")
 				.description(
 						"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.")
@@ -112,6 +118,7 @@ public class BackEndApplication implements CommandLineRunner {
 				.id(7L)
 				.name("6x Assorted macarons")
 				.price(11.5)
+				.weight(500)
 				.url("https://cdn.pixabay.com/photo/2023/01/13/17/30/macarons-7716584_1280.jpg")
 				.description(
 						"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.")
@@ -120,6 +127,7 @@ public class BackEndApplication implements CommandLineRunner {
 				.id(8L)
 				.name("12x Assorted cookies")
 				.price(11.5)
+				.weight(500)
 				.url("https://cdn.pixabay.com/photo/2022/01/19/16/35/cookies-6950467_1280.jpg")
 				.description(
 						"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.")
@@ -128,6 +136,7 @@ public class BackEndApplication implements CommandLineRunner {
 				.id(9L)
 				.name("6x Assorted cookies")
 				.price(11.5)
+				.weight(500)
 				.url("https://cdn.pixabay.com/photo/2022/01/19/16/35/cookies-6950467_1280.jpg")
 				.description(
 						"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.")
