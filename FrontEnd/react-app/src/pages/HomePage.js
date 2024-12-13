@@ -55,27 +55,35 @@ const HomePage = ({ products }) => {
         <br />
 
           <div className="reviews-container">
-              <h2>Reviews</h2>
+              <h2 >Reviews</h2>
               <div className="reviews-content">
                   <p className="review-item">
-                      Dreamy Goodies is such a wonderful business! I loved that they have so many options for their cakes!
+                      Dreamy Goodies is such a wonderful business! I loved that they have so many options for their cakes, even vegan!
+                      <br/>
+                      <br/>
+                      - <i>Anonymous</i>
                   </p>
                   <p className="review-item">
-                      I've never bought any baked goods online before and Dreamy Goodies made it so easy!
+                      I've never bought any baked goods online before and Dreamy Goodies made it so easy! Cookies
+                      galore!
+                      <br/>
+                      <br/>
+                      - <i>Mother of four</i>
                   </p>
                   <p className="review-item">
-                      Review three
-                      a <br/>
-                      a <br/>
-                      a <br/>
-                      a <br/>
+                      I normally it's so difficult to contact a business about even the simplest questions, but their
+                      contact us page is so simple
+                      and they respond in less than 24 hours! Fantastic service!
+                      <br/>
+                      <br/>
+                      - <i> Anonymous</i>
                   </p>
                   <p className="review-item">
-                      Review four
-                      a <br/>
-                      a <br/>
-                      a<br/>
-                      a<br/>
+                      These prices at Dreamy Goodies are what they used to be, I'm so glad there are still reasonable businesses out there.
+                      I don't even mind the shipping fee!
+                      <br/>
+                      <br/>
+                      <i>- Anonymous</i>
                   </p>
               </div>
           </div>

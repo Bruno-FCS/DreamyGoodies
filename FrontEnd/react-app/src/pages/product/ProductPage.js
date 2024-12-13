@@ -70,7 +70,7 @@ const ProductPage = () => {
           }
           console.log(data);
             toast.success("Successfully deleted!");
-          alert("Successfully deleted");
+          // alert("Successfully deleted");
           window.location.href = "/";
         } else {
           console.error("Error deleting product:", response.statusText);
@@ -110,16 +110,12 @@ const ProductPage = () => {
         : product.name;
 
     if (!isLoggedIn) {
-        // setAlertMsg("Please login to access your added items!");
-        // warning();
         toast.error("Please login to access your added items")
       window.location.href = "/login";
-      alert("Please login to access your added items!");
+      // alert("Please login to access your added items!");
     } else {
-        // setAlertMsg(`${pr_name} was added to the cart!`);
-        // notify();
         toast.success(`${pr_name} was added to the cart!`)
-      alert(`${pr_name} was added to the cart!`);
+      // alert(`${pr_name} was added to the cart!`);
 
     }
   };

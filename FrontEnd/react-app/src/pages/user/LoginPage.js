@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Navbar from "../../components/Navbar";
 import "../../App.css";
 import Footer from "../../components/Footer";
-import {ToastContainer} from "react-toastify";
+import {toast, ToastContainer} from "react-toastify";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -72,9 +72,9 @@ const Login = () => {
           </div>
           {error && (
             <p>
-              <div className="alert alert-danger" role="alert">
-                {error}
-              </div>
+              {/*<div role="alert">*/}
+                {toast.error(error)}
+              {/*</div>*/}
             </p>
           )}
           <form

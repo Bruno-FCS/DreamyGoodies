@@ -117,7 +117,7 @@ const CartPage = () => {
                 backgroundColor: "white",
               }}
             >
-              <img src={product.url} width={75} alt={product.name} />
+              <img src={product.url} width={75} alt={product.name} style={{borderRadius: "5px"}}/>
               <div className="title-box">
                 <label className="product-title">
                   <a
@@ -144,11 +144,8 @@ const CartPage = () => {
                       backgroundColor: "#ff9f9f",
                       color: "white",
                       border: "none",
-                      padding: "2px 10px",
-                      // borderRadius: "5px",
+                      padding: "2px 3px 4px 3px",
                       marginRight: 2,
-                      cursor: "pointer",
-                      // padding: "5px 5px",
                       borderRadius: "5px",
 
                     }}
@@ -162,14 +159,14 @@ const CartPage = () => {
                       backgroundColor: "#ff9f9f",
                       color: "white",
                       border: "none",
-                      padding: "2px 10px",
+                      padding: "2px 3px 4px 3px",
+                      marginRight: 2,
+
                       borderRadius: "5px",
-                      marginLeft: 2,
-                      cursor: "pointer",
                     }}
                     onClick={() => handleIncreaseQuantity(product.id)}
                   >
-                    +
+                    <img src={AddIcon}/>
                   </button>
                 </p>
                 <p className="product-info" style={{ fontWeight: "bold" }}>

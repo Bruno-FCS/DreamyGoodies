@@ -36,13 +36,7 @@ const UserProfile = () => {
 
                     <div
                         className="text-block"
-                        style={{
-                            backgroundColor: "white",
-                            width: "50%",
-                            display: "flex",
-                            flexDirection: "column",
-                            borderRadius: "10px"
-                        }}>
+                    >
                         <span>Welcome to your profile, {userName}</span>
 
                         <p>
@@ -53,40 +47,22 @@ const UserProfile = () => {
 
                         {isAuthorized &&
                             <>
-                                <Link to="/messages"
-                                      style={{
-                                          color: "black",
-                                          textDecoration: "none",
-                                          fontWeight: "bold",
-                                          backgroundColor: "#fceba0",
-                                          padding: "5px",
-                                          margin: "5px",
-                                          width: "max-content",
-                                          borderRadius: "5px",
-                                      }}
-                                >
-                                    Messages
-                                </Link>
                                 <div style={{marginBottom: "10px"}}>
                                     As an administrator, you may register new users, click here:
-                                    <Link to="/register" id="admin-reg-btn"
+                                    <Link to="/register" id="admin-btn"
 
                                     >
                                         Register
                                     </Link>
                                 </div>
+                                <div style={{marginBottom: "10px"}}>
+                                    Access messages sent by customers here:
+                                    <Link to="/messages" id="admin-btn">
+                                        Messages
+                                    </Link>
+                                </div>
 
                             </>}
-
-                        <div>
-                            <h3>Loyalty Program</h3>
-                            <p>
-                                As a loyal customer of Dreamy Goodies, you receive a certain amount of points per order.
-                                <br/>For example, let's say a cake costs $22.60, the equivalent amount of points would be 230
-                                (22.60 rounded to 23, multiplied by 100).
-
-                            </p>
-                        </div>
                     </div>
 
 
