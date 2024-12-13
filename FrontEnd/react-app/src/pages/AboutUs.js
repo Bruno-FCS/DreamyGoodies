@@ -16,10 +16,11 @@ const AboutUs = () => {
                             <p>
                                 Dreamy Goodies was founded in 2024 by a group of passionate Humber Polytechnic Computer
                                 Programming (& Analysis) students who shared a love for baking and technology.
-                                The founders realized the potential in combining their skills to create a seamless
-                                online platform for ordering baked goods. Since its inception, Dreamy Goodies has
-                                achieved several milestones, including rapid growth in customer base, expansion of
-                                product offerings, and partnerships with local businesses.
+                                The founders wanted to address the issue of limited access to quality, freshly baked
+                                goods by providing a convenient online platform for customers, especially those with
+                                busy schedules or restricted mobility, to order and receive fresh bakery items without
+                                visiting a physical store. Dreamy Goodies offers a variety of products, customization
+                                options (such as gluten-free or vegan items), and a seamless shopping experience.
                             </p>
                         </section>
                         <section>
@@ -68,7 +69,7 @@ const AboutUs = () => {
                                 {/*         alt="Photo of Katherine Dorensky"/>*/}
                                 {/*</div>*/}
                                 <p className="member_about"> With a talent for organization and a dedication to customer
-                                    satisfaction, Katherine manages the day-to-day operations and ensures a seamless
+                                    satisfaction, Katherine manages the day-to-day operations and ensures an exceptional
                                     customer experience.</p>
                             </div>
                             <div className="member_block" >

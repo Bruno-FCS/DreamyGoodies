@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import {map} from "react-bootstrap/ElementChildren";
+import AddIcon from "../assets/add.png";
+import MinusIcon from "../assets/minus.png"
 
 const TAX = 0.13;
 
 const CartPage = () => {
   const [cart, setCart] = useState([]);
   const [display, setDisplay] = useState("none");
+
+  const [points, setPoints] = useState(0);
 
   useEffect(() => {
     const savedCart = localStorage.getItem("cart");
@@ -138,22 +141,25 @@ const CartPage = () => {
                   Quantity:{" "}
                   <button
                     style={{
-                      backgroundColor: "#39b575",
+                      backgroundColor: "#ff9f9f",
                       color: "white",
                       border: "none",
                       padding: "2px 10px",
-                      borderRadius: "5px",
+                      // borderRadius: "5px",
                       marginRight: 2,
                       cursor: "pointer",
+                      // padding: "5px 5px",
+                      borderRadius: "5px",
+
                     }}
                     onClick={() => handleDecreaseQuantity(product.id)}
                   >
-                    -
+                    <img src={MinusIcon}/>
                   </button>
                   {product.quantity}
                   <button
                     style={{
-                      backgroundColor: "#39b575",
+                      backgroundColor: "#ff9f9f",
                       color: "white",
                       border: "none",
                       padding: "2px 10px",
@@ -172,7 +178,7 @@ const CartPage = () => {
               </div>
               <button
                 style={{
-                  backgroundColor: "#39b575",
+                  backgroundColor: "#ff9f9f",
                   color: "white",
                   border: "none",
                   padding: "3px 10px",
@@ -230,7 +236,7 @@ const CartPage = () => {
 
               <button
                 style={{
-                  backgroundColor: "#39b575",
+                  backgroundColor: "#ff9f9f",
                   color: "white",
                   border: "none",
                   padding: "5px 10px",

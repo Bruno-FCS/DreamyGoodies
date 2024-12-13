@@ -3,11 +3,13 @@ import { useParams, Link } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
-import modal from "bootstrap/js/src/modal";
+
 import EditIcon from "../../assets/edit.png";
 import DeleteIcon from "../../assets/trash.png";
 import AddIcon from "../../assets/add.png";
 import MinusIcon from "../../assets/minus.png"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ProductPage = () => {
   const [product, setProduct] = useState({});
@@ -15,8 +17,8 @@ const ProductPage = () => {
   const [isAuthorized, setIsAuthorized] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const { id } = useParams();
-  const [showModal, setShowModal] = useState(false);
-  const [modalMsg, setModalMsg] = useState("");
+
+  const [points, setPoints] = useState(0);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -67,6 +69,7 @@ const ProductPage = () => {
             data = await response.text();
           }
           console.log(data);
+            toast.success("Successfully deleted!");
           alert("Successfully deleted");
           window.location.href = "/";
         } else {
@@ -107,12 +110,17 @@ const ProductPage = () => {
         : product.name;
 
     if (!isLoggedIn) {
+        // setAlertMsg("Please login to access your added items!");
+        // warning();
+        toast.error("Please login to access your added items")
       window.location.href = "/login";
       alert("Please login to access your added items!");
     } else {
+        // setAlertMsg(`${pr_name} was added to the cart!`);
+        // notify();
+        toast.success(`${pr_name} was added to the cart!`)
       alert(`${pr_name} was added to the cart!`);
-      setModalMsg(`${pr_name} was added to the cart!`);
-      setShowModal(true);
+
     }
   };
 
@@ -134,10 +142,12 @@ const ProductPage = () => {
         : product.name;
 
     if (!isLoggedIn) {
+        toast.error("Please login to access your added items!");
       window.location.href = "/login";
-      alert("Please login to access your added items!");
+      // alert("Please login to access your added items!");
     } else {
-      alert(`${pr_name} was added to the wishlist!`);
+        toast.success(`${pr_name} was added to the wishlist!`);
+      // alert(`${pr_name} was added to the wishlist!`);
     }
   };
 
@@ -145,14 +155,7 @@ const ProductPage = () => {
       <div>
         <Navbar/>
         <div className="container table-section" style={{minHeight: "444px"}}>
-          {<div className="modal fade bd-example-modal-sm" tabIndex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
-                aria-hidden={showModal}>
-            <div className="modal-dialog modal-sm">
-              <div className="modal-content">
-                  {modalMsg}
-              </div>
-            </div>
-          </div>}
+            <ToastContainer/>
           <div
               className="product-details"
               style={{
@@ -182,6 +185,7 @@ const ProductPage = () => {
                   </span>
                 ))}
               </p>
+                  <p>Weight: {product.weight}g</p>
               <p>Description: {product.description}</p>
             </div>
             <div className="product-actions">

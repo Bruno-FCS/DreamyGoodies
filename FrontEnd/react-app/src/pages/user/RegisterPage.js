@@ -104,7 +104,7 @@ const Register = () => {
       }}
     >
       <Navbar />
-      <div className="form-container">
+      <div className="form-container" style={{minHeight: "444px"}}>
         <div className="form">
           <div className="form-header">
             <h1>Register</h1>

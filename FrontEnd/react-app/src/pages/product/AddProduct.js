@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AddProduct = () => {
   const [fetchedCategories, setFetchedCategories] = useState([]);
@@ -75,7 +77,8 @@ const AddProduct = () => {
         }
       })
       .then(() => {
-        alert("Add Product successfully added");
+        toast.success("'Add Product' successful!")
+        // alert("Add Product successfully added");
         window.location.href = "/";
       })
       .catch((error) => console.error("Error updating product:", error));
@@ -90,6 +93,7 @@ const AddProduct = () => {
     >
       <Navbar />
       <div className="form-container">
+        <ToastContainer/>
         {isAuthorized ? (
           <div className="form" >
             <h1>Add New Product </h1>

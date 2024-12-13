@@ -58,18 +58,10 @@ const HomePage = ({ products }) => {
               <h2>Reviews</h2>
               <div className="reviews-content">
                   <p className="review-item">
-                      Review one
-                      a
-                      a
-                      a
-                      a
+                      Dreamy Goodies is such a wonderful business! I loved that they have so many options for their cakes!
                   </p>
                   <p className="review-item">
-                      Review two
-                      a
-                      a
-                      a
-                      A
+                      I've never bought any baked goods online before and Dreamy Goodies made it so easy!
                   </p>
                   <p className="review-item">
                       Review three
@@ -84,13 +76,6 @@ const HomePage = ({ products }) => {
                       a <br/>
                       a<br/>
                       a<br/>
-                  </p>
-                  <p className="review-item">
-                      Review five
-                      a <br/>
-                      a <br/>
-                      a <br/>
-                      a <br/>
                   </p>
               </div>
           </div>

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Navbar from "../../components/Navbar";
 import "../../App.css";
 import Footer from "../../components/Footer";
+import {ToastContainer} from "react-toastify";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -57,7 +58,8 @@ const Login = () => {
   return (
     <div className="index-container" style={{ overflow: "hidden" }}>
       <Navbar />
-      <div className="form-container">
+      <div className="form-container" style={{minHeight: "444px"}}>
+        <ToastContainer/>
         <div className="form">
           <div className="form-header">
             <h1>Login</h1>
